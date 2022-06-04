@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D9AEC73C284BFF9E00ABA16B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC73B284BFF9E00ABA16B /* AppDelegate.swift */; };
-		D9AEC73E284BFF9E00ABA16B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC73D284BFF9E00ABA16B /* ViewController.swift */; };
+		D9AEC73E284BFF9E00ABA16B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC73D284BFF9E00ABA16B /* MainViewController.swift */; };
 		D9AEC740284BFF9F00ABA16B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9AEC73F284BFF9F00ABA16B /* Assets.xcassets */; };
 		D9AEC743284BFF9F00ABA16B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9AEC741284BFF9F00ABA16B /* Main.storyboard */; };
 		D9AEC74E284BFF9F00ABA16B /* SpaceTraderGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC74D284BFF9F00ABA16B /* SpaceTraderGameTests.swift */; };
@@ -17,6 +17,9 @@
 		D9AEC769284C001800ABA16B /* city_list.txt in Resources */ = {isa = PBXBuildFile; fileRef = D9AEC768284C001800ABA16B /* city_list.txt */; };
 		D9AEC76C284C002300ABA16B /* GalaxyMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC76A284C002300ABA16B /* GalaxyMap.swift */; };
 		D9AEC76D284C002300ABA16B /* StarSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC76B284C002300ABA16B /* StarSystem.swift */; };
+		D9AEC771284C043500ABA16B /* StarMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC76F284C043500ABA16B /* StarMapViewController.swift */; };
+		D9AEC772284C043500ABA16B /* StarMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9AEC770284C043500ABA16B /* StarMapViewController.xib */; };
+		D9AEC774284C05A000ABA16B /* StarMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC773284C05A000ABA16B /* StarMapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +42,7 @@
 /* Begin PBXFileReference section */
 		D9AEC738284BFF9E00ABA16B /* SpaceTraderGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceTraderGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9AEC73B284BFF9E00ABA16B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D9AEC73D284BFF9E00ABA16B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D9AEC73D284BFF9E00ABA16B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D9AEC73F284BFF9F00ABA16B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D9AEC742284BFF9F00ABA16B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D9AEC744284BFF9F00ABA16B /* SpaceTraderGame.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpaceTraderGame.entitlements; sourceTree = "<group>"; };
@@ -51,6 +54,9 @@
 		D9AEC768284C001800ABA16B /* city_list.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = city_list.txt; sourceTree = "<group>"; };
 		D9AEC76A284C002300ABA16B /* GalaxyMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalaxyMap.swift; sourceTree = "<group>"; };
 		D9AEC76B284C002300ABA16B /* StarSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarSystem.swift; sourceTree = "<group>"; };
+		D9AEC76F284C043500ABA16B /* StarMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarMapViewController.swift; sourceTree = "<group>"; };
+		D9AEC770284C043500ABA16B /* StarMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarMapViewController.xib; sourceTree = "<group>"; };
+		D9AEC773284C05A000ABA16B /* StarMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarMapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +111,7 @@
 				D9AEC767284BFFD400ABA16B /* Resources */,
 				D9AEC766284BFFB800ABA16B /* DataTypes */,
 				D9AEC73B284BFF9E00ABA16B /* AppDelegate.swift */,
-				D9AEC73D284BFF9E00ABA16B /* ViewController.swift */,
+				D9AEC73D284BFF9E00ABA16B /* MainViewController.swift */,
 				D9AEC73F284BFF9F00ABA16B /* Assets.xcassets */,
 				D9AEC741284BFF9F00ABA16B /* Main.storyboard */,
 				D9AEC744284BFF9F00ABA16B /* SpaceTraderGame.entitlements */,
@@ -150,6 +156,9 @@
 		D9AEC76E284C003E00ABA16B /* Display */ = {
 			isa = PBXGroup;
 			children = (
+				D9AEC76F284C043500ABA16B /* StarMapViewController.swift */,
+				D9AEC770284C043500ABA16B /* StarMapViewController.xib */,
+				D9AEC773284C05A000ABA16B /* StarMapView.swift */,
 			);
 			path = Display;
 			sourceTree = "<group>";
@@ -259,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9AEC740284BFF9F00ABA16B /* Assets.xcassets in Resources */,
+				D9AEC772284C043500ABA16B /* StarMapViewController.xib in Resources */,
 				D9AEC743284BFF9F00ABA16B /* Main.storyboard in Resources */,
 				D9AEC769284C001800ABA16B /* city_list.txt in Resources */,
 			);
@@ -286,7 +296,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9AEC76C284C002300ABA16B /* GalaxyMap.swift in Sources */,
-				D9AEC73E284BFF9E00ABA16B /* ViewController.swift in Sources */,
+				D9AEC73E284BFF9E00ABA16B /* MainViewController.swift in Sources */,
+				D9AEC771284C043500ABA16B /* StarMapViewController.swift in Sources */,
+				D9AEC774284C05A000ABA16B /* StarMapView.swift in Sources */,
 				D9AEC76D284C002300ABA16B /* StarSystem.swift in Sources */,
 				D9AEC73C284BFF9E00ABA16B /* AppDelegate.swift in Sources */,
 			);

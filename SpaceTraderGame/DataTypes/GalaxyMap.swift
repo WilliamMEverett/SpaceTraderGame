@@ -9,8 +9,15 @@ import Foundation
 import CloudKit
 
 class GalaxyMap: Codable {
-    var systemsMap = [Int:StarSystem]()
+    private var systemsMap = [Int:StarSystem]()
     
+    func getSystemForId(_ ident: Int) -> StarSystem? {
+        return systemsMap[ident]
+    }
+    
+    func getAllSystemIdentifiers() -> [Int] {
+        return Array(systemsMap.keys)
+    }
     
     func generateSystems(_ maxSystems : Int) {
         var resultMap = [Int:StarSystem]()
