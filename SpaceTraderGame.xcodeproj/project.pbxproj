@@ -1,0 +1,584 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D9AEC73C284BFF9E00ABA16B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC73B284BFF9E00ABA16B /* AppDelegate.swift */; };
+		D9AEC73E284BFF9E00ABA16B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC73D284BFF9E00ABA16B /* ViewController.swift */; };
+		D9AEC740284BFF9F00ABA16B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9AEC73F284BFF9F00ABA16B /* Assets.xcassets */; };
+		D9AEC743284BFF9F00ABA16B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9AEC741284BFF9F00ABA16B /* Main.storyboard */; };
+		D9AEC74E284BFF9F00ABA16B /* SpaceTraderGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC74D284BFF9F00ABA16B /* SpaceTraderGameTests.swift */; };
+		D9AEC758284BFF9F00ABA16B /* SpaceTraderGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC757284BFF9F00ABA16B /* SpaceTraderGameUITests.swift */; };
+		D9AEC75A284BFF9F00ABA16B /* SpaceTraderGameUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC759284BFF9F00ABA16B /* SpaceTraderGameUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D9AEC74A284BFF9F00ABA16B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D9AEC730284BFF9D00ABA16B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D9AEC737284BFF9E00ABA16B;
+			remoteInfo = SpaceTraderGame;
+		};
+		D9AEC754284BFF9F00ABA16B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D9AEC730284BFF9D00ABA16B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D9AEC737284BFF9E00ABA16B;
+			remoteInfo = SpaceTraderGame;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D9AEC738284BFF9E00ABA16B /* SpaceTraderGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceTraderGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9AEC73B284BFF9E00ABA16B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D9AEC73D284BFF9E00ABA16B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D9AEC73F284BFF9F00ABA16B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D9AEC742284BFF9F00ABA16B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D9AEC744284BFF9F00ABA16B /* SpaceTraderGame.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpaceTraderGame.entitlements; sourceTree = "<group>"; };
+		D9AEC749284BFF9F00ABA16B /* SpaceTraderGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceTraderGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9AEC74D284BFF9F00ABA16B /* SpaceTraderGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceTraderGameTests.swift; sourceTree = "<group>"; };
+		D9AEC753284BFF9F00ABA16B /* SpaceTraderGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceTraderGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9AEC757284BFF9F00ABA16B /* SpaceTraderGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceTraderGameUITests.swift; sourceTree = "<group>"; };
+		D9AEC759284BFF9F00ABA16B /* SpaceTraderGameUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceTraderGameUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D9AEC735284BFF9E00ABA16B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AEC746284BFF9F00ABA16B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AEC750284BFF9F00ABA16B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D9AEC72F284BFF9D00ABA16B = {
+			isa = PBXGroup;
+			children = (
+				D9AEC73A284BFF9E00ABA16B /* SpaceTraderGame */,
+				D9AEC74C284BFF9F00ABA16B /* SpaceTraderGameTests */,
+				D9AEC756284BFF9F00ABA16B /* SpaceTraderGameUITests */,
+				D9AEC739284BFF9E00ABA16B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D9AEC739284BFF9E00ABA16B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D9AEC738284BFF9E00ABA16B /* SpaceTraderGame.app */,
+				D9AEC749284BFF9F00ABA16B /* SpaceTraderGameTests.xctest */,
+				D9AEC753284BFF9F00ABA16B /* SpaceTraderGameUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D9AEC73A284BFF9E00ABA16B /* SpaceTraderGame */ = {
+			isa = PBXGroup;
+			children = (
+				D9AEC73B284BFF9E00ABA16B /* AppDelegate.swift */,
+				D9AEC73D284BFF9E00ABA16B /* ViewController.swift */,
+				D9AEC73F284BFF9F00ABA16B /* Assets.xcassets */,
+				D9AEC741284BFF9F00ABA16B /* Main.storyboard */,
+				D9AEC744284BFF9F00ABA16B /* SpaceTraderGame.entitlements */,
+			);
+			path = SpaceTraderGame;
+			sourceTree = "<group>";
+		};
+		D9AEC74C284BFF9F00ABA16B /* SpaceTraderGameTests */ = {
+			isa = PBXGroup;
+			children = (
+				D9AEC74D284BFF9F00ABA16B /* SpaceTraderGameTests.swift */,
+			);
+			path = SpaceTraderGameTests;
+			sourceTree = "<group>";
+		};
+		D9AEC756284BFF9F00ABA16B /* SpaceTraderGameUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D9AEC757284BFF9F00ABA16B /* SpaceTraderGameUITests.swift */,
+				D9AEC759284BFF9F00ABA16B /* SpaceTraderGameUITestsLaunchTests.swift */,
+			);
+			path = SpaceTraderGameUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D9AEC737284BFF9E00ABA16B /* SpaceTraderGame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D9AEC75D284BFF9F00ABA16B /* Build configuration list for PBXNativeTarget "SpaceTraderGame" */;
+			buildPhases = (
+				D9AEC734284BFF9E00ABA16B /* Sources */,
+				D9AEC735284BFF9E00ABA16B /* Frameworks */,
+				D9AEC736284BFF9E00ABA16B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SpaceTraderGame;
+			productName = SpaceTraderGame;
+			productReference = D9AEC738284BFF9E00ABA16B /* SpaceTraderGame.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D9AEC748284BFF9F00ABA16B /* SpaceTraderGameTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D9AEC760284BFF9F00ABA16B /* Build configuration list for PBXNativeTarget "SpaceTraderGameTests" */;
+			buildPhases = (
+				D9AEC745284BFF9F00ABA16B /* Sources */,
+				D9AEC746284BFF9F00ABA16B /* Frameworks */,
+				D9AEC747284BFF9F00ABA16B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D9AEC74B284BFF9F00ABA16B /* PBXTargetDependency */,
+			);
+			name = SpaceTraderGameTests;
+			productName = SpaceTraderGameTests;
+			productReference = D9AEC749284BFF9F00ABA16B /* SpaceTraderGameTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D9AEC752284BFF9F00ABA16B /* SpaceTraderGameUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D9AEC763284BFF9F00ABA16B /* Build configuration list for PBXNativeTarget "SpaceTraderGameUITests" */;
+			buildPhases = (
+				D9AEC74F284BFF9F00ABA16B /* Sources */,
+				D9AEC750284BFF9F00ABA16B /* Frameworks */,
+				D9AEC751284BFF9F00ABA16B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D9AEC755284BFF9F00ABA16B /* PBXTargetDependency */,
+			);
+			name = SpaceTraderGameUITests;
+			productName = SpaceTraderGameUITests;
+			productReference = D9AEC753284BFF9F00ABA16B /* SpaceTraderGameUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D9AEC730284BFF9D00ABA16B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					D9AEC737284BFF9E00ABA16B = {
+						CreatedOnToolsVersion = 13.3;
+					};
+					D9AEC748284BFF9F00ABA16B = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = D9AEC737284BFF9E00ABA16B;
+					};
+					D9AEC752284BFF9F00ABA16B = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = D9AEC737284BFF9E00ABA16B;
+					};
+				};
+			};
+			buildConfigurationList = D9AEC733284BFF9D00ABA16B /* Build configuration list for PBXProject "SpaceTraderGame" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D9AEC72F284BFF9D00ABA16B;
+			productRefGroup = D9AEC739284BFF9E00ABA16B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D9AEC737284BFF9E00ABA16B /* SpaceTraderGame */,
+				D9AEC748284BFF9F00ABA16B /* SpaceTraderGameTests */,
+				D9AEC752284BFF9F00ABA16B /* SpaceTraderGameUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D9AEC736284BFF9E00ABA16B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9AEC740284BFF9F00ABA16B /* Assets.xcassets in Resources */,
+				D9AEC743284BFF9F00ABA16B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AEC747284BFF9F00ABA16B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AEC751284BFF9F00ABA16B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D9AEC734284BFF9E00ABA16B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9AEC73E284BFF9E00ABA16B /* ViewController.swift in Sources */,
+				D9AEC73C284BFF9E00ABA16B /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AEC745284BFF9F00ABA16B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9AEC74E284BFF9F00ABA16B /* SpaceTraderGameTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AEC74F284BFF9F00ABA16B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9AEC758284BFF9F00ABA16B /* SpaceTraderGameUITests.swift in Sources */,
+				D9AEC75A284BFF9F00ABA16B /* SpaceTraderGameUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D9AEC74B284BFF9F00ABA16B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D9AEC737284BFF9E00ABA16B /* SpaceTraderGame */;
+			targetProxy = D9AEC74A284BFF9F00ABA16B /* PBXContainerItemProxy */;
+		};
+		D9AEC755284BFF9F00ABA16B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D9AEC737284BFF9E00ABA16B /* SpaceTraderGame */;
+			targetProxy = D9AEC754284BFF9F00ABA16B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D9AEC741284BFF9F00ABA16B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D9AEC742284BFF9F00ABA16B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D9AEC75B284BFF9F00ABA16B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D9AEC75C284BFF9F00ABA16B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		D9AEC75E284BFF9F00ABA16B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SpaceTraderGame/SpaceTraderGame.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y93ZHF2YCD;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shinybuttonsoftware.SpaceTraderGame;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		D9AEC75F284BFF9F00ABA16B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SpaceTraderGame/SpaceTraderGame.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y93ZHF2YCD;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shinybuttonsoftware.SpaceTraderGame;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		D9AEC761284BFF9F00ABA16B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y93ZHF2YCD;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shinybuttonsoftware.SpaceTraderGameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpaceTraderGame.app/Contents/MacOS/SpaceTraderGame";
+			};
+			name = Debug;
+		};
+		D9AEC762284BFF9F00ABA16B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y93ZHF2YCD;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shinybuttonsoftware.SpaceTraderGameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpaceTraderGame.app/Contents/MacOS/SpaceTraderGame";
+			};
+			name = Release;
+		};
+		D9AEC764284BFF9F00ABA16B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y93ZHF2YCD;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shinybuttonsoftware.SpaceTraderGameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = SpaceTraderGame;
+			};
+			name = Debug;
+		};
+		D9AEC765284BFF9F00ABA16B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y93ZHF2YCD;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shinybuttonsoftware.SpaceTraderGameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = SpaceTraderGame;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D9AEC733284BFF9D00ABA16B /* Build configuration list for PBXProject "SpaceTraderGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9AEC75B284BFF9F00ABA16B /* Debug */,
+				D9AEC75C284BFF9F00ABA16B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D9AEC75D284BFF9F00ABA16B /* Build configuration list for PBXNativeTarget "SpaceTraderGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9AEC75E284BFF9F00ABA16B /* Debug */,
+				D9AEC75F284BFF9F00ABA16B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D9AEC760284BFF9F00ABA16B /* Build configuration list for PBXNativeTarget "SpaceTraderGameTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9AEC761284BFF9F00ABA16B /* Debug */,
+				D9AEC762284BFF9F00ABA16B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D9AEC763284BFF9F00ABA16B /* Build configuration list for PBXNativeTarget "SpaceTraderGameUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9AEC764284BFF9F00ABA16B /* Debug */,
+				D9AEC765284BFF9F00ABA16B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D9AEC730284BFF9D00ABA16B /* Project object */;
+}
