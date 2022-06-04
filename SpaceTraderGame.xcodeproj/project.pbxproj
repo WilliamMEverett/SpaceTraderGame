@@ -14,6 +14,9 @@
 		D9AEC74E284BFF9F00ABA16B /* SpaceTraderGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC74D284BFF9F00ABA16B /* SpaceTraderGameTests.swift */; };
 		D9AEC758284BFF9F00ABA16B /* SpaceTraderGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC757284BFF9F00ABA16B /* SpaceTraderGameUITests.swift */; };
 		D9AEC75A284BFF9F00ABA16B /* SpaceTraderGameUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC759284BFF9F00ABA16B /* SpaceTraderGameUITestsLaunchTests.swift */; };
+		D9AEC769284C001800ABA16B /* city_list.txt in Resources */ = {isa = PBXBuildFile; fileRef = D9AEC768284C001800ABA16B /* city_list.txt */; };
+		D9AEC76C284C002300ABA16B /* GalaxyMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC76A284C002300ABA16B /* GalaxyMap.swift */; };
+		D9AEC76D284C002300ABA16B /* StarSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC76B284C002300ABA16B /* StarSystem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		D9AEC753284BFF9F00ABA16B /* SpaceTraderGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceTraderGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9AEC757284BFF9F00ABA16B /* SpaceTraderGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceTraderGameUITests.swift; sourceTree = "<group>"; };
 		D9AEC759284BFF9F00ABA16B /* SpaceTraderGameUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceTraderGameUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D9AEC768284C001800ABA16B /* city_list.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = city_list.txt; sourceTree = "<group>"; };
+		D9AEC76A284C002300ABA16B /* GalaxyMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalaxyMap.swift; sourceTree = "<group>"; };
+		D9AEC76B284C002300ABA16B /* StarSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarSystem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +101,9 @@
 		D9AEC73A284BFF9E00ABA16B /* SpaceTraderGame */ = {
 			isa = PBXGroup;
 			children = (
+				D9AEC76E284C003E00ABA16B /* Display */,
+				D9AEC767284BFFD400ABA16B /* Resources */,
+				D9AEC766284BFFB800ABA16B /* DataTypes */,
 				D9AEC73B284BFF9E00ABA16B /* AppDelegate.swift */,
 				D9AEC73D284BFF9E00ABA16B /* ViewController.swift */,
 				D9AEC73F284BFF9F00ABA16B /* Assets.xcassets */,
@@ -119,6 +128,30 @@
 				D9AEC759284BFF9F00ABA16B /* SpaceTraderGameUITestsLaunchTests.swift */,
 			);
 			path = SpaceTraderGameUITests;
+			sourceTree = "<group>";
+		};
+		D9AEC766284BFFB800ABA16B /* DataTypes */ = {
+			isa = PBXGroup;
+			children = (
+				D9AEC76A284C002300ABA16B /* GalaxyMap.swift */,
+				D9AEC76B284C002300ABA16B /* StarSystem.swift */,
+			);
+			path = DataTypes;
+			sourceTree = "<group>";
+		};
+		D9AEC767284BFFD400ABA16B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D9AEC768284C001800ABA16B /* city_list.txt */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D9AEC76E284C003E00ABA16B /* Display */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Display;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +260,7 @@
 			files = (
 				D9AEC740284BFF9F00ABA16B /* Assets.xcassets in Resources */,
 				D9AEC743284BFF9F00ABA16B /* Main.storyboard in Resources */,
+				D9AEC769284C001800ABA16B /* city_list.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,7 +285,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9AEC76C284C002300ABA16B /* GalaxyMap.swift in Sources */,
 				D9AEC73E284BFF9E00ABA16B /* ViewController.swift in Sources */,
+				D9AEC76D284C002300ABA16B /* StarSystem.swift in Sources */,
 				D9AEC73C284BFF9E00ABA16B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
