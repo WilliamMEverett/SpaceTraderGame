@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class StarMapViewController: NSViewController {
+class StarMapViewController: NSViewController, StarMapViewDelegate {
     
     @IBOutlet var zoomInButton : NSButton!
     @IBOutlet var zoomOutButton : NSButton!
@@ -58,6 +58,14 @@ class StarMapViewController: NSViewController {
     
     @IBAction func zoomOutButtonPressed(_ sender : NSButton) {
         self.zoomLevel -= 1
+        self.refreshInformationDisplay()
+    }
+    
+    // MARK: - StarMapViewDelegate methods
+    
+    func mapClickedAtCoordinates(sender: StarMapView, coordinates: CGPoint) {
+        self.centerCoordinates = Coord(x: coordinates.x, y: coordinates.y, z: 0)
+        self.starMapView.centerCoordinates = self.centerCoordinates
         self.refreshInformationDisplay()
     }
     

@@ -7,7 +7,12 @@
 
 import Cocoa
 
+@objc protocol StarMapViewDelegate : AnyObject {
+    func mapClickedAtCoordinates(sender: StarMapView, coordinates: CGPoint)
+}
+
 class StarMapView: NSView {
+    
     
     var centerCoordinates : Coord = Coord() {
         didSet {
@@ -16,6 +21,7 @@ class StarMapView: NSView {
     }
     var zoomLevel : Int = 0 {
         didSet {
+            self.setDistancePixelRatio()
             self.needsDisplay = true
         }
     }
@@ -24,6 +30,38 @@ class StarMapView: NSView {
             self.needsDisplay = true
         }
     }
+    
+    @IBOutlet weak var delegate : StarMapViewDelegate?
+    
+    var distancePixelRatio : Double = 20.0/500.0
+    
+    // MARK: - Initialization
+    
+    override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+        self.configureGestureRecognizer()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        self.configureGestureRecognizer()
+    }
+    
+    private func configureGestureRecognizer() {
+        let gestureHandler = NSClickGestureRecognizer(target: self, action: #selector(handleClickGesture(gestureRecognizer:)))
+        self.addGestureRecognizer(gestureHandler)
+    }
+                                                      
+    // MARK: - Clicks
+    
+    @objc func handleClickGesture(gestureRecognizer: NSClickGestureRecognizer) {
+        let location = gestureRecognizer.location(in: self)
+        let convertedLocation = self.convertScreenToStarCoord(location)
+        delegate?.mapClickedAtCoordinates(sender: self, coordinates: convertedLocation)
+    }
+                                                      
+    
+    // MARK: - Drawing
 
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -32,7 +70,7 @@ class StarMapView: NSView {
         NSColor.black.setFill()
         fillScreenPath.fill()
         
-        let ratio = self.getDistancePixelRatio()
+        let ratio = distancePixelRatio
         let originInDistance = (x:centerCoordinates.x - (self.bounds.size.width/2)*ratio,
                                 y:centerCoordinates.y - (self.bounds.size.height/2)*ratio)
         
@@ -69,24 +107,33 @@ class StarMapView: NSView {
         }
     }
     
+    func convertScreenToStarCoord(_ s : CGPoint) -> CGPoint {
+        
+        let distanceFromCenter = NSPoint(x: s.x - self.bounds.size.width/2,
+                                         y: s.y - self.bounds.size.height/2)
+        return CGPoint(x: distanceFromCenter.x*distancePixelRatio + self.centerCoordinates.x,
+                     y: distanceFromCenter.y*distancePixelRatio + self.centerCoordinates.y)
+        
+    }
+    
     func convertStarCoordToScreen(_ c : Coord) -> CGPoint {
-        let ratio = self.getDistancePixelRatio()
+        let ratio = distancePixelRatio
         let originInDistance = (x:centerCoordinates.x - (self.bounds.size.width/2)*ratio,
                                 y:centerCoordinates.y - (self.bounds.size.height/2)*ratio)
         return CGPoint(x: (c.x - originInDistance.x)/ratio, y: (c.y - originInDistance.y)/ratio)
         
     }
     
-    func getDistancePixelRatio() -> Double {
+    private func setDistancePixelRatio() {
         let baseLevel = 20.0/500.0
         if self.zoomLevel == 0 {
-            return baseLevel
+            distancePixelRatio = baseLevel
         }
         else if self.zoomLevel < 0 {
-            return baseLevel*pow(1.2, Double(-1*self.zoomLevel))
+            distancePixelRatio = baseLevel*pow(1.2, Double(-1*self.zoomLevel))
         }
         else {
-            return baseLevel*pow(0.8, Double(self.zoomLevel))
+            distancePixelRatio = baseLevel*pow(0.8, Double(self.zoomLevel))
         }
     }
 }

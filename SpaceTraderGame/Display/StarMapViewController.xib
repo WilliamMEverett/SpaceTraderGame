@@ -23,6 +23,9 @@
                 <customView id="1Dc-3S-Sya" customClass="StarMapView" customModule="SpaceTraderGame" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="534" height="330"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <connections>
+                        <outlet property="delegate" destination="-2" id="EEN-jV-rna"/>
+                    </connections>
                 </customView>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="on7-eP-wRz">
                     <rect key="frame" x="478" y="7" width="43" height="32"/>
