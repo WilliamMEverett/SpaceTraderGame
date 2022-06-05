@@ -51,6 +51,19 @@ class StarMapView: NSView {
         let gestureHandler = NSClickGestureRecognizer(target: self, action: #selector(handleClickGesture(gestureRecognizer:)))
         self.addGestureRecognizer(gestureHandler)
     }
+    
+    private func setDistancePixelRatio() {
+        let baseLevel = 20.0/500.0
+        if self.zoomLevel == 0 {
+            distancePixelRatio = baseLevel
+        }
+        else if self.zoomLevel < 0 {
+            distancePixelRatio = baseLevel*pow(1.2, Double(-1*self.zoomLevel))
+        }
+        else {
+            distancePixelRatio = baseLevel*pow(0.8, Double(self.zoomLevel))
+        }
+    }
                                                       
     // MARK: - Clicks
     
@@ -104,7 +117,18 @@ class StarMapView: NSView {
                 }
                 linePath.stroke()
             }
+            
+            self.drawStringCenteredAt(point: CGPoint(x: starPoint.x, y: starPoint.y + diameter/2), text: value.name)
         }
+    }
+    
+    func drawStringCenteredAt(point : CGPoint, text : String ) {
+        let attributes = [NSAttributedString.Key.font:NSFont.systemFont(ofSize: 10), NSAttributedString.Key.foregroundColor:NSColor.white]
+        let nsText = text as NSString
+        
+        let boundingRect = nsText.boundingRect(with: NSSize(width: 500, height: 30), attributes: attributes)
+        let textStartingPoint = CGPoint(x: point.x - (boundingRect.size.width/2), y: point.y)
+        nsText.draw(at: textStartingPoint, withAttributes: attributes)
     }
     
     func convertScreenToStarCoord(_ s : CGPoint) -> CGPoint {
@@ -122,18 +146,5 @@ class StarMapView: NSView {
                                 y:centerCoordinates.y - (self.bounds.size.height/2)*ratio)
         return CGPoint(x: (c.x - originInDistance.x)/ratio, y: (c.y - originInDistance.y)/ratio)
         
-    }
-    
-    private func setDistancePixelRatio() {
-        let baseLevel = 20.0/500.0
-        if self.zoomLevel == 0 {
-            distancePixelRatio = baseLevel
-        }
-        else if self.zoomLevel < 0 {
-            distancePixelRatio = baseLevel*pow(1.2, Double(-1*self.zoomLevel))
-        }
-        else {
-            distancePixelRatio = baseLevel*pow(0.8, Double(self.zoomLevel))
-        }
     }
 }
