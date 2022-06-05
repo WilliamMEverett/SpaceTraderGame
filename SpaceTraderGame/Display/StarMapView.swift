@@ -89,19 +89,25 @@ class StarMapView: NSView {
         
         let convertedRect = NSRect(x: originInDistance.x + dirtyRect.origin.x*ratio, y: originInDistance.y + dirtyRect.origin.y*ratio, width: dirtyRect.size.width*ratio, height: dirtyRect.size.height*ratio)
         
-        NSColor.white.setFill()
-        NSColor.white.setStroke()
+
         
-        self.galaxyMap.getAllSystemIdentifiers().forEach { key in
+        
+        let starsOnMap = self.galaxyMap.getAllSystemIdentifiers().filter({ key in
             let value = self.galaxyMap.getSystemForId(key)!
             if value.position.x < convertedRect.origin.x || value.position.x > (convertedRect.origin.x + convertedRect.size.width) || value.position.y < convertedRect.origin.y || value.position.y > (convertedRect.origin.y + convertedRect.size.height) {
-                return
+                return false
             }
-            let diameter = Double(20 + 4*self.zoomLevel)
+            else {
+                return true
+            }
+        })
+        
+        NSColor.gray.setFill()
+        NSColor.gray.setStroke()
+        
+        starsOnMap.forEach { key in
+            let value = self.galaxyMap.getSystemForId(key)!
             let starPoint = self.convertStarCoordToScreen(value.position)
-            let circleRect = NSRect(x: starPoint.x - diameter/2, y: starPoint.y - diameter/2, width: diameter, height: diameter)
-            let circlePath = NSBezierPath(ovalIn: circleRect)
-            circlePath.fill()
             
             value.connectingSystems.forEach { otherKey in
                 let otherStar = self.galaxyMap.getSystemForId(otherKey)!
@@ -117,6 +123,18 @@ class StarMapView: NSView {
                 }
                 linePath.stroke()
             }
+        }
+        
+        NSColor.white.setFill()
+        NSColor.white.setStroke()
+        
+        starsOnMap.forEach { key in
+            let value = self.galaxyMap.getSystemForId(key)!
+            let diameter = Double(20 + 4*self.zoomLevel)
+            let starPoint = self.convertStarCoordToScreen(value.position)
+            let circleRect = NSRect(x: starPoint.x - diameter/2, y: starPoint.y - diameter/2, width: diameter, height: diameter)
+            let circlePath = NSBezierPath(ovalIn: circleRect)
+            circlePath.fill()
             
             self.drawStringCenteredAt(point: CGPoint(x: starPoint.x, y: starPoint.y + diameter/2), text: value.name)
         }
