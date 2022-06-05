@@ -31,6 +31,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="zoomInButtonPressed:" target="-2" id="wRU-f3-6my"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GTr-cG-pbB">
                     <rect key="frame" x="439" y="7" width="41" height="32"/>
@@ -39,6 +42,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="zoomOutButtonPressed:" target="-2" id="JCA-9a-eue"/>
+                    </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="gnE-8m-gvJ">
                     <rect key="frame" x="10" y="305" width="300" height="16"/>

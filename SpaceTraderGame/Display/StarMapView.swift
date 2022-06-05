@@ -86,7 +86,7 @@ class StarMapView: NSView {
             return baseLevel*pow(1.2, Double(-1*self.zoomLevel))
         }
         else {
-            return baseLevel*pow(0.8, Double(-1*self.zoomLevel))
+            return baseLevel*pow(0.8, Double(self.zoomLevel))
         }
     }
 }

@@ -14,7 +14,17 @@ class StarMapViewController: NSViewController {
     @IBOutlet var coordinateLabel : NSTextField!
     @IBOutlet var starMapView : StarMapView!
     
-    var zoomLevel = 0
+    var zoomLevel = 0 {
+        didSet {
+            if zoomLevel > 3 {
+                zoomLevel = 3
+            }
+            if zoomLevel < -3 {
+                zoomLevel = -3
+            }
+            self.starMapView.zoomLevel = zoomLevel
+        }
+    }
     var centerCoordinates = Coord()
     var galaxyMap = GalaxyMap()
 
@@ -30,6 +40,25 @@ class StarMapViewController: NSViewController {
     
     func refreshInformationDisplay() {
         self.coordinateLabel.stringValue = "\(self.centerCoordinates)"
+        
+        self.zoomInButton.isEnabled = true
+        self.zoomOutButton.isEnabled = true
+        if self.zoomLevel <= -3 {
+            self.zoomOutButton.isEnabled = false
+        }
+        else if self.zoomLevel >= 3 {
+            self.zoomInButton.isEnabled = false
+        }
+    }
+    
+    @IBAction func zoomInButtonPressed(_ sender : NSButton) {
+        self.zoomLevel += 1
+        self.refreshInformationDisplay()
+    }
+    
+    @IBAction func zoomOutButtonPressed(_ sender : NSButton) {
+        self.zoomLevel -= 1
+        self.refreshInformationDisplay()
     }
     
 }
