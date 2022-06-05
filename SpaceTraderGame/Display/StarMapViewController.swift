@@ -39,7 +39,7 @@ class StarMapViewController: NSViewController, StarMapViewDelegate {
     }
     
     func refreshInformationDisplay() {
-        self.coordinateLabel.stringValue = "\(self.centerCoordinates)"
+        self.coordinateLabel.stringValue = "\(String(format: "%.1f", self.centerCoordinates.x)),\(String(format: "%.1f", self.centerCoordinates.y))"
         
         self.zoomInButton.isEnabled = true
         self.zoomOutButton.isEnabled = true

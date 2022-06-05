@@ -138,6 +138,26 @@ class StarMapView: NSView {
             
             self.drawStringCenteredAt(point: CGPoint(x: starPoint.x, y: starPoint.y + diameter/2), text: value.name)
         }
+        
+        let crosshairLength = 15.0
+        let centerScreen = NSPoint(x: self.bounds.size.width/2, y: self.bounds.size.height/2)
+        if ((centerScreen.x + crosshairLength) > dirtyRect.origin.x) && ((centerScreen.y + crosshairLength) > dirtyRect.origin.y) &&
+            ((centerScreen.x - crosshairLength) < (dirtyRect.origin.x + dirtyRect.size.width)) &&
+            ((centerScreen.y - crosshairLength) < (dirtyRect.origin.y + dirtyRect.size.height)) {
+            NSColor(calibratedRed: 0.5, green: 0.0, blue: 0.0, alpha: 1.0).setStroke()
+            
+            let crosshair = NSBezierPath()
+            crosshair.move(to: NSPoint(x: centerScreen.x - 5, y: centerScreen.y))
+            crosshair.line(to: NSPoint(x: centerScreen.x - crosshairLength, y: centerScreen.y))
+            crosshair.move(to: NSPoint(x: centerScreen.x + 5, y: centerScreen.y))
+            crosshair.line(to: NSPoint(x: centerScreen.x + crosshairLength, y: centerScreen.y))
+            crosshair.move(to: NSPoint(x: centerScreen.x, y: centerScreen.y - 5))
+            crosshair.line(to: NSPoint(x: centerScreen.x, y: centerScreen.y - crosshairLength))
+            crosshair.move(to: NSPoint(x: centerScreen.x, y: centerScreen.y + 5))
+            crosshair.line(to: NSPoint(x: centerScreen.x, y: centerScreen.y + crosshairLength))
+            crosshair.lineWidth = 1
+            crosshair.stroke()
+        }
     }
     
     func drawStringCenteredAt(point : CGPoint, text : String ) {
