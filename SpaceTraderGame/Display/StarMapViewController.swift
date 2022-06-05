@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class StarMapViewController: NSViewController, StarMapViewDelegate {
+class StarMapViewController: GameViewPanelViewController, StarMapViewDelegate {
     
     @IBOutlet var zoomInButton : NSButton!
     @IBOutlet var zoomOutButton : NSButton!
@@ -23,10 +23,18 @@ class StarMapViewController: NSViewController, StarMapViewDelegate {
                 zoomLevel = -3
             }
             self.starMapView.zoomLevel = zoomLevel
+            self.refreshInformationDisplay()
         }
     }
-    var centerCoordinates = Coord()
-    var galaxyMap = GalaxyMap()
+    
+    var centerCoordinates = Coord() {
+        didSet {
+            self.refreshInformationDisplay()
+            self.starMapView.centerCoordinates = self.centerCoordinates
+        }
+    }
+    
+    var galaxyMap : GalaxyMap!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,28 +61,36 @@ class StarMapViewController: NSViewController, StarMapViewDelegate {
     
     @IBAction func zoomInButtonPressed(_ sender : NSButton) {
         self.zoomLevel += 1
-        self.refreshInformationDisplay()
     }
     
     @IBAction func zoomOutButtonPressed(_ sender : NSButton) {
         self.zoomLevel -= 1
-        self.refreshInformationDisplay()
+    }
+    
+    func centerOnStarSystem(_ systemIdent : Int) {
+        guard let system = self.galaxyMap.getSystemForId(systemIdent) else {
+            return
+        }
+        
+        self.centerCoordinates = system.position
     }
     
     // MARK: - StarMapViewDelegate methods
     
     func mapClickedAtCoordinates(sender: StarMapView, coordinates: CGPoint) {
-//        self.centerCoordinates = Coord(x: coordinates.x, y: coordinates.y, z: 0)
-//        self.starMapView.centerCoordinates = self.centerCoordinates
-//        self.refreshInformationDisplay()
+        guard let system = self.galaxyMap.closestSystemToCoordinates(coordinates) else {
+            return
+        }
+        
+        if system.position.distance2D(coordinates) < 1 {
+            delegate?.starSystemSelected(sender: self, starIdent: system.num_id)
+        }
     }
     
     func mapDragged(sender: StarMapView, from: CGPoint, to: CGPoint) {
         self.centerCoordinates = Coord(x:self.centerCoordinates.x + from.x - to.x,
                                        y:self.centerCoordinates.y + from.y - to.y,
                                        z:0)
-        self.starMapView.centerCoordinates = self.centerCoordinates
-        self.refreshInformationDisplay()
         
     }
     

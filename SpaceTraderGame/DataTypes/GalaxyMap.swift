@@ -11,6 +11,10 @@ import CloudKit
 class GalaxyMap: Codable {
     private var systemsMap = [Int:StarSystem]()
     
+    required init(_ maxSystems : Int) {
+        generateSystems(maxSystems)
+    }
+    
     func getSystemForId(_ ident: Int) -> StarSystem? {
         return systemsMap[ident]
     }
@@ -19,7 +23,21 @@ class GalaxyMap: Codable {
         return Array(systemsMap.keys)
     }
     
-    func generateSystems(_ maxSystems : Int) {
+    func closestSystemToCoordinates(_ twoDCoord : NSPoint) -> StarSystem? {
+        let res = self.systemsMap.reduce(nil) { (partialResult : (distance: Double, value: StarSystem)?, nextValue : (key: Int, value: StarSystem)) -> (distance:Double, value: StarSystem)? in
+            let nextDistance = nextValue.value.position.distance2D(twoDCoord)
+            let nextResult = (distance: nextDistance, value: nextValue.value)
+            if partialResult == nil || partialResult!.distance > nextResult.distance {
+                return nextResult
+            }
+            else {
+                return partialResult
+            }
+        }
+        return res?.value
+    }
+    
+    private func generateSystems(_ maxSystems : Int) {
         var resultMap = [Int:StarSystem]()
         var arrayOfSystems = [StarSystem]()
         

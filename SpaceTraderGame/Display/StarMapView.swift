@@ -26,7 +26,7 @@ class StarMapView: NSView {
             self.needsDisplay = true
         }
     }
-    var galaxyMap : GalaxyMap = GalaxyMap() {
+    var galaxyMap : GalaxyMap? {
         didSet {
             self.needsDisplay = true
         }
@@ -98,6 +98,10 @@ class StarMapView: NSView {
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
         
+        if self.galaxyMap == nil {
+            return
+        }
+        
         let fillScreenPath = NSBezierPath(rect: dirtyRect)
         NSColor.black.setFill()
         fillScreenPath.fill()
@@ -111,8 +115,8 @@ class StarMapView: NSView {
 
         
         
-        let starsOnMap = self.galaxyMap.getAllSystemIdentifiers().filter({ key in
-            let value = self.galaxyMap.getSystemForId(key)!
+        let starsOnMap = self.galaxyMap!.getAllSystemIdentifiers().filter({ key in
+            let value = self.galaxyMap!.getSystemForId(key)!
             if value.position.x < convertedRect.origin.x || value.position.x > (convertedRect.origin.x + convertedRect.size.width) || value.position.y < convertedRect.origin.y || value.position.y > (convertedRect.origin.y + convertedRect.size.height) {
                 return false
             }
@@ -125,11 +129,11 @@ class StarMapView: NSView {
         NSColor.gray.setStroke()
         
         starsOnMap.forEach { key in
-            let value = self.galaxyMap.getSystemForId(key)!
+            let value = self.galaxyMap!.getSystemForId(key)!
             let starPoint = self.convertStarCoordToScreen(value.position)
             
             value.connectingSystems.forEach { otherKey in
-                let otherStar = self.galaxyMap.getSystemForId(otherKey)!
+                let otherStar = self.galaxyMap!.getSystemForId(otherKey)!
                 let otherStarPoint = self.convertStarCoordToScreen(otherStar.position)
                 let linePath = NSBezierPath()
                 linePath.move(to: starPoint)
@@ -148,7 +152,7 @@ class StarMapView: NSView {
         NSColor.white.setStroke()
         
         starsOnMap.forEach { key in
-            let value = self.galaxyMap.getSystemForId(key)!
+            let value = self.galaxyMap!.getSystemForId(key)!
             let diameter = Double(20 + 4*self.zoomLevel)
             let starPoint = self.convertStarCoordToScreen(value.position)
             let circleRect = NSRect(x: starPoint.x - diameter/2, y: starPoint.y - diameter/2, width: diameter, height: diameter)

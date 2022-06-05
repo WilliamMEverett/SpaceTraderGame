@@ -9,21 +9,16 @@ import Cocoa
 
 class MainViewController: NSViewController {
     
-    var starMapViewController : StarMapViewController!
-    var galaxyMap : GalaxyMap!
+    var gameViewController : GameViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        galaxyMap = GalaxyMap()
-        galaxyMap.generateSystems(1000)
-
-        starMapViewController = StarMapViewController()
-        starMapViewController.galaxyMap = galaxyMap
+        gameViewController = GameViewController()
         
-        self.addChild(starMapViewController)
-        starMapViewController.view.frame = self.view.bounds
-        self.view.addSubview(starMapViewController.view)
+        self.addChild(gameViewController)
+        gameViewController.view.frame = self.view.bounds
+        self.view.addSubview(gameViewController.view)
     }
 
 }

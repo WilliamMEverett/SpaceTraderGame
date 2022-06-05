@@ -61,6 +61,12 @@ struct Coord : Codable, CustomStringConvertible {
         return sqrt(xDist*xDist + yDist*yDist + zDist*zDist)
     }
     
+    func distance2D(_ otherCoord : NSPoint) -> Double {
+        let xDist = self.x - otherCoord.x
+        let yDist = self.y - otherCoord.y
+        return sqrt(xDist*xDist + yDist*yDist)
+    }
+    
     var description : String {
         let xString = String(format: "%.1f", self.x)
         let yString = String(format: "%.1f", self.y)
