@@ -64,9 +64,18 @@ class StarMapViewController: NSViewController, StarMapViewDelegate {
     // MARK: - StarMapViewDelegate methods
     
     func mapClickedAtCoordinates(sender: StarMapView, coordinates: CGPoint) {
-        self.centerCoordinates = Coord(x: coordinates.x, y: coordinates.y, z: 0)
+//        self.centerCoordinates = Coord(x: coordinates.x, y: coordinates.y, z: 0)
+//        self.starMapView.centerCoordinates = self.centerCoordinates
+//        self.refreshInformationDisplay()
+    }
+    
+    func mapDragged(sender: StarMapView, from: CGPoint, to: CGPoint) {
+        self.centerCoordinates = Coord(x:self.centerCoordinates.x + from.x - to.x,
+                                       y:self.centerCoordinates.y + from.y - to.y,
+                                       z:0)
         self.starMapView.centerCoordinates = self.centerCoordinates
         self.refreshInformationDisplay()
+        
     }
     
 }

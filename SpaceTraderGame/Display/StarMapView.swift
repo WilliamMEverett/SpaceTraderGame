@@ -9,6 +9,7 @@ import Cocoa
 
 @objc protocol StarMapViewDelegate : AnyObject {
     func mapClickedAtCoordinates(sender: StarMapView, coordinates: CGPoint)
+    func mapDragged(sender: StarMapView, from: CGPoint, to: CGPoint)
 }
 
 class StarMapView: NSView {
@@ -34,6 +35,7 @@ class StarMapView: NSView {
     @IBOutlet weak var delegate : StarMapViewDelegate?
     
     var distancePixelRatio : Double = 20.0/500.0
+    var lastMouseDown = NSPoint(x: 0, y: 0)
     
     // MARK: - Initialization
     
@@ -65,12 +67,29 @@ class StarMapView: NSView {
         }
     }
                                                       
-    // MARK: - Clicks
+    // MARK: - Mouse Events
     
     @objc func handleClickGesture(gestureRecognizer: NSClickGestureRecognizer) {
         let location = gestureRecognizer.location(in: self)
         let convertedLocation = self.convertScreenToStarCoord(location)
         delegate?.mapClickedAtCoordinates(sender: self, coordinates: convertedLocation)
+    }
+    
+    override func mouseDown(with event: NSEvent) {
+        super.mouseDown(with: event)
+        self.lastMouseDown = self.convert(event.locationInWindow, from: nil)
+    }
+    
+    override func mouseDragged(with event: NSEvent) {
+        super.mouseDragged(with: event)
+        let currentMouseLocation = self.convert(event.locationInWindow, from: nil)
+        
+        let fromCoords = self.convertScreenToStarCoord(self.lastMouseDown)
+        let toCoords = self.convertScreenToStarCoord(currentMouseLocation)
+        
+        delegate?.mapDragged(sender: self, from: fromCoords, to: toCoords)
+        
+        self.lastMouseDown = currentMouseLocation
     }
                                                       
     
