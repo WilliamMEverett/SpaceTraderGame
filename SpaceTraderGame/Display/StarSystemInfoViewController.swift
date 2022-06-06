@@ -16,7 +16,7 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
     @IBOutlet var economyLabel : NSTextField!
     @IBOutlet var populationLabel : NSTextField!
     @IBOutlet var dangerLabel : NSTextField!
-    @IBOutlet var connectingSystemsTableView : NSTableView!
+    @IBOutlet var connectingSystemsHolderView : NSView!
     
     var galaxyMap : GalaxyMap? = nil
     var systemNumber : Int = 0 {
@@ -41,39 +41,51 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
         self.economyLabel.stringValue = "\(system.economy)"
         self.populationLabel.stringValue = "\(system.populationDescription)"
         self.dangerLabel.stringValue = "\(system.danger)"
-        
-        self.connectingSystemsTableView.reloadData()
-        
+        self.refreshConnectingSystems()
     }
     
-    //MARK: - TableView methods
-    
-    func numberOfRows(in tableView: NSTableView) -> Int {
+    private func refreshConnectingSystems() {
+        let subs = self.connectingSystemsHolderView.subviews
+        subs.forEach() { $0.removeFromSuperview() }
         
         guard let system = galaxyMap?.getSystemForId(self.systemNumber) else {
-            return 0
+            return
         }
-        return system.connectingSystems.count
         
-    }
-    
-    func tableView(_ tableView: NSTableView, dataCellFor tableColumn: NSTableColumn?, row: Int) -> NSCell? {
-        guard let system = galaxyMap?.getSystemForId(self.systemNumber) else {
-            return nil
-        }
-        if row < system.connectingSystems.count {
-            let ident = system.connectingSystems[row]
+        var yOffset : CGFloat = self.connectingSystemsHolderView.bounds.size.height
+        system.connectingSystems.forEach { ident in
             let otherSystem = galaxyMap?.getSystemForId(ident)
             let otherName = otherSystem?.name ?? "Error"
             let distance = otherSystem?.position.distance(system.position) ?? 0.0
-            let cell = NSCell(textCell: "\(otherName) (\(String(format: "%.1f", distance)))")
-            return cell
+            let text = "\(otherName) (\(String(format: "%.1f", distance)))"
+            
+            let attributes = [NSAttributedString.Key.font:NSFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor:NSColor.black]
+            let nsText = text as NSString
+            
+            let boundingRect = nsText.boundingRect(with: NSSize(width: self.connectingSystemsHolderView.bounds.size.width, height: self.connectingSystemsHolderView.bounds.size.height), attributes: attributes)
+            let height = fmin(boundingRect.size.height, 20)
+            
+            let label = NSTextField(labelWithString: text)
+            label.maximumNumberOfLines = 0
+            label.isEnabled = true
+            label.frame = NSRect(x: 0, y: yOffset - height, width: self.connectingSystemsHolderView.bounds.size.width, height: height)
+            label.tag = ident
+            yOffset -= (height + 5)
+            let clickGesture = NSClickGestureRecognizer(target: self, action: #selector(handleClickOnConnectingSystem(gestureRecognizer:)))
+            label.addGestureRecognizer(clickGesture)
+            
+            self.connectingSystemsHolderView.addSubview(label)
+            
         }
-        return nil
+
     }
-    
-    func tableViewSelectionDidChange(_ notification: Notification) {
-        
+                                     
+    //MARK: - Actions
+    @objc func handleClickOnConnectingSystem(gestureRecognizer: NSClickGestureRecognizer) {
+        let systemIdent = gestureRecognizer.view?.tag ?? 0
+        if (systemIdent > 0) {
+            delegate?.starSystemSelected(sender: self, starIdent: systemIdent)
+        }
     }
     
 }
