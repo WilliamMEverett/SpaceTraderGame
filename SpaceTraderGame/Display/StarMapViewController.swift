@@ -34,14 +34,14 @@ class StarMapViewController: GameViewPanelViewController, StarMapViewDelegate {
         }
     }
     
-    var galaxyMap : GalaxyMap!
+    var gameState : GameState!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.starMapView.zoomLevel = self.zoomLevel
         self.starMapView.centerCoordinates = self.centerCoordinates
-        self.starMapView.galaxyMap = self.galaxyMap
+        self.starMapView.gameState = self.gameState
         
         self.refreshInformationDisplay()
     }
@@ -68,7 +68,7 @@ class StarMapViewController: GameViewPanelViewController, StarMapViewDelegate {
     }
     
     func centerOnStarSystem(_ systemIdent : Int) {
-        guard let system = self.galaxyMap.getSystemForId(systemIdent) else {
+        guard let system = self.gameState.galaxyMap.getSystemForId(systemIdent) else {
             return
         }
         
@@ -78,7 +78,11 @@ class StarMapViewController: GameViewPanelViewController, StarMapViewDelegate {
     // MARK: - StarMapViewDelegate methods
     
     func mapClickedAtCoordinates(sender: StarMapView, coordinates: CGPoint) {
-        guard let system = self.galaxyMap.closestSystemToCoordinates(coordinates) else {
+        guard let system = self.gameState.galaxyMap.closestSystemToCoordinates(coordinates) else {
+            return
+        }
+        
+        if !self.gameState.player.allKnownStars.contains(system.num_id) {
             return
         }
         

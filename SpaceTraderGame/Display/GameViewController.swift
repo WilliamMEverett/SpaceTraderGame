@@ -14,16 +14,16 @@ class GameViewController: NSViewController, GameViewPanelDelegate {
     var starMapViewController : StarMapViewController!
     var starSystemInfoViewController : StarSystemInfoViewController!
     
-    var galaxyMap : GalaxyMap!
+    var gameState : GameState!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        galaxyMap = GalaxyMap(1000)
+        gameState = GameState(playerName: "Incognito", starSystems: 1000)
 
         starMapViewController = StarMapViewController()
-        starMapViewController.galaxyMap = galaxyMap
+        starMapViewController.gameState = self.gameState
         starMapViewController.delegate = self
         
         self.addChild(starMapViewController)
@@ -31,13 +31,16 @@ class GameViewController: NSViewController, GameViewPanelDelegate {
         self.centralDisplayPanel.addSubview(starMapViewController.view)
         
         starSystemInfoViewController = StarSystemInfoViewController()
-        starSystemInfoViewController.galaxyMap = self.galaxyMap
+        starSystemInfoViewController.gameState = self.gameState
         starSystemInfoViewController.delegate = self
         
         self.addChild(starSystemInfoViewController)
         starSystemInfoViewController.view.frame = self.upperRightDisplayPanel.bounds
         self.upperRightDisplayPanel.addSubview(starSystemInfoViewController.view)
         starSystemInfoViewController.systemNumber = 1
+        
+        self.starMapViewController.centerOnStarSystem(self.gameState.player.location)
+        self.starSystemInfoViewController.systemNumber = self.gameState.player.location
     }
     
     

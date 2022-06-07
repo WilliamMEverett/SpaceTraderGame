@@ -9,7 +9,7 @@ import Cocoa
 
 class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDelegate, NSTableViewDataSource {
     
-    @IBOutlet var identifierLabel : NSTextField!
+    @IBOutlet var currentSystemLabel : NSTextField!
     @IBOutlet var nameLabel : NSTextField!
     @IBOutlet var coordinateLabel : NSTextField!
     @IBOutlet var stageLabel : NSTextField!
@@ -18,7 +18,7 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
     @IBOutlet var dangerLabel : NSTextField!
     @IBOutlet var connectingSystemsHolderView : NSView!
     
-    var galaxyMap : GalaxyMap? = nil
+    var gameState : GameState? = nil
     var systemNumber : Int = 0 {
         didSet {
             self.refreshDisplay()
@@ -31,10 +31,10 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
     }
     
     private func refreshDisplay() {
-        guard let system = galaxyMap?.getSystemForId(self.systemNumber) else {
+        guard let system = self.gameState?.galaxyMap.getSystemForId(self.systemNumber) else {
             return
         }
-        self.identifierLabel.stringValue = "\(system.num_id)"
+        self.currentSystemLabel.isHidden = (self.gameState?.player.location ?? 0) != system.num_id
         self.nameLabel.stringValue = system.name
         self.coordinateLabel.stringValue = "\(system.position)"
         self.stageLabel.stringValue = "\(system.stage)"
@@ -48,13 +48,18 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
         let subs = self.connectingSystemsHolderView.subviews
         subs.forEach() { $0.removeFromSuperview() }
         
-        guard let system = galaxyMap?.getSystemForId(self.systemNumber) else {
+        guard let system = self.gameState?.galaxyMap.getSystemForId(self.systemNumber) else {
             return
         }
         
+        let allStars = self.gameState!.player.allKnownStars
+        
         var yOffset : CGFloat = self.connectingSystemsHolderView.bounds.size.height
         system.connectingSystems.forEach { ident in
-            let otherSystem = galaxyMap?.getSystemForId(ident)
+            if !allStars.contains(ident) {
+                return
+            }
+            let otherSystem = self.gameState?.galaxyMap.getSystemForId(ident)
             let otherName = otherSystem?.name ?? "Error"
             let distance = otherSystem?.position.distance(system.position) ?? 0.0
             let text = "\(otherName) (\(String(format: "%.1f", distance)))"

@@ -26,7 +26,7 @@ class StarMapView: NSView {
             self.needsDisplay = true
         }
     }
-    var galaxyMap : GalaxyMap? {
+    var gameState : GameState? {
         didSet {
             self.needsDisplay = true
         }
@@ -98,7 +98,7 @@ class StarMapView: NSView {
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
         
-        if self.galaxyMap == nil {
+        if self.gameState == nil {
             return
         }
         
@@ -112,11 +112,10 @@ class StarMapView: NSView {
         
         let convertedRect = NSRect(x: originInDistance.x + dirtyRect.origin.x*ratio, y: originInDistance.y + dirtyRect.origin.y*ratio, width: dirtyRect.size.width*ratio, height: dirtyRect.size.height*ratio)
         
-
+        let allStars = self.gameState!.player.allKnownStars
         
-        
-        let starsOnMap = self.galaxyMap!.getAllSystemIdentifiers().filter({ key in
-            let value = self.galaxyMap!.getSystemForId(key)!
+        let starsOnMap = allStars.filter({ key in
+            let value = self.gameState!.galaxyMap.getSystemForId(key)!
             if value.position.x < convertedRect.origin.x || value.position.x > (convertedRect.origin.x + convertedRect.size.width) || value.position.y < convertedRect.origin.y || value.position.y > (convertedRect.origin.y + convertedRect.size.height) {
                 return false
             }
@@ -125,15 +124,17 @@ class StarMapView: NSView {
             }
         })
         
-        NSColor.gray.setFill()
         NSColor.gray.setStroke()
         
         starsOnMap.forEach { key in
-            let value = self.galaxyMap!.getSystemForId(key)!
+            let value = self.gameState!.galaxyMap.getSystemForId(key)!
             let starPoint = self.convertStarCoordToScreen(value.position)
             
             value.connectingSystems.forEach { otherKey in
-                let otherStar = self.galaxyMap!.getSystemForId(otherKey)!
+                if !allStars.contains(otherKey) {
+                    return
+                }
+                let otherStar = self.gameState!.galaxyMap.getSystemForId(otherKey)!
                 let otherStarPoint = self.convertStarCoordToScreen(otherStar.position)
                 let linePath = NSBezierPath()
                 linePath.move(to: starPoint)
@@ -148,18 +149,30 @@ class StarMapView: NSView {
             }
         }
         
-        NSColor.white.setFill()
-        NSColor.white.setStroke()
-        
         starsOnMap.forEach { key in
-            let value = self.galaxyMap!.getSystemForId(key)!
+            
+            
+            let textColor = self.gameState!.player.visitedStars.contains(key) ? NSColor.white : NSColor(calibratedWhite: 0.7, alpha: 1.0)
+            
+            let value = self.gameState!.galaxyMap.getSystemForId(key)!
             let diameter = Double(20 + 4*self.zoomLevel)
             let starPoint = self.convertStarCoordToScreen(value.position)
+            
+            self.drawStringCenteredAt(point: CGPoint(x: starPoint.x, y: starPoint.y + diameter/2), text: value.name, textColor: textColor)
+            
+            if self.gameState!.player.location == key {
+                NSColor.red.setFill()
+            }
+            else if self.gameState!.player.visitedStars.contains(key) {
+                NSColor.white.setFill()
+            }
+            else {
+                NSColor(calibratedWhite: 0.7, alpha: 1.0).setFill()
+            }
+
             let circleRect = NSRect(x: starPoint.x - diameter/2, y: starPoint.y - diameter/2, width: diameter, height: diameter)
             let circlePath = NSBezierPath(ovalIn: circleRect)
             circlePath.fill()
-            
-            self.drawStringCenteredAt(point: CGPoint(x: starPoint.x, y: starPoint.y + diameter/2), text: value.name)
         }
         
         let crosshairLength = 15.0
@@ -183,8 +196,8 @@ class StarMapView: NSView {
         }
     }
     
-    func drawStringCenteredAt(point : CGPoint, text : String ) {
-        let attributes = [NSAttributedString.Key.font:NSFont.systemFont(ofSize: 10), NSAttributedString.Key.foregroundColor:NSColor.white]
+    func drawStringCenteredAt(point : CGPoint, text : String, textColor: NSColor ) {
+        let attributes = [NSAttributedString.Key.font:NSFont.systemFont(ofSize: 10), NSAttributedString.Key.foregroundColor:textColor]
         let nsText = text as NSString
         
         let boundingRect = nsText.boundingRect(with: NSSize(width: 500, height: 30), attributes: attributes)

@@ -1,0 +1,30 @@
+//
+//  GameState.swift
+//  SpaceTraderGame
+//
+//  Created by William Everett on 6/6/22.
+//
+
+import Foundation
+
+class GameState : Codable {
+    
+    var galaxyMap : GalaxyMap!
+    var player : Player!
+    var time : Double  = 0 //In days
+    
+    required init?(playerName : String, starSystems : Int) {
+        self.galaxyMap = GalaxyMap(starSystems)
+        self.player = Player(name: playerName)
+        guard let startingPosition = self.galaxyMap.getStartingPlayerLocation() else {
+            print("Failed to find starting position")
+            return nil
+        }
+        self.player.location = startingPosition
+        self.player.visitedStars.insert(startingPosition)
+        let startingStar = self.galaxyMap.getSystemForId(startingPosition)!
+        startingStar.connectingSystems.forEach { self.player.knownStars.insert($0) }
+        
+    }
+    
+}

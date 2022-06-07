@@ -9,9 +9,9 @@
             <connections>
                 <outlet property="connectingSystemsHolderView" destination="Dne-RY-40u" id="0Xc-di-5rW"/>
                 <outlet property="coordinateLabel" destination="e74-Bf-NOz" id="qIQ-Uw-VAz"/>
+                <outlet property="currentSystemLabel" destination="Ij1-9O-7Uq" id="fc0-En-Ftx"/>
                 <outlet property="dangerLabel" destination="fVK-OS-PxK" id="DPY-oS-Wmq"/>
                 <outlet property="economyLabel" destination="gkU-uR-Zoo" id="6Pt-yY-I9g"/>
-                <outlet property="identifierLabel" destination="Ij1-9O-7Uq" id="idW-Po-1f3"/>
                 <outlet property="nameLabel" destination="0Ii-nn-peO" id="QCj-cQ-HTt"/>
                 <outlet property="populationLabel" destination="Xgc-ZH-s39" id="CNf-3F-bHc"/>
                 <outlet property="stageLabel" destination="AYD-aN-BAh" id="qqa-qH-Agc"/>
@@ -27,9 +27,9 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ij1-9O-7Uq">
                     <rect key="frame" x="0.0" y="280" width="150" height="16"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="id" id="vlx-Dh-N3A">
-                        <font key="font" metaFont="system" size="10"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Current Location" id="vlx-Dh-N3A">
+                        <font key="font" metaFont="system" size="12"/>
+                        <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
@@ -46,7 +46,7 @@
                     <rect key="frame" x="0.0" y="235" width="150" height="16"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="(212.1,34.2,-4.5)" id="D45-xm-Lvp">
-                        <font key="font" metaFont="system" size="12"/>
+                        <font key="font" metaFont="cellTitle"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -55,7 +55,7 @@
                     <rect key="frame" x="5" y="213" width="145" height="18"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" alignment="left" title="Stage" id="ycJ-aX-FeH">
-                        <font key="font" metaFont="system" size="12"/>
+                        <font key="font" metaFont="cellTitle"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -64,7 +64,7 @@
                     <rect key="frame" x="5" y="194" width="145" height="18"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" alignment="left" title="Economy" id="5CL-KK-4fp">
-                        <font key="font" metaFont="system" size="12"/>
+                        <font key="font" metaFont="cellTitle"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -91,7 +91,7 @@
                     <rect key="frame" x="61" y="174" width="84" height="18"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" alignment="right" title="528.1B" id="NFf-ii-64S">
-                        <font key="font" metaFont="system" size="12"/>
+                        <font key="font" metaFont="cellTitle"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -100,7 +100,7 @@
                     <rect key="frame" x="61" y="155" width="84" height="18"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" alignment="right" title="10" id="yoK-SK-aXh">
-                        <font key="font" metaFont="system" size="12"/>
+                        <font key="font" metaFont="cellTitle"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>

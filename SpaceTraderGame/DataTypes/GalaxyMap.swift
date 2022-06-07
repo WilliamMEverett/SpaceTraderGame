@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CloudKit
 
 class GalaxyMap: Codable {
     private var systemsMap = [Int:StarSystem]()
@@ -21,6 +20,37 @@ class GalaxyMap: Codable {
     
     func getAllSystemIdentifiers() -> [Int] {
         return Array(systemsMap.keys)
+    }
+    
+    func getStartingPlayerLocation() -> Int? {
+        
+        let starIds = systemsMap.keys.sorted()
+        
+        var res : Int? = nil
+        for testId in starIds {
+            let testSystem = getSystemForId(testId)!
+            if testSystem.danger > 3 {
+                continue
+            }
+            if testSystem.stage == .empty || testSystem.stage == .colonial {
+                continue
+            }
+            let nonEmptyConnectingSystems = testSystem.connectingSystems.reduce(0) { (partialResult: Int, nextValue : Int) -> Int in
+                if getSystemForId(nextValue)!.stage != .empty {
+                    return partialResult + 1
+                }
+                else {
+                    return partialResult
+                }
+            }
+            if nonEmptyConnectingSystems < 3 {
+                continue
+            }
+            res = testId
+            break
+        }
+        
+        return res
     }
     
     func closestSystemToCoordinates(_ twoDCoord : NSPoint) -> StarSystem? {

@@ -12,6 +12,8 @@
 		D91B738D284D56DB009F21DD /* StarSystemInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91B738B284D56DB009F21DD /* StarSystemInfoViewController.swift */; };
 		D91B738E284D56DB009F21DD /* StarSystemInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D91B738C284D56DB009F21DD /* StarSystemInfoViewController.xib */; };
 		D91B7390284D6402009F21DD /* GameViewPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91B738F284D6402009F21DD /* GameViewPanelViewController.swift */; };
+		D9486E7F284EB824009B78E5 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9486E7E284EB824009B78E5 /* Player.swift */; };
+		D9486E81284EBB22009B78E5 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9486E80284EBB22009B78E5 /* GameState.swift */; };
 		D9AEC73C284BFF9E00ABA16B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC73B284BFF9E00ABA16B /* AppDelegate.swift */; };
 		D9AEC73E284BFF9E00ABA16B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC73D284BFF9E00ABA16B /* MainViewController.swift */; };
 		D9AEC740284BFF9F00ABA16B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9AEC73F284BFF9F00ABA16B /* Assets.xcassets */; };
@@ -50,6 +52,8 @@
 		D91B738B284D56DB009F21DD /* StarSystemInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarSystemInfoViewController.swift; sourceTree = "<group>"; };
 		D91B738C284D56DB009F21DD /* StarSystemInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarSystemInfoViewController.xib; sourceTree = "<group>"; };
 		D91B738F284D6402009F21DD /* GameViewPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewPanelViewController.swift; sourceTree = "<group>"; };
+		D9486E7E284EB824009B78E5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		D9486E80284EBB22009B78E5 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		D9AEC738284BFF9E00ABA16B /* SpaceTraderGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceTraderGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9AEC73B284BFF9E00ABA16B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9AEC73D284BFF9E00ABA16B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +155,8 @@
 			children = (
 				D9AEC76A284C002300ABA16B /* GalaxyMap.swift */,
 				D9AEC76B284C002300ABA16B /* StarSystem.swift */,
+				D9486E7E284EB824009B78E5 /* Player.swift */,
+				D9486E80284EBB22009B78E5 /* GameState.swift */,
 			);
 			path = DataTypes;
 			sourceTree = "<group>";
@@ -320,7 +326,9 @@
 				D9AEC771284C043500ABA16B /* StarMapViewController.swift in Sources */,
 				D9AEC774284C05A000ABA16B /* StarMapView.swift in Sources */,
 				D9AEC76D284C002300ABA16B /* StarSystem.swift in Sources */,
+				D9486E7F284EB824009B78E5 /* Player.swift in Sources */,
 				D9AEC73C284BFF9E00ABA16B /* AppDelegate.swift in Sources */,
+				D9486E81284EBB22009B78E5 /* GameState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
