@@ -11,6 +11,7 @@ class StarMapViewController: GameViewPanelViewController, StarMapViewDelegate {
     
     @IBOutlet var zoomInButton : NSButton!
     @IBOutlet var zoomOutButton : NSButton!
+    @IBOutlet var cancelButton : NSButton!
     @IBOutlet var coordinateLabel : NSTextField!
     @IBOutlet var starMapView : StarMapView!
     
@@ -33,8 +34,6 @@ class StarMapViewController: GameViewPanelViewController, StarMapViewDelegate {
             self.starMapView.centerCoordinates = self.centerCoordinates
         }
     }
-    
-    var gameState : GameState!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,14 +56,9 @@ class StarMapViewController: GameViewPanelViewController, StarMapViewDelegate {
         else if self.zoomLevel >= 3 {
             self.zoomInButton.isEnabled = false
         }
-    }
-    
-    @IBAction func zoomInButtonPressed(_ sender : NSButton) {
-        self.zoomLevel += 1
-    }
-    
-    @IBAction func zoomOutButtonPressed(_ sender : NSButton) {
-        self.zoomLevel -= 1
+        
+        self.cancelButton.isHidden = self.delegate?.shouldDisplayCancelButton(sender: self) != true
+        
     }
     
     func centerOnStarSystem(_ systemIdent : Int) {
@@ -73,6 +67,19 @@ class StarMapViewController: GameViewPanelViewController, StarMapViewDelegate {
         }
         
         self.centerCoordinates = system.position
+    }
+    
+    //MARK: - Actions
+    @IBAction func zoomInButtonPressed(_ sender : NSButton) {
+        self.zoomLevel += 1
+    }
+    
+    @IBAction func zoomOutButtonPressed(_ sender : NSButton) {
+        self.zoomLevel -= 1
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender : NSButton) {
+        self.delegate?.cancelButtonPressed(sender: self)
     }
     
     // MARK: - StarMapViewDelegate methods

@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="StarMapViewController" customModule="SpaceTraderGame" customModuleProvider="target">
             <connections>
+                <outlet property="cancelButton" destination="nJe-R8-nix" id="dXu-a3-bAi"/>
                 <outlet property="coordinateLabel" destination="gnE-8m-gvJ" id="fEG-Bb-Nwt"/>
                 <outlet property="starMapView" destination="1Dc-3S-Sya" id="syX-g9-d4g"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -27,6 +28,17 @@
                         <outlet property="delegate" destination="-2" id="EEN-jV-rna"/>
                     </connections>
                 </customView>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nJe-R8-nix">
+                    <rect key="frame" x="10" y="295" width="43" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="X" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Nz7-GF-nx2">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="cancelButtonPressed:" target="-2" id="nzX-fo-U5Q"/>
+                    </connections>
+                </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="on7-eP-wRz">
                     <rect key="frame" x="478" y="7" width="43" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -50,9 +62,9 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="gnE-8m-gvJ">
-                    <rect key="frame" x="10" y="305" width="150" height="16"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" drawsBackground="YES" id="0Y4-S1-8Fq">
+                    <rect key="frame" x="375" y="305" width="150" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" drawsBackground="YES" id="0Y4-S1-8Fq">
                         <font key="font" usesAppearanceFont="YES"/>
                         <color key="textColor" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

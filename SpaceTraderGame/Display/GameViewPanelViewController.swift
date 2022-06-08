@@ -10,9 +10,17 @@ import AppKit
 
 protocol GameViewPanelDelegate : AnyObject {
     func starSystemSelected(sender: GameViewPanelViewController, starIdent: Int)
+    func cancelButtonPressed(sender: GameViewPanelViewController)
+    func shouldDisplayCancelButton(sender: GameViewPanelViewController) -> Bool
+    func displayStarMap(sender: GameViewPanelViewController)
 }
 
 class GameViewPanelViewController : NSViewController {
     
     weak var delegate : GameViewPanelDelegate?
+    var gameState : GameState!
+    
+    func canRemovePanel() -> Bool {
+        return true
+    }
 }

@@ -18,7 +18,6 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
     @IBOutlet var dangerLabel : NSTextField!
     @IBOutlet var connectingSystemsHolderView : NSView!
     
-    var gameState : GameState? = nil
     var systemNumber : Int = 0 {
         didSet {
             self.refreshDisplay()
@@ -31,7 +30,7 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
     }
     
     private func refreshDisplay() {
-        guard let system = self.gameState?.galaxyMap.getSystemForId(self.systemNumber) else {
+        guard let system = self.gameState.galaxyMap.getSystemForId(self.systemNumber) else {
             return
         }
         self.currentSystemLabel.isHidden = (self.gameState?.player.location ?? 0) != system.num_id
@@ -48,7 +47,7 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
         let subs = self.connectingSystemsHolderView.subviews
         subs.forEach() { $0.removeFromSuperview() }
         
-        guard let system = self.gameState?.galaxyMap.getSystemForId(self.systemNumber) else {
+        guard let system = self.gameState.galaxyMap.getSystemForId(self.systemNumber) else {
             return
         }
         
@@ -59,7 +58,7 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
             if !allStars.contains(ident) {
                 return
             }
-            let otherSystem = self.gameState?.galaxyMap.getSystemForId(ident)
+            let otherSystem = self.gameState.galaxyMap.getSystemForId(ident)
             let otherName = otherSystem?.name ?? "Error"
             let distance = otherSystem?.position.distance(system.position) ?? 0.0
             let text = "\(otherName) (\(String(format: "%.1f", distance)))"

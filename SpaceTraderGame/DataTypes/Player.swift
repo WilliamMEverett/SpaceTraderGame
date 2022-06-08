@@ -15,8 +15,10 @@ class Player : Codable {
     var negotiation : Int = 0
     var diplomacy : Int = 0
     var reputation : Int = 0
+    var ship : Ship!
     
     var location : Int = 0
+    var inStation = true
     var visitedStars : Set<Int> = Set<Int>()
     var knownStars : Set<Int> = Set<Int>()
     var allKnownStars : Set<Int> {
@@ -26,5 +28,7 @@ class Player : Codable {
     
     required init(name: String) {
         self.name = name
+        self.ship = Ship.baseShip()
+        self.money = 1000
     }
 }

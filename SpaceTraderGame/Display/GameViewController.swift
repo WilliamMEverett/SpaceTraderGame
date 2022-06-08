@@ -11,7 +11,7 @@ class GameViewController: NSViewController, GameViewPanelDelegate {
     @IBOutlet var centralDisplayPanel : NSView!
     @IBOutlet var upperRightDisplayPanel : NSView!
     
-    var starMapViewController : StarMapViewController!
+    var currentGameViewMainPanel : GameViewPanelViewController? = nil
     var starSystemInfoViewController : StarSystemInfoViewController!
     
     var gameState : GameState!
@@ -21,14 +21,9 @@ class GameViewController: NSViewController, GameViewPanelDelegate {
         super.viewDidLoad()
         
         gameState = GameState(playerName: "Incognito", starSystems: 1000)
-
-        starMapViewController = StarMapViewController()
-        starMapViewController.gameState = self.gameState
-        starMapViewController.delegate = self
         
-        self.addChild(starMapViewController)
-        starMapViewController.view.frame = self.centralDisplayPanel.bounds
-        self.centralDisplayPanel.addSubview(starMapViewController.view)
+        let basicMenuViewController = BasicMenuViewController()
+        _ = self.installGamePanelInMainDisplayPanel(newPanel: basicMenuViewController)
         
         starSystemInfoViewController = StarSystemInfoViewController()
         starSystemInfoViewController.gameState = self.gameState
@@ -39,15 +34,54 @@ class GameViewController: NSViewController, GameViewPanelDelegate {
         self.upperRightDisplayPanel.addSubview(starSystemInfoViewController.view)
         starSystemInfoViewController.systemNumber = 1
         
-        self.starMapViewController.centerOnStarSystem(self.gameState.player.location)
         self.starSystemInfoViewController.systemNumber = self.gameState.player.location
+    }
+    
+    func installGamePanelInMainDisplayPanel(newPanel : GameViewPanelViewController) -> Bool {
+        if currentGameViewMainPanel?.canRemovePanel() == false {
+            return false
+        }
+        
+        currentGameViewMainPanel?.removeFromParent()
+        currentGameViewMainPanel?.view.removeFromSuperview()
+        
+        newPanel.gameState = self.gameState
+        newPanel.delegate = self
+        self.addChild(newPanel)
+        newPanel.view.frame = self.centralDisplayPanel.bounds
+        self.centralDisplayPanel.addSubview(newPanel.view)
+        self.currentGameViewMainPanel = newPanel
+        
+        return true
     }
     
     
     //MARK: - GameViewPanelDelegate
     
     func starSystemSelected(sender: GameViewPanelViewController, starIdent: Int) {
-        self.starMapViewController.centerOnStarSystem(starIdent)
-        self.starSystemInfoViewController.systemNumber = starIdent
+        if self.currentGameViewMainPanel is StarMapViewController {
+            (self.currentGameViewMainPanel as? StarMapViewController)?.centerOnStarSystem(starIdent)
+            self.starSystemInfoViewController.systemNumber = starIdent
+        }
     }
+    
+    func cancelButtonPressed(sender: GameViewPanelViewController) {
+        if self.currentGameViewMainPanel is StarMapViewController {
+            let basicMenuViewController = BasicMenuViewController()
+            _ = self.installGamePanelInMainDisplayPanel(newPanel: basicMenuViewController)
+            self.starSystemInfoViewController.systemNumber = self.gameState.player.location
+        }
+    }
+    
+    func shouldDisplayCancelButton(sender: GameViewPanelViewController) -> Bool {
+        return true
+    }
+    
+    func displayStarMap(sender: GameViewPanelViewController) {
+        let starMapViewController = StarMapViewController()
+        _ = self.installGamePanelInMainDisplayPanel(newPanel: starMapViewController)
+        starMapViewController.centerOnStarSystem(self.gameState.player.location)
+        self.starSystemInfoViewController.systemNumber = self.gameState.player.location
+    }
+    
 }

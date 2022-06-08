@@ -27,4 +27,12 @@ class GameState : Codable {
         
     }
     
+    func timeStringDescription() -> String {
+        
+        let yearValue = Int(floor(time/365))
+        let daysValue = time - Double(365*yearValue)
+        
+        return String(format: "Year %d, Day %.1f", yearValue, daysValue)
+    }
+    
 }
