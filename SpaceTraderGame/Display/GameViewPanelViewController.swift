@@ -12,7 +12,7 @@ protocol GameViewPanelDelegate : AnyObject {
     func starSystemSelected(sender: GameViewPanelViewController, starIdent: Int)
     func cancelButtonPressed(sender: GameViewPanelViewController)
     func shouldDisplayCancelButton(sender: GameViewPanelViewController) -> Bool
-    func displayStarMap(sender: GameViewPanelViewController)
+    func presentGameViewPanel(sender: GameViewPanelViewController, newPanel: GameViewPanelViewController)
 }
 
 class GameViewPanelViewController : NSViewController {

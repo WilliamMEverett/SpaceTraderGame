@@ -42,8 +42,8 @@ class GameViewController: NSViewController, GameViewPanelDelegate {
             return false
         }
         
-        currentGameViewMainPanel?.removeFromParent()
         currentGameViewMainPanel?.view.removeFromSuperview()
+        currentGameViewMainPanel?.removeFromParent()
         
         newPanel.gameState = self.gameState
         newPanel.delegate = self
@@ -59,7 +59,7 @@ class GameViewController: NSViewController, GameViewPanelDelegate {
     //MARK: - GameViewPanelDelegate
     
     func starSystemSelected(sender: GameViewPanelViewController, starIdent: Int) {
-        if self.currentGameViewMainPanel is StarMapViewController {
+        if sender == self.currentGameViewMainPanel || self.currentGameViewMainPanel is StarMapViewController {
             (self.currentGameViewMainPanel as? StarMapViewController)?.centerOnStarSystem(starIdent)
             self.starSystemInfoViewController.systemNumber = starIdent
         }
@@ -77,11 +77,8 @@ class GameViewController: NSViewController, GameViewPanelDelegate {
         return true
     }
     
-    func displayStarMap(sender: GameViewPanelViewController) {
-        let starMapViewController = StarMapViewController()
-        _ = self.installGamePanelInMainDisplayPanel(newPanel: starMapViewController)
-        starMapViewController.centerOnStarSystem(self.gameState.player.location)
-        self.starSystemInfoViewController.systemNumber = self.gameState.player.location
+    func presentGameViewPanel(sender: GameViewPanelViewController, newPanel: GameViewPanelViewController) {
+        _ = self.installGamePanelInMainDisplayPanel(newPanel: newPanel)
     }
     
 }

@@ -64,7 +64,10 @@ class BasicMenuViewController: GameViewPanelViewController {
     }
     
     @IBAction func starmapButtonPressed(_ sender: Any) {
-        self.delegate?.displayStarMap(sender: self)
+        let newStarMapController = StarMapViewController()
+        newStarMapController.gameState = self.gameState
+        newStarMapController.centerOnStarSystem(self.gameState.player.location)
+        self.delegate?.presentGameViewPanel(sender: self, newPanel: newStarMapController)
     }
     
 }

@@ -9,11 +9,11 @@ import Cocoa
 
 class StarMapViewController: GameViewPanelViewController, StarMapViewDelegate {
     
-    @IBOutlet var zoomInButton : NSButton!
-    @IBOutlet var zoomOutButton : NSButton!
-    @IBOutlet var cancelButton : NSButton!
-    @IBOutlet var coordinateLabel : NSTextField!
-    @IBOutlet var starMapView : StarMapView!
+    @IBOutlet var zoomInButton : NSButton?
+    @IBOutlet var zoomOutButton : NSButton?
+    @IBOutlet var cancelButton : NSButton?
+    @IBOutlet var coordinateLabel : NSTextField?
+    @IBOutlet var starMapView : StarMapView?
     
     var zoomLevel = 0 {
         didSet {
@@ -23,7 +23,7 @@ class StarMapViewController: GameViewPanelViewController, StarMapViewDelegate {
             if zoomLevel < -3 {
                 zoomLevel = -3
             }
-            self.starMapView.zoomLevel = zoomLevel
+            self.starMapView?.zoomLevel = zoomLevel
             self.refreshInformationDisplay()
         }
     }
@@ -31,33 +31,33 @@ class StarMapViewController: GameViewPanelViewController, StarMapViewDelegate {
     var centerCoordinates = Coord() {
         didSet {
             self.refreshInformationDisplay()
-            self.starMapView.centerCoordinates = self.centerCoordinates
+            self.starMapView?.centerCoordinates = self.centerCoordinates
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.starMapView.zoomLevel = self.zoomLevel
-        self.starMapView.centerCoordinates = self.centerCoordinates
-        self.starMapView.gameState = self.gameState
+        self.starMapView?.zoomLevel = self.zoomLevel
+        self.starMapView?.centerCoordinates = self.centerCoordinates
+        self.starMapView?.gameState = self.gameState
         
         self.refreshInformationDisplay()
     }
     
     func refreshInformationDisplay() {
-        self.coordinateLabel.stringValue = "\(String(format: "%.1f", self.centerCoordinates.x)),\(String(format: "%.1f", self.centerCoordinates.y))"
+        self.coordinateLabel?.stringValue = "\(String(format: "%.1f", self.centerCoordinates.x)),\(String(format: "%.1f", self.centerCoordinates.y))"
         
-        self.zoomInButton.isEnabled = true
-        self.zoomOutButton.isEnabled = true
+        self.zoomInButton?.isEnabled = true
+        self.zoomOutButton?.isEnabled = true
         if self.zoomLevel <= -3 {
-            self.zoomOutButton.isEnabled = false
+            self.zoomOutButton?.isEnabled = false
         }
         else if self.zoomLevel >= 3 {
-            self.zoomInButton.isEnabled = false
+            self.zoomInButton?.isEnabled = false
         }
         
-        self.cancelButton.isHidden = self.delegate?.shouldDisplayCancelButton(sender: self) != true
+        self.cancelButton?.isHidden = self.delegate?.shouldDisplayCancelButton(sender: self) != true
         
     }
     
