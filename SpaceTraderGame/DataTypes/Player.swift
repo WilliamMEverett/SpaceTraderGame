@@ -26,9 +26,50 @@ class Player : Codable {
     }
     var money : Int = 0
     
+    var distanceTraveled : Double = 0
+    var jumpsMade : Int = 0
+    
     required init(name: String) {
         self.name = name
         self.ship = Ship.baseShip()
         self.money = 1000
+    }
+    
+    func timeToJump(distance: Double) -> Double {
+        return self.ship.baseTimeToJump(distance: distance)
+    }
+    
+    func fuelToTravelTime(time: Double) -> Double {
+        return self.ship.fuelToTravelTime(time: time)
+    }
+    
+    func performJump(from : Int, to: Int, galaxyMap: GalaxyMap) -> (success: Bool, timeElapsed: Double) {
+        guard let currentStar = galaxyMap.getSystemForId(from) else {
+            return (success:false, timeElapsed: 0)
+        }
+        if !currentStar.connectingSystems.contains(to) {
+            return (success:false, timeElapsed: 0)
+        }
+        guard let destinationStar = galaxyMap.getSystemForId(to) else {
+            return (success:false, timeElapsed: 0)
+        }
+        
+        let distance = currentStar.position.distance(destinationStar.position)
+        
+        let time = self.timeToJump(distance: distance)
+        let fuel = self.fuelToTravelTime(time: time)
+        
+        if fuel > self.ship.fuel {
+            return (success:false, timeElapsed: 0)
+        }
+        
+        self.location = destinationStar.num_id
+        self.visitedStars.insert(destinationStar.num_id)
+        destinationStar.connectingSystems.forEach() { self.knownStars.insert($0)}
+        self.ship.fuel -= fuel
+        self.distanceTraveled += distance
+        self.jumpsMade += 1
+
+        return (success:true, timeElapsed: time)
     }
 }

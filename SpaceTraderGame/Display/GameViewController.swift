@@ -66,11 +66,10 @@ class GameViewController: NSViewController, GameViewPanelDelegate {
     }
     
     func cancelButtonPressed(sender: GameViewPanelViewController) {
-        if self.currentGameViewMainPanel is StarMapViewController {
-            let basicMenuViewController = BasicMenuViewController()
-            _ = self.installGamePanelInMainDisplayPanel(newPanel: basicMenuViewController)
-            self.starSystemInfoViewController.systemNumber = self.gameState.player.location
-        }
+        let basicMenuViewController = BasicMenuViewController()
+        _ = self.installGamePanelInMainDisplayPanel(newPanel: basicMenuViewController)
+        self.starSystemInfoViewController.systemNumber = self.gameState.player.location
+        
     }
     
     func shouldDisplayCancelButton(sender: GameViewPanelViewController) -> Bool {

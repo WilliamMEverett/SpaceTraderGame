@@ -61,6 +61,9 @@ class BasicMenuViewController: GameViewPanelViewController {
     }
     
     @IBAction func jumpButtonPressed(_ sender: Any) {
+        let jumpController = JumpSelectPanelViewController()
+        self.delegate?.presentGameViewPanel(sender: self, newPanel: jumpController)
+        
     }
     
     @IBAction func starmapButtonPressed(_ sender: Any) {
