@@ -63,7 +63,7 @@ class JumpSelectPanelViewController: GameViewPanelViewController, GameViewPanelD
                 let fuel = self.gameState.player.fuelToTravelTime(time: time)
                 
                 if fuel > self.gameState.player.ship.fuel {
-                    self.timeFuelLabel.stringValue = "You do not have enough fuel. This jump requires \(fuel) fuel."
+                    self.timeFuelLabel.stringValue = String(format: "You do not have enough fuel. This jump requires %.1f fuel.", fuel)
                 }
                 else {
                     self.jumpButton.isEnabled = true

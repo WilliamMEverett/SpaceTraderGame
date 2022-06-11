@@ -9,9 +9,15 @@ import Foundation
 
 class GameState : Codable {
     
+    static let timeUpdatedNotification = "timeUpdatedNotification"
+    
     var galaxyMap : GalaxyMap!
     var player : Player!
-    var time : Double  = 0 //In days
+    var time : Double  = 0 { //In days
+        didSet {
+            self.timeUpdated()
+        }
+    }
     
     required init?(playerName : String, starSystems : Int) {
         self.galaxyMap = GalaxyMap(starSystems)
@@ -25,6 +31,10 @@ class GameState : Codable {
         let startingStar = self.galaxyMap.getSystemForId(startingPosition)!
         startingStar.connectingSystems.forEach { self.player.knownStars.insert($0) }
         
+    }
+    
+    func timeUpdated() {
+        NotificationCenter.default.post(name: Notification.Name(GameState.timeUpdatedNotification), object: self)
     }
     
     func timeStringDescription() -> String {

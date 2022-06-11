@@ -30,7 +30,8 @@ class BasicMenuViewController: GameViewPanelViewController {
     }
     
     private func refreshView() {
-        self.currentSystemLabel.stringValue = (self.gameState.galaxyMap.getSystemForId(self.gameState.player.location)?.name) ?? "Error"
+        let currentSystem = self.gameState.galaxyMap.getSystemForId(self.gameState.player.location)
+        self.currentSystemLabel.stringValue = (currentSystem?.name) ?? "Error"
         
         self.inStationLabel.stringValue = self.gameState.player.inStation ? "Docked" : "Outer System"
         self.creditsLabel.stringValue = "\(self.gameState.player.money) cr"
@@ -43,7 +44,7 @@ class BasicMenuViewController: GameViewPanelViewController {
             self.dockButton.title = "Dock"
         }
         let fuelRequired = self.gameState.player.ship.fuelToTravelTime(time: Ship.timeToLeaveDock())
-        self.dockButton.isEnabled = self.gameState.player.ship.fuel >= fuelRequired
+        self.dockButton.isEnabled = self.gameState.player.ship.fuel >= fuelRequired && currentSystem?.stage != .empty
         
         self.jumpButton.isEnabled = !self.gameState.player.inStation
         

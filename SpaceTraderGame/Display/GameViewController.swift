@@ -10,9 +10,12 @@ import Cocoa
 class GameViewController: NSViewController, GameViewPanelDelegate {
     @IBOutlet var centralDisplayPanel : NSView!
     @IBOutlet var upperRightDisplayPanel : NSView!
+    @IBOutlet weak var upperLeftDisplayPanel: NSView!
+    @IBOutlet weak var timeDateLabel: NSTextField!
     
     var currentGameViewMainPanel : GameViewPanelViewController? = nil
     var starSystemInfoViewController : StarSystemInfoViewController!
+    var playerInfoViewController : PlayerInfoViewController!
     
     var gameState : GameState!
     
@@ -34,7 +37,23 @@ class GameViewController: NSViewController, GameViewPanelDelegate {
         self.upperRightDisplayPanel.addSubview(starSystemInfoViewController.view)
         starSystemInfoViewController.systemNumber = 1
         
+        playerInfoViewController = PlayerInfoViewController()
+        playerInfoViewController.gameState = self.gameState
+        playerInfoViewController.delegate = self
+        
+        self.addChild(playerInfoViewController)
+        playerInfoViewController.view.frame = self.upperLeftDisplayPanel.bounds
+        playerInfoViewController.widthLayoutConstaint.constant = self.upperLeftDisplayPanel.bounds.width
+        playerInfoViewController.heightLayoutConstraint.constant = self.upperLeftDisplayPanel.bounds.height
+        self.upperLeftDisplayPanel.addSubview(playerInfoViewController.view)
+        
         self.starSystemInfoViewController.systemNumber = self.gameState.player.location
+        
+        weak var weakSelf = self
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(GameState.timeUpdatedNotification), object: nil, queue: nil) { notification in
+            weakSelf?.timeWasUpdated(notification)
+        }
+        self.refreshTimeDisplay()
     }
     
     func installGamePanelInMainDisplayPanel(newPanel : GameViewPanelViewController) -> Bool {
@@ -53,6 +72,10 @@ class GameViewController: NSViewController, GameViewPanelDelegate {
         self.currentGameViewMainPanel = newPanel
         
         return true
+    }
+    
+    func refreshTimeDisplay() {
+        self.timeDateLabel.stringValue = self.gameState.timeStringDescription()
     }
     
     
@@ -78,6 +101,12 @@ class GameViewController: NSViewController, GameViewPanelDelegate {
     
     func presentGameViewPanel(sender: GameViewPanelViewController, newPanel: GameViewPanelViewController) {
         _ = self.installGamePanelInMainDisplayPanel(newPanel: newPanel)
+    }
+    
+    //MARK: - Notifications
+    
+    func timeWasUpdated(_ notification : Notification) {
+        self.refreshTimeDisplay()
     }
     
 }

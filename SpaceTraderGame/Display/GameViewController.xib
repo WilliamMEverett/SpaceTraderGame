@@ -8,6 +8,8 @@
         <customObject id="-2" userLabel="File's Owner" customClass="GameViewController" customModule="SpaceTraderGame" customModuleProvider="target">
             <connections>
                 <outlet property="centralDisplayPanel" destination="YXx-dJ-gvN" id="6KG-Gp-CyT"/>
+                <outlet property="timeDateLabel" destination="80e-CA-8pP" id="VRX-L3-laI"/>
+                <outlet property="upperLeftDisplayPanel" destination="OSH-fk-R4f" id="FEc-Wv-OH3"/>
                 <outlet property="upperRightDisplayPanel" destination="ZXN-zX-MFI" id="30F-kC-dYB"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -19,13 +21,26 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <customView id="YXx-dJ-gvN">
-                    <rect key="frame" x="0.0" y="50" width="450" height="450"/>
+                    <rect key="frame" x="150" y="40" width="300" height="440"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </customView>
                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZXN-zX-MFI">
                     <rect key="frame" x="450" y="200" width="150" height="300"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                 </customView>
+                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OSH-fk-R4f">
+                    <rect key="frame" x="0.0" y="0.0" width="150" height="500"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </customView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="80e-CA-8pP">
+                    <rect key="frame" x="150" y="480" width="300" height="20"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Label" id="vCL-Oc-9dK">
+                        <font key="font" usesAppearanceFont="YES"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <point key="canvasLocation" x="176" y="148"/>
         </customView>

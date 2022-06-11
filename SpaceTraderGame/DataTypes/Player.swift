@@ -9,6 +9,8 @@ import Foundation
 
 class Player : Codable {
     
+    static let playerUpdatedNotification = "playerUpdatedNotification"
+    
     var name = ""
     var navigation : Int = 0
     var combat : Int = 0
@@ -24,7 +26,11 @@ class Player : Codable {
     var allKnownStars : Set<Int> {
         visitedStars.union(knownStars)
     }
-    var money : Int = 0
+    var money : Int = 0 {
+        didSet {
+            self.playerUpdated()
+        }
+    }
     
     var distanceTraveled : Double = 0
     var jumpsMade : Int = 0
@@ -33,6 +39,10 @@ class Player : Codable {
         self.name = name
         self.ship = Ship.baseShip()
         self.money = 1000
+    }
+    
+    func playerUpdated() {
+        NotificationCenter.default.post(name: Notification.Name(Player.playerUpdatedNotification), object: self)
     }
     
     func timeToJump(distance: Double) -> Double {
@@ -70,6 +80,8 @@ class Player : Codable {
         self.distanceTraveled += distance
         self.jumpsMade += 1
 
+        self.playerUpdated()
+        
         return (success:true, timeElapsed: time)
     }
 }
