@@ -41,6 +41,10 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="mgy-1r-dSF">
+                    <rect key="frame" x="150" y="480" width="300" height="5"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                </box>
             </subviews>
             <point key="canvasLocation" x="176" y="148"/>
         </customView>

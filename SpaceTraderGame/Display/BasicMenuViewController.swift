@@ -7,17 +7,32 @@
 
 import Cocoa
 
-class BasicMenuViewController: GameViewPanelViewController {
+enum BasicMenuActionType : Int, CustomStringConvertible {
+    case dock
+    case undock
+    case starmap
+    case jump
+    case refuel
+    
+    var description : String {
+        switch self {
+        case .dock: return "Dock"
+        case .undock: return "Un-Dock"
+        case .starmap: return "Star Map"
+        case .jump: return "Jump"
+        case .refuel: return "Refuel"
+        }
+    }
+    
+}
+
+class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate, NSTableViewDataSource {
 
     @IBOutlet weak var currentSystemLabel: NSTextField!
     @IBOutlet weak var inStationLabel: NSTextField!
-    @IBOutlet weak var creditsLabel: NSTextField!
-    @IBOutlet weak var fuelLabel: NSTextField!
-    @IBOutlet weak var timestampLabel: NSTextField!
-    @IBOutlet weak var dockButton: NSButton!
-    @IBOutlet weak var jumpButton: NSButton!
-    @IBOutlet weak var starmapButton: NSButton!
+    @IBOutlet weak var actionTableView : NSTableView!
     
+    private var actionList : [BasicMenuActionType] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,46 +47,110 @@ class BasicMenuViewController: GameViewPanelViewController {
     private func refreshView() {
         let currentSystem = self.gameState.galaxyMap.getSystemForId(self.gameState.player.location)
         self.currentSystemLabel.stringValue = (currentSystem?.name) ?? "Error"
-        
         self.inStationLabel.stringValue = self.gameState.player.inStation ? "Docked" : "Outer System"
-        self.creditsLabel.stringValue = "\(self.gameState.player.money) cr"
-        self.fuelLabel.stringValue = String(format: "%.1f", self.gameState.player.ship.fuel)
-        self.timestampLabel.stringValue = self.gameState.timeStringDescription()
+        
+        self.actionList.removeAll()
         if self.gameState.player.inStation {
-            self.dockButton.title = "Leave Dock"
+            self.actionList.append(.undock)
         }
-        else {
-            self.dockButton.title = "Dock"
+        if !self.gameState.player.inStation && currentSystem?.stage != .empty {
+            self.actionList.append(.dock)
         }
-        let fuelRequired = self.gameState.player.ship.fuelToTravelTime(time: Ship.timeToLeaveDock())
-        self.dockButton.isEnabled = self.gameState.player.ship.fuel >= fuelRequired && currentSystem?.stage != .empty
+        if !self.gameState.player.inStation {
+            self.actionList.append(.jump)
+        }
+        if self.gameState.player.inStation && self.gameState.player.ship.fuel < self.gameState.player.ship.engine {
+            self.actionList.append(.refuel)
+        }
+        self.actionList.append(.starmap)
         
-        self.jumpButton.isEnabled = !self.gameState.player.inStation
-        
+        self.actionTableView.reloadData()
     }
     
     //MARK: - Actions
-    @IBAction func dockButtonPressed(_ sender: NSButton) {
+    func performDock() {
+        if self.gameState.player.inStation {
+            self.refreshView()
+            return
+        }
         let fuelRequired = self.gameState.player.ship.fuelToTravelTime(time: Ship.timeToLeaveDock())
         if self.gameState.player.ship.fuel >= fuelRequired {
             self.gameState.player.ship.fuel -= fuelRequired
             self.gameState.time += Ship.timeToLeaveDock()
-            self.gameState.player.inStation = !self.gameState.player.inStation
+            self.gameState.player.inStation = true
         }
         self.refreshView()
     }
     
-    @IBAction func jumpButtonPressed(_ sender: Any) {
+    func performUnDock() {
+        if !self.gameState.player.inStation {
+            self.refreshView()
+            return
+        }
+        let fuelRequired = self.gameState.player.ship.fuelToTravelTime(time: Ship.timeToLeaveDock())
+        if self.gameState.player.ship.fuel >= fuelRequired {
+            self.gameState.player.ship.fuel -= fuelRequired
+            self.gameState.time += Ship.timeToLeaveDock()
+            self.gameState.player.inStation = false
+        }
+        self.refreshView()
+    }
+    
+    func displayJumpController() {
         let jumpController = JumpSelectPanelViewController()
         self.delegate?.presentGameViewPanel(sender: self, newPanel: jumpController)
         
     }
     
-    @IBAction func starmapButtonPressed(_ sender: Any) {
+    func displayStarMap() {
         let newStarMapController = StarMapViewController()
         newStarMapController.gameState = self.gameState
         newStarMapController.centerOnStarSystem(self.gameState.player.location)
         self.delegate?.presentGameViewPanel(sender: self, newPanel: newStarMapController)
+    }
+    
+    func performRefuel() {
+        
+    }
+    
+    //MARK: - NSTableView
+    
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return actionList.count
+    }
+    
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        if row < actionList.count {
+            return "\(actionList[row])"
+        }
+        else {
+            return nil
+        }
+    }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        let row = self.actionTableView.selectedRow
+        if row == -1 {
+            return
+        }
+        self.actionTableView.deselectAll(nil)
+        
+        if row < 0 || row >= self.actionList.count {
+            return
+        }
+        let action = self.actionList[row]
+        switch action {
+        case .dock:
+            self.performDock()
+        case .undock:
+            self.performUnDock()
+        case .jump:
+            self.displayJumpController()
+        case .starmap:
+            self.displayStarMap()
+        case .refuel:
+            self.performRefuel()
+        }
     }
     
 }
