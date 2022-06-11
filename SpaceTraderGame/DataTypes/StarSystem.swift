@@ -103,6 +103,10 @@ class StarSystem : Codable, CustomStringConvertible {
         return "\(self.num_id).  \(self.name)    \(self.position)\n\(self.stage)  \(self.economy)\nPop: \(self.populationDescription)   Danger: \(self.danger)   Faction:\(self.faction)\nConnecting Systems: \(self.connectingSystems))\n"
     }
     
+    func getFuelCost() -> Double {
+        return 3
+    }
+    
     class func generateRandomSystem() -> StarSystem {
         let returnValue = StarSystem()
         

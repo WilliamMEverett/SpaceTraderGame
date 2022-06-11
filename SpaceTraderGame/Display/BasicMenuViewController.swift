@@ -110,7 +110,8 @@ class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate,
     }
     
     func performRefuel() {
-        
+        let newRefuelController = RefuelPanelViewController()
+        self.delegate?.presentGameViewPanel(sender: self, newPanel: newRefuelController)
     }
     
     //MARK: - NSTableView

@@ -11,6 +11,8 @@
 		D9106132285397C4007866DA /* JumpSelectPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9106130285397C4007866DA /* JumpSelectPanelViewController.xib */; };
 		D91061352853DDBC007866DA /* PlayerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91061332853DDBC007866DA /* PlayerInfoViewController.swift */; };
 		D91061362853DDBC007866DA /* PlayerInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D91061342853DDBC007866DA /* PlayerInfoViewController.xib */; };
+		D910613A28543CB0007866DA /* RefuelPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D910613828543CB0007866DA /* RefuelPanelViewController.swift */; };
+		D910613B28543CB0007866DA /* RefuelPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D910613928543CB0007866DA /* RefuelPanelViewController.xib */; };
 		D91B7389284D494E009F21DD /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91B7387284D494E009F21DD /* GameViewController.swift */; };
 		D91B738A284D494E009F21DD /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D91B7388284D494E009F21DD /* GameViewController.xib */; };
 		D91B738D284D56DB009F21DD /* StarSystemInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91B738B284D56DB009F21DD /* StarSystemInfoViewController.swift */; };
@@ -58,6 +60,8 @@
 		D9106130285397C4007866DA /* JumpSelectPanelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JumpSelectPanelViewController.xib; sourceTree = "<group>"; };
 		D91061332853DDBC007866DA /* PlayerInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoViewController.swift; sourceTree = "<group>"; };
 		D91061342853DDBC007866DA /* PlayerInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerInfoViewController.xib; sourceTree = "<group>"; };
+		D910613828543CB0007866DA /* RefuelPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefuelPanelViewController.swift; sourceTree = "<group>"; };
+		D910613928543CB0007866DA /* RefuelPanelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefuelPanelViewController.xib; sourceTree = "<group>"; };
 		D91B7387284D494E009F21DD /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		D91B7388284D494E009F21DD /* GameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
 		D91B738B284D56DB009F21DD /* StarSystemInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarSystemInfoViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +200,8 @@
 				D9106130285397C4007866DA /* JumpSelectPanelViewController.xib */,
 				D91061332853DDBC007866DA /* PlayerInfoViewController.swift */,
 				D91061342853DDBC007866DA /* PlayerInfoViewController.xib */,
+				D910613828543CB0007866DA /* RefuelPanelViewController.swift */,
+				D910613928543CB0007866DA /* RefuelPanelViewController.xib */,
 				D9AEC773284C05A000ABA16B /* StarMapView.swift */,
 				D9AEC76F284C043500ABA16B /* StarMapViewController.swift */,
 				D9AEC770284C043500ABA16B /* StarMapViewController.xib */,
@@ -315,6 +321,7 @@
 				D96A77042850118D00944168 /* BasicMenuViewController.xib in Resources */,
 				D91061362853DDBC007866DA /* PlayerInfoViewController.xib in Resources */,
 				D9AEC743284BFF9F00ABA16B /* Main.storyboard in Resources */,
+				D910613B28543CB0007866DA /* RefuelPanelViewController.xib in Resources */,
 				D9AEC769284C001800ABA16B /* city_list.txt in Resources */,
 				D91B738A284D494E009F21DD /* GameViewController.xib in Resources */,
 				D9106132285397C4007866DA /* JumpSelectPanelViewController.xib in Resources */,
@@ -354,6 +361,7 @@
 				D9AEC774284C05A000ABA16B /* StarMapView.swift in Sources */,
 				D9106131285397C4007866DA /* JumpSelectPanelViewController.swift in Sources */,
 				D9AEC76D284C002300ABA16B /* StarSystem.swift in Sources */,
+				D910613A28543CB0007866DA /* RefuelPanelViewController.swift in Sources */,
 				D9486E7F284EB824009B78E5 /* Player.swift in Sources */,
 				D9AEC73C284BFF9E00ABA16B /* AppDelegate.swift in Sources */,
 				D9486E81284EBB22009B78E5 /* GameState.swift in Sources */,
