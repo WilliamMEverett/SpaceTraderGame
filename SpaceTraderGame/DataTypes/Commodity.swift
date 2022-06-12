@@ -185,7 +185,7 @@ enum Commodity : Int, CustomStringConvertible, Codable, CaseIterable  {
             switch starSystem.economy {
             case .agriculture_basic: return 0.9...1.5
             case .agriculture_luxury: return 0.8...1.2
-            default: return 0.4...1.1
+            default: return 0.3...1.1
             }
         case .agriculture_luxury:
             switch (starSystem.economy, starSystem.stage) {

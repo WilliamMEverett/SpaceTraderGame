@@ -77,6 +77,8 @@ struct Coord : Codable, CustomStringConvertible {
 
 class StarSystem : Codable, CustomStringConvertible {
     
+    static let starSystemUpdatedNotification = "starSystemUpdatedNotification"
+    
     var num_id = 0
     var name = ""
     var position = Coord()
@@ -106,6 +108,10 @@ class StarSystem : Codable, CustomStringConvertible {
     
     func getFuelCost() -> Double {
         return 3
+    }
+    
+    func starSystemUpdated() {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: StarSystem.starSystemUpdatedNotification), object: self)
     }
     
     class func generateRandomSystem() -> StarSystem {

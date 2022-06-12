@@ -280,5 +280,7 @@ class MarketPanelViewController: GameViewPanelViewController {
         self.gameState.player.money -= price
         self.quantityToBuy = 0
         self.refreshView()
+        
+        currentStar.starSystemUpdated()
     }
 }

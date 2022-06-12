@@ -31,6 +31,11 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         self.refreshDisplay()
+        
+        weak var weakSelf = self
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: StarSystem.starSystemUpdatedNotification), object: nil, queue: nil) { notification in
+            weakSelf?.starSystemUpdated(notification)
+        }
     }
     
     override func viewDidAppear() {
@@ -93,6 +98,14 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
             
         }
 
+    }
+    
+    //MARK: - Notification
+    
+    private func starSystemUpdated(_ notification : Notification) {
+        if (notification.object as? StarSystem)?.num_id == self.systemNumber {
+            self.refreshDisplay()
+        }
     }
                                      
     //MARK: - Actions
