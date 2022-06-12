@@ -37,10 +37,11 @@ class JumpSelectPanelViewController: GameViewPanelViewController, GameViewPanelD
     private func refreshView() {
         self.jumpButton.isEnabled = false
         
+        self.distanceLabel.stringValue = ""
+        self.timeFuelLabel.stringValue = ""
+        
         if self.selectedStar == 0 || self.selectedStar == self.gameState.player.location {
             self.destinationLabel.stringValue = "Select a destination to jump to"
-            self.distanceLabel.stringValue = ""
-            self.timeFuelLabel.stringValue = ""
         }
         else {
             guard let currentStar = self.gameState.galaxyMap.getSystemForId(self.gameState.player.location) else {

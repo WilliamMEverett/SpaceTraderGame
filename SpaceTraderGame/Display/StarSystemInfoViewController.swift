@@ -20,6 +20,7 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
     
     @IBOutlet var marketTableView : NSTableView!
     @IBOutlet weak var marketScrollView: NSScrollView!
+    @IBOutlet weak var marketHolderView: NSView!
     
     var systemNumber : Int = 0 {
         didSet {
@@ -34,7 +35,7 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.marketScrollView.frame = NSRect(x: 0, y: 0, width: self.marketScrollView.superview!.frame.width, height: self.marketScrollView.superview!.frame.height - 20)
+        self.marketScrollView.frame = NSRect(x: 0, y: 0, width: self.marketHolderView.frame.width, height: self.marketHolderView.frame.height - 20)
     }
     
     private func refreshDisplay() {
@@ -42,7 +43,7 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
             return
         }
         self.currentSystemLabel.isHidden = (self.gameState.player.location) != system.num_id
-        self.marketTableView.isHidden = (self.gameState.player.location) != system.num_id
+        self.marketHolderView.isHidden = (self.gameState.player.location) != system.num_id
         self.nameLabel.stringValue = system.name
         self.coordinateLabel.stringValue = "\(system.position)"
         self.stageLabel.stringValue = "\(system.stage)"

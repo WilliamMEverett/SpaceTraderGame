@@ -21,6 +21,8 @@ class Ship : Codable {
         }
     }
     
+    var commodities : [Commodity:Double] = [:]
+    
     var hullDamage : Double = 0 {
         didSet {
             self.shipUpdated()
@@ -46,7 +48,9 @@ class Ship : Codable {
     }
     
     func totalCargoWeight() -> Double {
-        return 0
+        return self.commodities.reduce(0.0, { partialResult, value in
+            return partialResult + value.value
+        })
     }
     
     func baseTimeToJump(distance: Double) -> Double {

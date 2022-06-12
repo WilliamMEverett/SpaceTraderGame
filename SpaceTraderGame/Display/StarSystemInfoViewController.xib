@@ -12,6 +12,7 @@
                 <outlet property="currentSystemLabel" destination="Ij1-9O-7Uq" id="fc0-En-Ftx"/>
                 <outlet property="dangerLabel" destination="fVK-OS-PxK" id="DPY-oS-Wmq"/>
                 <outlet property="economyLabel" destination="gkU-uR-Zoo" id="6Pt-yY-I9g"/>
+                <outlet property="marketHolderView" destination="Gxq-Jb-lCP" id="5xV-Q4-LKU"/>
                 <outlet property="marketScrollView" destination="y7q-A2-BbQ" id="cTJ-yT-EFc"/>
                 <outlet property="marketTableView" destination="UQZ-LB-nbY" id="Xxu-ww-R8O"/>
                 <outlet property="nameLabel" destination="0Ii-nn-peO" id="QCj-cQ-HTt"/>

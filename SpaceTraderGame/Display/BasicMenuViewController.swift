@@ -13,6 +13,7 @@ enum BasicMenuActionType : Int, CustomStringConvertible {
     case starmap
     case jump
     case refuel
+    case market
     
     var description : String {
         switch self {
@@ -21,6 +22,7 @@ enum BasicMenuActionType : Int, CustomStringConvertible {
         case .starmap: return "Star Map"
         case .jump: return "Jump"
         case .refuel: return "Refuel"
+        case .market: return "Market"
         }
     }
     
@@ -52,6 +54,7 @@ class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate,
         self.actionList.removeAll()
         if self.gameState.player.inStation {
             self.actionList.append(.undock)
+            self.actionList.append(.market)
         }
         if !self.gameState.player.inStation && currentSystem?.stage != .empty {
             self.actionList.append(.dock)
@@ -62,6 +65,7 @@ class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate,
         if self.gameState.player.inStation && self.gameState.player.ship.fuel < self.gameState.player.ship.engine {
             self.actionList.append(.refuel)
         }
+     
         self.actionList.append(.starmap)
         
         self.actionTableView.reloadData()
@@ -109,6 +113,11 @@ class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate,
         self.delegate?.presentGameViewPanel(sender: self, newPanel: newStarMapController)
     }
     
+    func displayMarket() {
+        let newMarketController = MarketPanelViewController()
+        self.delegate?.presentGameViewPanel(sender: self, newPanel: newMarketController)
+    }
+    
     func performRefuel() {
         let newRefuelController = RefuelPanelViewController()
         self.delegate?.presentGameViewPanel(sender: self, newPanel: newRefuelController)
@@ -151,6 +160,8 @@ class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate,
             self.displayStarMap()
         case .refuel:
             self.performRefuel()
+        case .market:
+            self.displayMarket()
         }
     }
     

@@ -45,6 +45,10 @@ class Player : Codable {
         NotificationCenter.default.post(name: Notification.Name(Player.playerUpdatedNotification), object: self)
     }
     
+    func negotiationPriceAdjustment() -> Double {
+        return 0.05
+    }
+    
     func timeToJump(distance: Double) -> Double {
         return self.ship.baseTimeToJump(distance: distance)
     }
