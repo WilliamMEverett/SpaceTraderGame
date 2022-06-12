@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="PlayerInfoViewController" customModule="SpaceTraderGame" customModuleProvider="target">
             <connections>
                 <outlet property="cargoLabel" destination="DgO-A9-K7q" id="4Or-sV-eYy"/>
+                <outlet property="cargoListTableView" destination="ltr-I3-Uc3" id="rh5-UF-cyg"/>
                 <outlet property="combatScoreLabel" destination="gTM-g9-Rye" id="YVf-hN-R3z"/>
                 <outlet property="creditsScoreLabel" destination="guQ-uW-4YD" id="RCA-Hy-W53"/>
                 <outlet property="diplomacyScoreLabel" destination="4Ls-VW-FuI" id="AUI-0U-so1"/>
@@ -276,10 +277,64 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="qQW-aN-gO1">
+                    <rect key="frame" x="0.0" y="0.0" width="150" height="119"/>
+                    <subviews>
+                        <scrollView autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYv-0Q-xUb">
+                            <rect key="frame" x="0.0" y="0.0" width="150" height="119"/>
+                            <clipView key="contentView" id="3yC-Jw-PQO">
+                                <rect key="frame" x="1" y="1" width="148" height="117"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="24" id="ltr-I3-Uc3">
+                                        <rect key="frame" x="0.0" y="0.0" width="148" height="117"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <size key="intercellSpacing" width="17" height="0.0"/>
+                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                        <tableColumns>
+                                            <tableColumn editable="NO" width="136" minWidth="40" maxWidth="1000" id="XrO-Xd-L3I">
+                                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                    <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                </tableHeaderCell>
+                                                <textFieldCell key="dataCell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" title="Text Cell" id="gEX-T6-PHr">
+                                                    <font key="font" metaFont="smallSystem"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </tableColumn>
+                                        </tableColumns>
+                                        <connections>
+                                            <outlet property="dataSource" destination="-2" id="TAw-sB-9tf"/>
+                                            <outlet property="delegate" destination="-2" id="zSE-3E-xcB"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                            </clipView>
+                            <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="JEP-Gp-krD">
+                                <rect key="frame" x="-100" y="-100" width="148" height="15"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </scroller>
+                            <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="1w2-6h-eBX">
+                                <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </scroller>
+                        </scrollView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="119" id="CLn-OB-J1s"/>
+                        <constraint firstItem="YYv-0Q-xUb" firstAttribute="top" secondItem="qQW-aN-gO1" secondAttribute="top" id="VGH-l2-ZmH"/>
+                        <constraint firstItem="YYv-0Q-xUb" firstAttribute="leading" secondItem="qQW-aN-gO1" secondAttribute="leading" id="YfF-HE-d8t"/>
+                        <constraint firstAttribute="bottom" secondItem="YYv-0Q-xUb" secondAttribute="bottom" id="rRz-Ql-i8f"/>
+                        <constraint firstAttribute="trailing" secondItem="YYv-0Q-xUb" secondAttribute="trailing" id="x8p-j5-F2b"/>
+                    </constraints>
+                </customView>
             </subviews>
             <constraints>
                 <constraint firstItem="WMc-bo-tzH" firstAttribute="centerY" secondItem="KRJ-fu-bOs" secondAttribute="centerY" id="0Bc-I5-whr"/>
                 <constraint firstAttribute="trailing" secondItem="gTM-g9-Rye" secondAttribute="trailing" constant="5" id="2Ik-Zg-msp"/>
+                <constraint firstItem="qQW-aN-gO1" firstAttribute="top" secondItem="qOt-Ab-hca" secondAttribute="bottom" constant="10" id="3eK-gc-fDd"/>
                 <constraint firstAttribute="trailing" secondItem="40I-6j-nwb" secondAttribute="trailing" constant="5" id="44e-MJ-wXi"/>
                 <constraint firstAttribute="trailing" secondItem="guQ-uW-4YD" secondAttribute="trailing" constant="5" id="56v-gM-VmM"/>
                 <constraint firstItem="qPs-8o-XsJ" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="5" id="5V4-1t-Xuo"/>
@@ -312,11 +367,13 @@
                 <constraint firstItem="DgO-A9-K7q" firstAttribute="leading" secondItem="qOt-Ab-hca" secondAttribute="trailing" constant="5" id="WFf-1y-bMZ"/>
                 <constraint firstItem="guQ-uW-4YD" firstAttribute="leading" secondItem="qPs-8o-XsJ" secondAttribute="trailing" constant="5" id="WOy-Z2-49h"/>
                 <constraint firstAttribute="trailing" secondItem="i7g-NH-f7Z" secondAttribute="trailing" constant="5" id="YKu-Tv-oMJ"/>
+                <constraint firstAttribute="trailing" secondItem="qQW-aN-gO1" secondAttribute="trailing" id="YZA-9e-cgc"/>
                 <constraint firstAttribute="width" constant="150" id="aHu-EX-okg"/>
                 <constraint firstItem="i7g-NH-f7Z" firstAttribute="leading" secondItem="7zq-xS-K12" secondAttribute="trailing" constant="5" id="dD2-rl-aTc"/>
                 <constraint firstItem="gTM-g9-Rye" firstAttribute="leading" secondItem="tMN-MF-9vj" secondAttribute="trailing" constant="5" id="dMi-WJ-aau"/>
                 <constraint firstItem="JNm-Uv-6Ek" firstAttribute="top" secondItem="tMN-MF-9vj" secondAttribute="bottom" constant="8" symbolic="YES" id="dVa-6W-deo"/>
                 <constraint firstItem="i3g-E8-teI" firstAttribute="top" secondItem="jVy-qj-lYX" secondAttribute="bottom" constant="8" symbolic="YES" id="dnc-r7-dhN"/>
+                <constraint firstItem="qQW-aN-gO1" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="eJP-Q1-Y1b"/>
                 <constraint firstAttribute="trailing" secondItem="WMc-bo-tzH" secondAttribute="trailing" constant="5" id="eod-uA-STU"/>
                 <constraint firstItem="4Ls-VW-FuI" firstAttribute="centerY" secondItem="6UD-O6-u5p" secondAttribute="centerY" id="gf2-X9-2qK"/>
                 <constraint firstItem="WMc-bo-tzH" firstAttribute="leading" secondItem="KRJ-fu-bOs" secondAttribute="trailing" constant="5" id="htD-eP-7Ka"/>

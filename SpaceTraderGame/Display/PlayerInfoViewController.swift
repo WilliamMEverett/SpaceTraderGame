@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class PlayerInfoViewController: GameViewPanelViewController {
+class PlayerInfoViewController: GameViewPanelViewController, NSTableViewDelegate, NSTableViewDataSource {
 
     @IBOutlet weak var playerNameLabel: NSTextField!
     @IBOutlet weak var navigationScoreLabel: NSTextField!
@@ -20,9 +20,12 @@ class PlayerInfoViewController: GameViewPanelViewController {
     @IBOutlet weak var engineLabel: NSTextField!
     @IBOutlet weak var fuelLabel: NSTextField!
     @IBOutlet weak var cargoLabel: NSTextField!
+    @IBOutlet weak var cargoListTableView : NSTableView!
     
     @IBOutlet weak var heightLayoutConstraint : NSLayoutConstraint!
     @IBOutlet weak var widthLayoutConstaint: NSLayoutConstraint!
+    
+    private var cargoList : [Commodity] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,11 +57,33 @@ class PlayerInfoViewController: GameViewPanelViewController {
         self.fuelLabel.stringValue = String(format: "%0.1f/%0.0f", (self.gameState.player.ship.fuel),(self.gameState.player.ship.engine))
         self.cargoLabel.stringValue = String(format: "%0.0f/%0.0f", self.gameState.player.ship.totalCargoWeight(), self.gameState.player.ship.cargo)
         
+        self.cargoList = []
+        self.gameState.player.ship.commodities.forEach { (key: Commodity, value: Double) in
+            if value > 0 {
+                self.cargoList.append(key)
+            }
+        }
+        self.cargoListTableView.reloadData()
+        
     }
     
     //MARK: - Notification
     
     func playerWasUpdated(_ notification: Notification) {
         self.refreshView()
+    }
+    
+    //MARK: - NSTableView delegate
+    
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return self.cargoList.count
+    }
+    
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        
+        let comm = self.cargoList[row]
+        let qty = Int(self.gameState.player.ship.commodities[comm]!)
+        
+        return "\(comm.shortDescription) \(qty)"
     }
 }

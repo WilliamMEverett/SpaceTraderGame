@@ -157,7 +157,7 @@ class MarketPanelViewController: GameViewPanelViewController {
         let currentMarkeyQty = currentStar.market!.stock[comm] ?? 0
         var totalPrice : Double = 0
         var finalQty : Int = 0
-        for inc in 0...max_qty {
+        for inc in 0..<max_qty {
             let testQty = currentMarkeyQty - inc
             if testQty < 0 {
                 break
