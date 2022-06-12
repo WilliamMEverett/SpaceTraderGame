@@ -18,6 +18,9 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
     @IBOutlet var dangerLabel : NSTextField!
     @IBOutlet var connectingSystemsHolderView : NSView!
     
+    @IBOutlet var marketTableView : NSTableView!
+    @IBOutlet weak var marketScrollView: NSScrollView!
+    
     var systemNumber : Int = 0 {
         didSet {
             self.refreshDisplay()
@@ -29,11 +32,17 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
         self.refreshDisplay()
     }
     
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        self.marketScrollView.frame = NSRect(x: 0, y: 0, width: self.marketScrollView.superview!.frame.width, height: self.marketScrollView.superview!.frame.height - 20)
+    }
+    
     private func refreshDisplay() {
         guard let system = self.gameState.galaxyMap.getSystemForId(self.systemNumber) else {
             return
         }
-        self.currentSystemLabel.isHidden = (self.gameState?.player.location ?? 0) != system.num_id
+        self.currentSystemLabel.isHidden = (self.gameState.player.location) != system.num_id
+        self.marketTableView.isHidden = (self.gameState.player.location) != system.num_id
         self.nameLabel.stringValue = system.name
         self.coordinateLabel.stringValue = "\(system.position)"
         self.stageLabel.stringValue = "\(system.stage)"
@@ -41,6 +50,7 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
         self.populationLabel.stringValue = "\(system.populationDescription)"
         self.dangerLabel.stringValue = "\(system.danger)"
         self.refreshConnectingSystems()
+        self.marketTableView.reloadData()
     }
     
     private func refreshConnectingSystems() {
@@ -90,6 +100,37 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
         if (systemIdent > 0) {
             delegate?.starSystemSelected(sender: self, starIdent: systemIdent)
         }
+    }
+    
+    //MARK: - NSTableViewDelegate
+    
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        if self.systemNumber != self.gameState.player.location {
+            return 0
+        }
+        guard let _ = self.gameState.galaxyMap.getSystemForId(self.systemNumber) else {
+            return 0
+        }
+        return Commodity.allCases.count
+    }
+    
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        guard let system = self.gameState.galaxyMap.getSystemForId(self.systemNumber) else {
+            return 0
+        }
+        let allComms = Commodity.allCases
+        
+        if system.market == nil {
+            system.market = Market.generateNewMarket(system)
+        }
+        
+        let comm = allComms[row]
+        let price = system.market!.priceForCommodity(comm)
+        
+        let priceString = price == nil ? "-" : String(format: "%0.1f",price!)
+        
+        return "\(comm.shortDescription)  \(priceString)"
+        
     }
     
 }

@@ -86,6 +86,7 @@ class StarSystem : Codable, CustomStringConvertible {
     var danger = 0
     var faction = 0
     var connectingSystems : [Int] = []
+    var market : Market? = nil
     
     var populationDescription : String {
         if self.population < 1000000 {

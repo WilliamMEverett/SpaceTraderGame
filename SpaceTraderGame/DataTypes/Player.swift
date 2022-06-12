@@ -72,6 +72,8 @@ class Player : Codable {
         if fuel > self.ship.fuel {
             return (success:false, timeElapsed: 0)
         }
+        currentStar.market = nil
+        destinationStar.market = nil
         
         self.location = destinationStar.num_id
         self.visitedStars.insert(destinationStar.num_id)
