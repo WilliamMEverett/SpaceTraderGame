@@ -13,9 +13,47 @@ class Player : Codable {
     
     var name = ""
     var navigation : Int = 0
+    var navigationExperience : Double = 0 {
+        didSet {
+            let newScore = Player.convertExperienceToScore(navigationExperience)
+            if navigation != newScore {
+                self.navigation = newScore
+                self.playerUpdated()
+            }
+        }
+    }
     var combat : Int = 0
+    var combatExperience : Double = 0 {
+        didSet {
+            let newScore = Player.convertExperienceToScore(combatExperience)
+            if combat != newScore {
+                self.combat = newScore
+                self.playerUpdated()
+                
+            }
+        }
+    }
     var negotiation : Int = 0
+    var negotiationExperience : Double = 0 {
+        didSet {
+            let newScore = Player.convertExperienceToScore(negotiationExperience)
+            if negotiation != newScore {
+                self.negotiation = newScore
+                self.playerUpdated()
+            }
+        }
+    }
+    
     var diplomacy : Int = 0
+    var diplomacyExperience : Double = 0 {
+        didSet {
+            let newScore = Player.convertExperienceToScore(diplomacyExperience)
+            if diplomacy != newScore {
+                self.diplomacy = newScore
+                self.playerUpdated()
+            }
+        }
+    }
     var reputation : Int = 0
     var ship : Ship!
     
@@ -89,5 +127,13 @@ class Player : Codable {
         self.playerUpdated()
         
         return (success:true, timeElapsed: time)
+    }
+    
+    class func convertScoreToExperience(_ score : Int) -> Double {
+        return ceil(Double(score)*Double(score)/2.0 + 10*Double(score))
+    }
+        
+    class func convertExperienceToScore(_ exp : Double) -> Int {
+        return Int(floor(-10 + sqrt(100 + 2*exp)))
     }
 }
