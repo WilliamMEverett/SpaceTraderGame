@@ -27,7 +27,7 @@ enum Commodity : Int, CustomStringConvertible, Codable, CaseIterable  {
         case .metals_precious: return "Metals (precious)"
         case .metals_industrial: return "Metals (industrial)"
         case .metals_fissile: return "Metals (fissile)"
-        case .machinery_industrial: return "Machinery (industrial)"
+        case .machinery_industrial: return "Machinery (mechanical)"
         case .machinery_computer: return "Machinery (computer)"
         case .luxuries_manufactured: return "Luxuries (manufactured)"
         }
@@ -35,15 +35,15 @@ enum Commodity : Int, CustomStringConvertible, Codable, CaseIterable  {
     
     var shortDescription : String {
         switch self {
-        case .agriculture_basic: return "Ag (basic)"
-        case .agriculture_luxury: return "Ag (lux)"
+        case .agriculture_basic: return "Basic Ag"
+        case .agriculture_luxury: return "Lux Ag"
         case .live_biologicals: return "Bio"
-        case .metals_precious: return "Met (prec)"
-        case .metals_industrial: return "Met (ind)"
-        case .metals_fissile: return "Met(fis)"
-        case .machinery_industrial: return "Mach (ind)"
-        case .machinery_computer: return "Mach (comp)"
-        case .luxuries_manufactured: return "Lux"
+        case .metals_precious: return "Prec. Met"
+        case .metals_industrial: return "Ind. Met"
+        case .metals_fissile: return "Fis. Met"
+        case .machinery_industrial: return "Mech. Mach"
+        case .machinery_computer: return "Comp. Mach"
+        case .luxuries_manufactured: return "Lux Gd"
         }
     }
     
@@ -172,6 +172,9 @@ enum Commodity : Int, CustomStringConvertible, Codable, CaseIterable  {
     
     func base_target(_ starSystem : StarSystem) -> Int {
     
+        if starSystem.population < 1 {
+            return 0
+        }
         let normalized = self.base_target_normalized(starSystem)
         
         let power = log10(Double(starSystem.population)) - 3

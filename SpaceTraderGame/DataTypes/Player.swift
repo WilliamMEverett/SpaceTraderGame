@@ -84,11 +84,11 @@ class Player : Codable {
     }
     
     func negotiationPriceAdjustment() -> Double {
-        return 0.05
+        return 0.05*(120.0 - Double(self.negotiation))/120.0
     }
     
     func timeToJump(distance: Double) -> Double {
-        return self.ship.baseTimeToJump(distance: distance)
+        return self.ship.baseTimeToJump(distance: distance)*(300.0 - Double(self.navigation))/300.0
     }
     
     func fuelToTravelTime(time: Double) -> Double {
@@ -117,6 +117,13 @@ class Player : Codable {
         currentStar.market = nil
         destinationStar.market = nil
         
+        if !self.visitedStars.contains(destinationStar.num_id) {
+            self.navigationExperience += distance*2.0
+        }
+        else {
+            self.navigationExperience += distance*0.5
+        }
+        
         self.location = destinationStar.num_id
         self.visitedStars.insert(destinationStar.num_id)
         destinationStar.connectingSystems.forEach() { self.knownStars.insert($0)}
@@ -134,6 +141,7 @@ class Player : Codable {
     }
         
     class func convertExperienceToScore(_ exp : Double) -> Int {
-        return Int(floor(-10 + sqrt(100 + 2*exp)))
+        let res = Int(floor(-10 + sqrt(100 + 2*exp)))
+        return res > 100 ? 100 : res
     }
 }

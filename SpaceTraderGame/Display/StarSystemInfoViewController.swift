@@ -134,7 +134,7 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
         }
         let allComms = Commodity.allCases
         
-        if system.market == nil {
+        if system.market == nil && system.economy != .none {
             system.market = Market.generateNewMarket(system)
         }
         
