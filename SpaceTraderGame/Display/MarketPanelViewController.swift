@@ -281,7 +281,7 @@ class MarketPanelViewController: GameViewPanelViewController {
         self.quantityToBuy = 0
         self.refreshView()
         
-        self.gameState.player.negotiationExperience += (Double(abs(price))/100.0)
+        self.gameState.player.negotiationExperience += (Double(abs(price))/300.0)
         
         currentStar.starSystemUpdated()
     }

@@ -122,7 +122,10 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
         if self.systemNumber != self.gameState.player.location {
             return 0
         }
-        guard let _ = self.gameState.galaxyMap.getSystemForId(self.systemNumber) else {
+        guard let sys = self.gameState.galaxyMap.getSystemForId(self.systemNumber) else {
+            return 0
+        }
+        if sys.economy == .none {
             return 0
         }
         return Commodity.allCases.count
