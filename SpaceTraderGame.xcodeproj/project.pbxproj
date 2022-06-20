@@ -23,6 +23,7 @@
 		D96A770028500B6C00944168 /* Ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96A76FF28500B6C00944168 /* Ship.swift */; };
 		D96A77032850118D00944168 /* BasicMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96A77012850118D00944168 /* BasicMenuViewController.swift */; };
 		D96A77042850118D00944168 /* BasicMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D96A77022850118D00944168 /* BasicMenuViewController.xib */; };
+		D978933828610E7B00C38ABA /* ShipEquipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D978933728610E7A00C38ABA /* ShipEquipment.swift */; };
 		D99544E228562CD100CCAAD9 /* MarketPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99544E028562CD100CCAAD9 /* MarketPanelViewController.swift */; };
 		D99544E328562CD100CCAAD9 /* MarketPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D99544E128562CD100CCAAD9 /* MarketPanelViewController.xib */; };
 		D9A5360628554BC7001B47CC /* Commodity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A5360528554BC7001B47CC /* Commodity.swift */; };
@@ -76,6 +77,7 @@
 		D96A76FF28500B6C00944168 /* Ship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ship.swift; sourceTree = "<group>"; };
 		D96A77012850118D00944168 /* BasicMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicMenuViewController.swift; sourceTree = "<group>"; };
 		D96A77022850118D00944168 /* BasicMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasicMenuViewController.xib; sourceTree = "<group>"; };
+		D978933728610E7A00C38ABA /* ShipEquipment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipEquipment.swift; sourceTree = "<group>"; };
 		D99544E028562CD100CCAAD9 /* MarketPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPanelViewController.swift; sourceTree = "<group>"; };
 		D99544E128562CD100CCAAD9 /* MarketPanelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarketPanelViewController.xib; sourceTree = "<group>"; };
 		D9A5360528554BC7001B47CC /* Commodity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commodity.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				D9486E80284EBB22009B78E5 /* GameState.swift */,
 				D9486E7E284EB824009B78E5 /* Player.swift */,
 				D96A76FF28500B6C00944168 /* Ship.swift */,
+				D978933728610E7A00C38ABA /* ShipEquipment.swift */,
 				D9AEC76B284C002300ABA16B /* StarSystem.swift */,
 			);
 			path = DataTypes;
@@ -376,6 +379,7 @@
 				D9106131285397C4007866DA /* JumpSelectPanelViewController.swift in Sources */,
 				D9AEC76D284C002300ABA16B /* StarSystem.swift in Sources */,
 				D910613A28543CB0007866DA /* RefuelPanelViewController.swift in Sources */,
+				D978933828610E7B00C38ABA /* ShipEquipment.swift in Sources */,
 				D9486E7F284EB824009B78E5 /* Player.swift in Sources */,
 				D9A5360628554BC7001B47CC /* Commodity.swift in Sources */,
 				D9AEC73C284BFF9E00ABA16B /* AppDelegate.swift in Sources */,

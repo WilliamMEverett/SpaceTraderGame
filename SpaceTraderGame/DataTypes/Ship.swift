@@ -23,6 +23,8 @@ class Ship : Codable {
     
     var commodities : [Commodity:Double] = [:]
     
+    var equipment : [ShipEquipment] = []
+    
     var hullDamage : Double = 0 {
         didSet {
             self.shipUpdated()
@@ -36,6 +38,13 @@ class Ship : Codable {
         ret.cargo = 100
         ret.engine = 100
         ret.fuel = 100
+        
+        let weap = ShipEquipment()
+        weap.weight = 10
+        weap.strength = 10
+        weap.type = .weapon
+        ret.equipment.append(weap)
+        
         return ret
     }
     
@@ -48,9 +57,13 @@ class Ship : Codable {
     }
     
     func totalCargoWeight() -> Double {
-        return self.commodities.reduce(0.0, { partialResult, value in
+        let commWeight = self.commodities.reduce(0.0, { partialResult, value in
             return partialResult + value.value
         })
+        let equipmentWeight = self.equipment.reduce(0.0) { partialResult, value in
+            return partialResult + value.weight
+        }
+        return commWeight + equipmentWeight
     }
     
     func baseTimeToJump(distance: Double) -> Double {
