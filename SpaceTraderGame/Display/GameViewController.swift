@@ -89,6 +89,12 @@ class GameViewController: NSViewController, GameViewPanelDelegate {
     }
     
     func cancelButtonPressed(sender: GameViewPanelViewController) {
+        if gameState.player.ship.isDestroyed {
+            let gameOverViewController = GameOverPanelViewController()
+            _ = self.installGamePanelInMainDisplayPanel(newPanel: gameOverViewController)
+            return
+        }
+        
         let basicMenuViewController = BasicMenuViewController()
         _ = self.installGamePanelInMainDisplayPanel(newPanel: basicMenuViewController)
         self.starSystemInfoViewController.systemNumber = self.gameState.player.location

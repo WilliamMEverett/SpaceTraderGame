@@ -27,8 +27,24 @@ class Encounter : Codable {
     
     var player : Player? = nil
     var type : EncounterType = .pirate
+    var bounty : Int = 0
     
     class func checkForEncounterInCurrentSystem(player: Player, map: GalaxyMap) -> Encounter? {
+        guard let currentSystem = map.getSystemForId(player.location) else {
+            return nil
+        }
+        if currentSystem.danger == 0 {
+            return nil
+        }
+        
+        if player.ship.baseCargoValue() > 0 {
+            return getPirateEncounterForCurrentSystem(player: player, map: map)
+        }
+        
+        return nil
+    }
+    
+    class func getPirateEncounterForCurrentSystem(player: Player, map: GalaxyMap) -> Encounter? {
         guard let currentSystem = map.getSystemForId(player.location) else {
             return nil
         }
@@ -47,6 +63,9 @@ class Encounter : Codable {
         enc.player!.ship = Ship.shipForThreatLevel(enemyDanger)
         enc.player!.combat = Int.random(in: (min(0,player.combat - 30))...(max(player.combat - 10,currentSystem.danger*10)))
         enc.player!.navigation = max(0,min(100,enc.player!.combat + Int.random(in: -20...20)))
+        
+        let shipThreatLevel = enc.player!.ship.threatLevel()
+        enc.bounty = shipThreatLevel*shipThreatLevel*100 + shipThreatLevel*enc.player!.combat + enc.player!.navigation
         
         return enc
     }

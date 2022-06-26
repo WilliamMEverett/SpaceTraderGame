@@ -22,6 +22,8 @@
 		D91B7390284D6402009F21DD /* GameViewPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91B738F284D6402009F21DD /* GameViewPanelViewController.swift */; };
 		D9486E7F284EB824009B78E5 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9486E7E284EB824009B78E5 /* Player.swift */; };
 		D9486E81284EBB22009B78E5 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9486E80284EBB22009B78E5 /* GameState.swift */; };
+		D9516CAA28691D1000A40634 /* GameOverPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9516CA828691D1000A40634 /* GameOverPanelViewController.swift */; };
+		D9516CAB28691D1000A40634 /* GameOverPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9516CA928691D1000A40634 /* GameOverPanelViewController.xib */; };
 		D96A770028500B6C00944168 /* Ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96A76FF28500B6C00944168 /* Ship.swift */; };
 		D96A77032850118D00944168 /* BasicMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96A77012850118D00944168 /* BasicMenuViewController.swift */; };
 		D96A77042850118D00944168 /* BasicMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D96A77022850118D00944168 /* BasicMenuViewController.xib */; };
@@ -79,6 +81,8 @@
 		D91B738F284D6402009F21DD /* GameViewPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewPanelViewController.swift; sourceTree = "<group>"; };
 		D9486E7E284EB824009B78E5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		D9486E80284EBB22009B78E5 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		D9516CA828691D1000A40634 /* GameOverPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverPanelViewController.swift; sourceTree = "<group>"; };
+		D9516CA928691D1000A40634 /* GameOverPanelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameOverPanelViewController.xib; sourceTree = "<group>"; };
 		D96A76FF28500B6C00944168 /* Ship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ship.swift; sourceTree = "<group>"; };
 		D96A77012850118D00944168 /* BasicMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicMenuViewController.swift; sourceTree = "<group>"; };
 		D96A77022850118D00944168 /* BasicMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasicMenuViewController.xib; sourceTree = "<group>"; };
@@ -215,11 +219,15 @@
 				D96A77022850118D00944168 /* BasicMenuViewController.xib */,
 				D903605A2864B4FA00897C80 /* EncounterPanelViewController.swift */,
 				D903605B2864B4FA00897C80 /* EncounterPanelViewController.xib */,
+				D9516CA828691D1000A40634 /* GameOverPanelViewController.swift */,
+				D9516CA928691D1000A40634 /* GameOverPanelViewController.xib */,
 				D91B7387284D494E009F21DD /* GameViewController.swift */,
 				D91B7388284D494E009F21DD /* GameViewController.xib */,
 				D91B738F284D6402009F21DD /* GameViewPanelViewController.swift */,
 				D910612F285397C3007866DA /* JumpSelectPanelViewController.swift */,
 				D9106130285397C4007866DA /* JumpSelectPanelViewController.xib */,
+				D99544E028562CD100CCAAD9 /* MarketPanelViewController.swift */,
+				D99544E128562CD100CCAAD9 /* MarketPanelViewController.xib */,
 				D91061332853DDBC007866DA /* PlayerInfoViewController.swift */,
 				D91061342853DDBC007866DA /* PlayerInfoViewController.xib */,
 				D910613828543CB0007866DA /* RefuelPanelViewController.swift */,
@@ -229,8 +237,6 @@
 				D9AEC770284C043500ABA16B /* StarMapViewController.xib */,
 				D91B738B284D56DB009F21DD /* StarSystemInfoViewController.swift */,
 				D91B738C284D56DB009F21DD /* StarSystemInfoViewController.xib */,
-				D99544E028562CD100CCAAD9 /* MarketPanelViewController.swift */,
-				D99544E128562CD100CCAAD9 /* MarketPanelViewController.xib */,
 			);
 			path = Display;
 			sourceTree = "<group>";
@@ -342,6 +348,7 @@
 				D9AEC740284BFF9F00ABA16B /* Assets.xcassets in Resources */,
 				D99544E328562CD100CCAAD9 /* MarketPanelViewController.xib in Resources */,
 				D9AEC772284C043500ABA16B /* StarMapViewController.xib in Resources */,
+				D9516CAB28691D1000A40634 /* GameOverPanelViewController.xib in Resources */,
 				D91B738E284D56DB009F21DD /* StarSystemInfoViewController.xib in Resources */,
 				D96A77042850118D00944168 /* BasicMenuViewController.xib in Resources */,
 				D91061362853DDBC007866DA /* PlayerInfoViewController.xib in Resources */,
@@ -385,6 +392,7 @@
 				D9AEC73E284BFF9E00ABA16B /* MainViewController.swift in Sources */,
 				D91B738D284D56DB009F21DD /* StarSystemInfoViewController.swift in Sources */,
 				D9AEC771284C043500ABA16B /* StarMapViewController.swift in Sources */,
+				D9516CAA28691D1000A40634 /* GameOverPanelViewController.swift in Sources */,
 				D9AEC774284C05A000ABA16B /* StarMapView.swift in Sources */,
 				D99544E228562CD100CCAAD9 /* MarketPanelViewController.swift in Sources */,
 				D9106131285397C4007866DA /* JumpSelectPanelViewController.swift in Sources */,

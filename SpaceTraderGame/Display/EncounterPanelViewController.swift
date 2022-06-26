@@ -172,6 +172,7 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
     private func resolveEncounterAndExit() {
         if self.resolution == .enemyDestroyed {
             self.gameState.player.combatExperience += Double(self.encounter.player!.ship.threatLevel()*10 + 1)
+            self.gameState.player.money += self.encounter.bounty
         } else if self.resolution == .enemyFled {
             self.gameState.player.combatExperience += Double(self.encounter.player!.ship.threatLevel()*5 + 1)
         } else if self.resolution == .playerFled {
@@ -179,9 +180,6 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
             let res = self.gameState.player.performJump(from: self.gameState.player.location, to: self.gameState.player.priorLocation, galaxyMap: self.gameState.galaxyMap)
             if res.success {
                 self.gameState.time += res.timeElapsed
-            }
-            else {
-                self.gameState.player.ship.hullDamage = self.gameState.player.ship.hull
             }
         }
         
@@ -193,7 +191,11 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
         case .destroyed:
             return "Your ship was destroyed."
         case .enemyDestroyed:
-            return "You were victorious. The enemy ship was destroyed."
+            var descrip = "You were victorious. The enemy ship was destroyed."
+            if encounter.bounty > 0 {
+                descrip += "\nYou earn a bounty of \(encounter.bounty) credits"
+            }
+            return descrip
         case .playerFled:
             return "You managed to escape. You jump back to system you came from."
         case .enemyFled:
@@ -310,7 +312,8 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
     }
     
     private func calculateFlee(player: Player) -> Double {
-        return (player.ship.engine/player.ship.totalShipWeight() + (Double(player.navigation + player.combat)/200))*Double.random(in: 2...50)
+        
+        return (player.ship.engine/player.ship.totalShipWeight() + (Double(player.navigation + player.combat)/200))*Double.random(in: 2...50)*player.ship.speedDamageAdjustment()
     }
     
     private func playerGoesFirst() -> Bool {
@@ -320,7 +323,12 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
     }
     
     private func shouldEnemyFlee() -> Bool {
-        return false
+        if self.encounter.player!.ship.remainingHull < 10 && self.gameState.player.ship.remainingHull > 2*self.encounter.player!.ship.remainingHull {
+            return true
+        }
+        else {
+            return false
+        }
     }
     
     //MARK: - NSTableView

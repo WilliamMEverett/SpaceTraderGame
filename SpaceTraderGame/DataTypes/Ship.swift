@@ -30,6 +30,11 @@ class Ship : Codable {
             self.shipUpdated()
         }
     }
+    
+    var remainingHull : Double {
+        return self.hull - self.hullDamage
+    }
+    
     var isDestroyed : Bool {
         return self.hullDamage >= self.hull
     }
@@ -135,6 +140,13 @@ class Ship : Codable {
         self.shipUpdated()
     }
     
+    func baseCargoValue() -> Double {
+        let commValue = self.commodities.reduce(0.0, { partialResult, value in
+            return partialResult + value.value*value.key.base_price
+        })
+        return commValue
+    }
+    
     func totalCargoWeight() -> Double {
         let commWeight = self.commodities.reduce(0.0, { partialResult, value in
             return partialResult + value.value
@@ -145,16 +157,20 @@ class Ship : Codable {
         return commWeight + equipmentWeight
     }
     
+    func speedDamageAdjustment() -> Double {
+        return sqrt((self.hull - self.hullDamage)/self.hull)
+    }
+    
     func totalShipWeight() -> Double {
         return hull + self.totalCargoWeight()
     }
     
     func baseTimeToJump(distance: Double) -> Double {
-        return distance*sqrt((self.totalShipWeight())/self.engine)
+        return distance*sqrt((self.totalShipWeight())/self.engine)/self.speedDamageAdjustment()
     }
     
     func fuelToTravelTime(time: Double) -> Double {
-        return time*self.engine/50
+        return time*self.speedDamageAdjustment()*self.engine/50
     }
     
     func totalWeaponStrength() -> Double {
