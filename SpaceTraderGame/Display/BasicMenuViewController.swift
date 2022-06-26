@@ -52,18 +52,20 @@ class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate,
         self.inStationLabel.stringValue = self.gameState.player.inStation ? "Docked" : "Outer System"
         
         self.actionList.removeAll()
-        if self.gameState.player.inStation {
-            self.actionList.append(.undock)
-            self.actionList.append(.market)
-        }
-        if !self.gameState.player.inStation && currentSystem?.stage != .empty {
-            self.actionList.append(.dock)
-        }
-        if !self.gameState.player.inStation {
-            self.actionList.append(.jump)
-        }
-        if self.gameState.player.inStation && self.gameState.player.ship.fuel < self.gameState.player.ship.engine {
-            self.actionList.append(.refuel)
+        if !self.gameState.player.ship.isDestroyed {
+            if self.gameState.player.inStation {
+                self.actionList.append(.undock)
+                self.actionList.append(.market)
+            }
+            if !self.gameState.player.inStation && currentSystem?.stage != .empty {
+                self.actionList.append(.dock)
+            }
+            if !self.gameState.player.inStation {
+                self.actionList.append(.jump)
+            }
+            if self.gameState.player.inStation && self.gameState.player.ship.fuel < self.gameState.player.ship.engine {
+                self.actionList.append(.refuel)
+            }
         }
      
         self.actionList.append(.starmap)

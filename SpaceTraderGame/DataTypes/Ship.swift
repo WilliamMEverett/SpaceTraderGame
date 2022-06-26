@@ -30,6 +30,10 @@ class Ship : Codable {
             self.shipUpdated()
         }
     }
+    var isDestroyed : Bool {
+        return self.hullDamage >= self.hull
+    }
+    var shieldValue : Double = 0
     
     class func baseShip() -> Ship {
         let ret = Ship()
@@ -44,6 +48,12 @@ class Ship : Codable {
         weap.strength = 10
         weap.type = .weapon
         ret.equipment.append(weap)
+        
+        let shield = ShipEquipment()
+        shield.weight = 10
+        shield.strength = 50
+        shield.type = .shield
+        ret.equipment.append(shield)
         
         return ret
     }
@@ -113,6 +123,18 @@ class Ship : Codable {
         NotificationCenter.default.post(name: Notification.Name(Ship.shipUpdatedNotification), object: self)
     }
     
+    func carryingDisposableCargo() -> Bool {
+        let commWeight = self.commodities.reduce(0.0, { partialResult, value in
+            return partialResult + value.value
+        })
+        return commWeight > 0
+    }
+    
+    func dumpCargo() {
+        self.commodities.removeAll()
+        self.shipUpdated()
+    }
+    
     func totalCargoWeight() -> Double {
         let commWeight = self.commodities.reduce(0.0, { partialResult, value in
             return partialResult + value.value
@@ -123,8 +145,12 @@ class Ship : Codable {
         return commWeight + equipmentWeight
     }
     
+    func totalShipWeight() -> Double {
+        return hull + self.totalCargoWeight()
+    }
+    
     func baseTimeToJump(distance: Double) -> Double {
-        return distance*sqrt((hull + self.totalCargoWeight())/self.engine)
+        return distance*sqrt((self.totalShipWeight())/self.engine)
     }
     
     func fuelToTravelTime(time: Double) -> Double {

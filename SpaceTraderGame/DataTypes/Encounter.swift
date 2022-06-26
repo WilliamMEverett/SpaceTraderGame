@@ -25,9 +25,7 @@ enum EncounterType : Int, Codable, CustomStringConvertible {
 
 class Encounter : Codable {
     
-    var ship : Ship? = nil
-    var combatSkill : Int = 0
-    var navigationSkill : Int = 0
+    var player : Player? = nil
     var type : EncounterType = .pirate
     
     class func checkForEncounterInCurrentSystem(player: Player, map: GalaxyMap) -> Encounter? {
@@ -45,9 +43,10 @@ class Encounter : Codable {
         let enemyDanger = Int.random(in: minimumThreat...maxThreat)
         
         let enc = Encounter()
-        enc.ship = Ship.shipForThreatLevel(enemyDanger)
-        enc.combatSkill = Int.random(in: (min(0,player.combat - 30))...(max(player.combat - 10,currentSystem.danger*10)))
-        enc.navigationSkill = max(0,min(100,enc.combatSkill + Int.random(in: -20...20)))
+        enc.player = Player(name:"")
+        enc.player!.ship = Ship.shipForThreatLevel(enemyDanger)
+        enc.player!.combat = Int.random(in: (min(0,player.combat - 30))...(max(player.combat - 10,currentSystem.danger*10)))
+        enc.player!.navigation = max(0,min(100,enc.player!.combat + Int.random(in: -20...20)))
         
         return enc
     }

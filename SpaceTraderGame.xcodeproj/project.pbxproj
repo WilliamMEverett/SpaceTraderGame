@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D903605C2864B4FA00897C80 /* EncounterPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D903605A2864B4FA00897C80 /* EncounterPanelViewController.swift */; };
+		D903605D2864B4FA00897C80 /* EncounterPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D903605B2864B4FA00897C80 /* EncounterPanelViewController.xib */; };
 		D9106131285397C4007866DA /* JumpSelectPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D910612F285397C3007866DA /* JumpSelectPanelViewController.swift */; };
 		D9106132285397C4007866DA /* JumpSelectPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9106130285397C4007866DA /* JumpSelectPanelViewController.xib */; };
 		D91061352853DDBC007866DA /* PlayerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91061332853DDBC007866DA /* PlayerInfoViewController.swift */; };
@@ -62,6 +64,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D903605A2864B4FA00897C80 /* EncounterPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncounterPanelViewController.swift; sourceTree = "<group>"; };
+		D903605B2864B4FA00897C80 /* EncounterPanelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EncounterPanelViewController.xib; sourceTree = "<group>"; };
 		D910612F285397C3007866DA /* JumpSelectPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpSelectPanelViewController.swift; sourceTree = "<group>"; };
 		D9106130285397C4007866DA /* JumpSelectPanelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JumpSelectPanelViewController.xib; sourceTree = "<group>"; };
 		D91061332853DDBC007866DA /* PlayerInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +213,8 @@
 			children = (
 				D96A77012850118D00944168 /* BasicMenuViewController.swift */,
 				D96A77022850118D00944168 /* BasicMenuViewController.xib */,
+				D903605A2864B4FA00897C80 /* EncounterPanelViewController.swift */,
+				D903605B2864B4FA00897C80 /* EncounterPanelViewController.xib */,
 				D91B7387284D494E009F21DD /* GameViewController.swift */,
 				D91B7388284D494E009F21DD /* GameViewController.xib */,
 				D91B738F284D6402009F21DD /* GameViewPanelViewController.swift */,
@@ -343,6 +349,7 @@
 				D910613B28543CB0007866DA /* RefuelPanelViewController.xib in Resources */,
 				D9AEC769284C001800ABA16B /* city_list.txt in Resources */,
 				D91B738A284D494E009F21DD /* GameViewController.xib in Resources */,
+				D903605D2864B4FA00897C80 /* EncounterPanelViewController.xib in Resources */,
 				D9106132285397C4007866DA /* JumpSelectPanelViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,6 +396,7 @@
 				D9AEC73C284BFF9E00ABA16B /* AppDelegate.swift in Sources */,
 				D9486E81284EBB22009B78E5 /* GameState.swift in Sources */,
 				D9A53608285557DB001B47CC /* Market.swift in Sources */,
+				D903605C2864B4FA00897C80 /* EncounterPanelViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -84,7 +84,15 @@ class JumpSelectPanelViewController: GameViewPanelViewController, GameViewPanelD
         let res = self.gameState.player.performJump(from: self.gameState.player.location, to: self.selectedStar, galaxyMap: self.gameState.galaxyMap)
         if res.success {
             self.gameState.time += res.timeElapsed
-            self.delegate?.cancelButtonPressed(sender: self)
+            
+            if let enc = Encounter.checkForEncounterInCurrentSystem(player: self.gameState.player, map: self.gameState.galaxyMap) {
+                let encController = EncounterPanelViewController()
+                encController.encounter = enc
+                self.delegate?.presentGameViewPanel(sender: self, newPanel: encController)
+            }
+            else {
+                self.delegate?.cancelButtonPressed(sender: self)
+            }
         }
     }
     

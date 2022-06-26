@@ -58,6 +58,7 @@ class Player : Codable {
     var ship : Ship!
     
     var location : Int = 0
+    var priorLocation : Int = 0
     var inStation = true
     var visitedStars : Set<Int> = Set<Int>()
     var knownStars : Set<Int> = Set<Int>()
@@ -124,6 +125,7 @@ class Player : Codable {
             self.navigationExperience += distance*0.5
         }
         
+        self.priorLocation = self.location
         self.location = destinationStar.num_id
         self.visitedStars.insert(destinationStar.num_id)
         destinationStar.connectingSystems.forEach() { self.knownStars.insert($0)}
