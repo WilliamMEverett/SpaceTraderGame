@@ -76,14 +76,20 @@ class PlayerInfoViewController: GameViewPanelViewController, NSTableViewDelegate
     //MARK: - NSTableView delegate
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return self.cargoList.count
+        return self.gameState.player.ship.equipment.count + self.cargoList.count
     }
     
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        
-        let comm = self.cargoList[row]
-        let qty = Int(self.gameState.player.ship.commodities[comm]!)
-        
-        return "\(comm.shortDescription) \(qty)"
+        if row < self.gameState.player.ship.equipment.count {
+            let equip = self.gameState.player.ship.equipment[row]
+            return String(format: "%@(%0.0f)  %0.0f", equip.type.description, equip.strength, equip.weight)
+        }
+        else {
+            let commIndex = row - self.gameState.player.ship.equipment.count
+            let comm = self.cargoList[commIndex]
+            let qty = Int(self.gameState.player.ship.commodities[comm]!)
+            
+            return "\(comm.shortDescription) \(qty)"
+        }
     }
 }

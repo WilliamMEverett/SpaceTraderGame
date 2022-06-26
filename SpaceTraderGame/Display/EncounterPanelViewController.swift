@@ -50,10 +50,13 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
     @IBOutlet weak var playerEscapeLabel: NSTextField!
     @IBOutlet weak var encounterDetailView: NSView!
     @IBOutlet weak var summaryLabel: NSTextField!
+    @IBOutlet weak var roundDescriptionLabel: NSTextField!
     
     var encounter : Encounter!
     
     private var initialPhase = true
+    private var combatRound = 0
+    private var combatRoundDescription = ""
     
     private var playerEscapeProgress : Double = 0
     private var enemyEscapeProgress : Double = 0
@@ -128,18 +131,19 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
         else {
             self.encounterDetailView.isHidden = false
             self.summaryLabel.isHidden = true
+            self.roundDescriptionLabel.stringValue = self.combatRoundDescription
             
             self.otherShipLabel.stringValue = "\(self.encounter.type)"
             self.otherShipWeaponLabel.stringValue = String(format: "%0.0f",self.encounter.player!.ship.totalWeaponStrength())
             let remainingOtherHull = self.encounter.player!.ship.hull - self.encounter.player!.ship.hullDamage
             self.otherShipHullLabel.stringValue = String(format: "%0.1f/%0.0f", remainingOtherHull,self.encounter.player!.ship.hull)
             self.otherShipShieldLabel.stringValue = String(format: "%0.1f/%0.0f", self.encounter.player!.ship.shieldValue, self.encounter.player!.ship.totalShieldStrength())
-            self.otherShipEscapeLabel.stringValue = String(format: "%0.0f%", enemyEscapeProgress)
+            self.otherShipEscapeLabel.stringValue = String(format: "%0.0f%%", enemyEscapeProgress)
             self.playerWeaponLabel.stringValue = String(format: "%0.0f",self.gameState.player.ship.totalWeaponStrength())
             let remainingPlayerHull = self.gameState.player.ship.hull - self.gameState.player.ship.hullDamage
             self.playerHullLabel.stringValue = String(format: "%0.1f/%0.0f", remainingPlayerHull,self.gameState.player.ship.hull)
             self.playerShieldLabel.stringValue = String(format: "%0.1f/%0.0f", self.gameState.player.ship.shieldValue, self.gameState.player.ship.totalShieldStrength())
-            self.playerEscapeLabel.stringValue = String(format: "%0.0f%", playerEscapeProgress)
+            self.playerEscapeLabel.stringValue = String(format: "%0.0f%%", playerEscapeProgress)
         }
         
         self.actionTableView.reloadData()
@@ -204,6 +208,8 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
     //MARK: - Combat resolution
     
     private func performCombatWithPlayerFlee(_ flee : Bool, playerIgnore: Bool = false) {
+        self.combatRound += 1
+        self.combatRoundDescription = "Round \(self.combatRound)"
         self.initialPhase = false
         let enemyFlee = self.shouldEnemyFlee()
         if flee && enemyFlee {
@@ -238,6 +244,7 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
     }
     
     private func performAttack(attack: Player, defend: Player) {
+        
         let man1 = attack.ship.engine/attack.ship.totalShipWeight()
         let man2 = defend.ship.engine/defend.ship.totalShipWeight()
         
@@ -251,9 +258,12 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
         attack.ship.equipment.filter{ $0.type == .weapon }.forEach { weap in
             let hit = Double.random(in: 0...100)
             if hit > percentHit {
+                self.combatRoundDescription += "\nmisses"
                 return
             }
-            totalDam += weap.strength * Double.random(in: 0...1)
+            let dam = weap.strength * Double.random(in: 0...1)
+            totalDam += dam
+            self.combatRoundDescription += String(format: "\nhits for %0.1f damage", dam)
         }
         
         if totalDam < defend.ship.shieldValue {
@@ -264,16 +274,21 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
             defend.ship.shieldValue = 0
             defend.ship.hullDamage += hullDam
         }
+
     }
     
     private func playerCombatAction(_ flee : Bool) {
         if self.gameState.player.ship.isDestroyed || self.enemyEscapeProgress >= 100 {
             return
         }
+        self.combatRoundDescription += "\nPlayer Action"
         if flee {
-            playerEscapeProgress += calculateFlee(player: self.gameState.player)
+            let escapeProgress = calculateFlee(player: self.gameState.player)
+            self.combatRoundDescription += String(format:"\nFlee progress increases by %0.0f",escapeProgress)
+            playerEscapeProgress += escapeProgress
         }
         else {
+            self.playerEscapeProgress = 0
             performAttack(attack: self.gameState.player, defend: self.encounter.player!)
         }
     }
@@ -282,10 +297,14 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
         if self.encounter.player!.ship.isDestroyed || self.playerEscapeProgress >= 100 {
             return
         }
+        self.combatRoundDescription += "\nEnemy Action"
         if flee {
-            enemyEscapeProgress += calculateFlee(player: self.encounter.player!)
+            let escapeProgress = calculateFlee(player: self.encounter.player!)
+            self.combatRoundDescription += String(format:"\nFlee progress increases by %0.0f",escapeProgress)
+            enemyEscapeProgress += escapeProgress
         }
         else {
+            self.enemyEscapeProgress = 0
             performAttack(attack: self.encounter.player!, defend: self.gameState.player)
         }
     }

@@ -18,6 +18,7 @@
                 <outlet property="playerHullLabel" destination="dwA-N7-Ilz" id="OSP-R2-O5c"/>
                 <outlet property="playerShieldLabel" destination="88O-ys-ZJB" id="siW-Xb-rzz"/>
                 <outlet property="playerWeaponLabel" destination="RIu-fm-GRu" id="Ulf-bv-lXR"/>
+                <outlet property="roundDescriptionLabel" destination="VeF-Y5-oi2" id="WV7-tb-ZUk"/>
                 <outlet property="summaryLabel" destination="irt-4K-K24" id="Tax-O8-fWg"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -238,10 +239,19 @@
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
+                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="VeF-Y5-oi2">
+                            <rect key="frame" x="10" y="0.0" width="440" height="110"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <textFieldCell key="cell" alignment="left" title="summaryLabel" id="TGm-Pg-Kj1">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
                     </subviews>
                 </customView>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="irt-4K-K24">
-                    <rect key="frame" x="20" y="189" width="460" height="300"/>
+                    <rect key="frame" x="20" y="339" width="460" height="150"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <textFieldCell key="cell" alignment="center" title="summaryLabel" id="VVu-nL-z9C">
                         <font key="font" metaFont="system" size="15"/>
