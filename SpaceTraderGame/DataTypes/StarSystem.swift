@@ -110,6 +110,10 @@ class StarSystem : Codable, CustomStringConvertible {
         return 3
     }
     
+    func getRepairCost() -> Double {
+        return 50
+    }
+    
     func starSystemUpdated() {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: StarSystem.starSystemUpdatedNotification), object: self)
     }

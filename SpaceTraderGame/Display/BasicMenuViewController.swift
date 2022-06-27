@@ -12,7 +12,7 @@ enum BasicMenuActionType : Int, CustomStringConvertible {
     case undock
     case starmap
     case jump
-    case refuel
+    case shipyard
     case market
     
     var description : String {
@@ -21,7 +21,7 @@ enum BasicMenuActionType : Int, CustomStringConvertible {
         case .undock: return "Un-Dock"
         case .starmap: return "Star Map"
         case .jump: return "Jump"
-        case .refuel: return "Refuel"
+        case .shipyard: return "Shipyard"
         case .market: return "Market"
         }
     }
@@ -63,8 +63,8 @@ class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate,
             if !self.gameState.player.inStation {
                 self.actionList.append(.jump)
             }
-            if self.gameState.player.inStation && self.gameState.player.ship.fuel < self.gameState.player.ship.engine {
-                self.actionList.append(.refuel)
+            if self.gameState.player.inStation && (self.gameState.player.ship.fuel < self.gameState.player.ship.engine || self.gameState.player.ship.hullDamage > 0) {
+                self.actionList.append(.shipyard)
             }
         }
      
@@ -120,7 +120,7 @@ class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate,
         self.delegate?.presentGameViewPanel(sender: self, newPanel: newMarketController)
     }
     
-    func performRefuel() {
+    func performShipyard() {
         let newRefuelController = RefuelPanelViewController()
         self.delegate?.presentGameViewPanel(sender: self, newPanel: newRefuelController)
     }
@@ -160,8 +160,8 @@ class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate,
             self.displayJumpController()
         case .starmap:
             self.displayStarMap()
-        case .refuel:
-            self.performRefuel()
+        case .shipyard:
+            self.performShipyard()
         case .market:
             self.displayMarket()
         }
