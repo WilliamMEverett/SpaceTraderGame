@@ -122,8 +122,8 @@ class Player : Codable {
         if fuel > self.ship.fuel {
             return (success:false, timeElapsed: 0)
         }
-        currentStar.market = nil
-        destinationStar.market = nil
+        
+        destinationStar.market?.needsRefresh = true
         
         if !self.visitedStars.contains(destinationStar.num_id) {
             self.navigationExperience += distance*2.0

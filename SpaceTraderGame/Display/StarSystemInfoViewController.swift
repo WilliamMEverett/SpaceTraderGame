@@ -18,6 +18,7 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
     @IBOutlet var dangerLabel : NSTextField!
     @IBOutlet var connectingSystemsHolderView : NSView!
     
+    @IBOutlet var lastViewedMarketLabel : NSTextField!
     @IBOutlet var marketTableView : NSTableView!
     @IBOutlet weak var marketScrollView: NSScrollView!
     @IBOutlet weak var marketHolderView: NSView!
@@ -40,15 +41,18 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.marketScrollView.frame = NSRect(x: 0, y: 0, width: self.marketHolderView.frame.width, height: self.marketHolderView.frame.height - 20)
+        self.marketScrollView.frame = NSRect(x: 0, y: 0, width: self.marketHolderView.frame.width, height: self.marketHolderView.frame.height - 40)
     }
     
     private func refreshDisplay() {
         guard let system = self.gameState.galaxyMap.getSystemForId(self.systemNumber) else {
             return
         }
+        self.checkForMarket()
+        
         self.currentSystemLabel.isHidden = (self.gameState.player.location) != system.num_id
-        self.marketHolderView.isHidden = (self.gameState.player.location) != system.num_id
+        self.marketHolderView.isHidden = system.market == nil
+        self.lastViewedMarketLabel.isHidden = (self.gameState.player.location) == system.num_id
         self.nameLabel.stringValue = system.name
         self.coordinateLabel.stringValue = "\(system.position)"
         self.stageLabel.stringValue = "\(system.stage)"
@@ -57,6 +61,26 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
         self.dangerLabel.stringValue = "\(system.danger)"
         self.refreshConnectingSystems()
         self.marketTableView.reloadData()
+        
+        if system.market != nil {
+            self.lastViewedMarketLabel.stringValue = String(format: "Last viewed %0.0f days ago", round(self.gameState.time - system.market!.timestamp))
+        }
+    }
+    
+    private func checkForMarket() {
+        guard let system = self.gameState.galaxyMap.getSystemForId(self.systemNumber) else {
+            return
+        }
+        if self.systemNumber != self.gameState.player.location {
+            return
+        }
+    
+        if system.market == nil && system.economy != .none {
+            system.market = Market.generateNewMarket(starSystem: system, time: self.gameState.time)
+        }
+        else if system.market?.needsRefresh == true {
+            system.market?.recalculateMarketQuantities(starSystem: system, time: self.gameState.time)
+        }
     }
     
     private func refreshConnectingSystems() {
@@ -119,13 +143,10 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
     //MARK: - NSTableViewDelegate
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        if self.systemNumber != self.gameState.player.location {
-            return 0
-        }
         guard let sys = self.gameState.galaxyMap.getSystemForId(self.systemNumber) else {
             return 0
         }
-        if sys.economy == .none {
+        if sys.economy == .none || sys.market == nil {
             return 0
         }
         return Commodity.allCases.count
@@ -135,11 +156,9 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
         guard let system = self.gameState.galaxyMap.getSystemForId(self.systemNumber) else {
             return 0
         }
-        let allComms = Commodity.allCases
+        self.checkForMarket()
         
-        if system.market == nil && system.economy != .none {
-            system.market = Market.generateNewMarket(system)
-        }
+        let allComms = Commodity.allCases
         
         let comm = allComms[row]
         let price = system.market!.priceForCommodity(comm)

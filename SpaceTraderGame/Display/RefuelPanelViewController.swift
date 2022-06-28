@@ -143,7 +143,7 @@ class RefuelPanelViewController: GameViewPanelViewController, NSTextFieldDelegat
         }
         let repairPricePerUnit = system.getRepairCost()
         
-        let partialAmount = Double(self.partialRefuelTextField.stringValue) ?? -1
+        let partialAmount = Double(self.partialRepairTextField.stringValue) ?? -1
         if partialAmount < 0 {
             self.refreshDisplay()
             return

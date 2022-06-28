@@ -12,6 +12,7 @@
                 <outlet property="currentSystemLabel" destination="Ij1-9O-7Uq" id="fc0-En-Ftx"/>
                 <outlet property="dangerLabel" destination="fVK-OS-PxK" id="DPY-oS-Wmq"/>
                 <outlet property="economyLabel" destination="gkU-uR-Zoo" id="6Pt-yY-I9g"/>
+                <outlet property="lastViewedMarketLabel" destination="wSG-tP-PR8" id="e7e-uX-LWB"/>
                 <outlet property="marketHolderView" destination="Gxq-Jb-lCP" id="5xV-Q4-LKU"/>
                 <outlet property="marketScrollView" destination="y7q-A2-BbQ" id="cTJ-yT-EFc"/>
                 <outlet property="marketTableView" destination="UQZ-LB-nbY" id="Xxu-ww-R8O"/>
@@ -176,6 +177,15 @@
                                 <autoresizingMask key="autoresizingMask"/>
                             </scroller>
                         </scrollView>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wSG-tP-PR8">
+                            <rect key="frame" x="7" y="142" width="125" height="18"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textFieldCell key="cell" lineBreakMode="truncatingTail" alignment="left" title="Last Viewed.." id="Jed-gd-IsE">
+                                <font key="font" metaFont="system" size="10"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
                     </subviews>
                 </customView>
             </subviews>
