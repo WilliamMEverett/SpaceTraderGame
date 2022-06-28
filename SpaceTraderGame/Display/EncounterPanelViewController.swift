@@ -112,6 +112,9 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
             if self.encounter.type == .pirate {
                 descriptionString += "A ship is approaching. It demands you dump all your cargo."
             }
+            else if self.encounter.type == .other {
+                descriptionString += "A ship is moving to engage you. Its intentions are unknown."
+            }
             let otherShipThreat = self.encounter.player?.ship.threatLevel() ?? 0
             let playerThreat = self.gameState.player.ship.threatLevel()
             if otherShipThreat < playerThreat - 2 {
