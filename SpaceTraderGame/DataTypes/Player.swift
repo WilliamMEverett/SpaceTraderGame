@@ -54,7 +54,14 @@ class Player : Codable {
             }
         }
     }
-    var reputation : Int = 0
+    var reputation : Int = 0 {
+        didSet {
+            if reputation < 0 || reputation > 100 {
+                reputation = min(max(100,reputation),0)
+            }
+            self.playerUpdated()
+        }
+    }
     var ship : Ship!
     
     var location : Int = 0

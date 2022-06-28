@@ -10,6 +10,7 @@ import Cocoa
 class PlayerInfoViewController: GameViewPanelViewController, NSTableViewDelegate, NSTableViewDataSource {
 
     @IBOutlet weak var playerNameLabel: NSTextField!
+    @IBOutlet weak var reputationScoreLabel: NSTextField!
     @IBOutlet weak var navigationScoreLabel: NSTextField!
     @IBOutlet weak var combatScoreLabel: NSTextField!
     @IBOutlet weak var negotiationScoreLabel: NSTextField!
@@ -42,6 +43,7 @@ class PlayerInfoViewController: GameViewPanelViewController, NSTableViewDelegate
     
     private func refreshView() {
         self.playerNameLabel.stringValue = self.gameState.player.name
+        self.reputationScoreLabel.stringValue = "\(self.gameState.player.reputation)"
         self.navigationScoreLabel.stringValue = "\(self.gameState.player.navigation)"
         self.combatScoreLabel.stringValue = "\(self.gameState.player.combat)"
         self.negotiationScoreLabel.stringValue = "\(self.gameState.player.negotiation)"

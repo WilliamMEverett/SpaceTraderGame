@@ -173,6 +173,11 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
         if self.resolution == .enemyDestroyed {
             self.gameState.player.combatExperience += Double(self.encounter.player!.ship.threatLevel()*10 + 1)
             self.gameState.player.money += self.encounter.bounty
+            if self.encounter.player!.ship.threatLevel()*10 > self.gameState.player.reputation {
+                let diff = self.encounter.player!.ship.threatLevel() - self.gameState.player.reputation/10
+                self.gameState.player.reputation += diff
+            }
+            
         } else if self.resolution == .enemyFled {
             self.gameState.player.combatExperience += Double(self.encounter.player!.ship.threatLevel()*5 + 1)
         } else if self.resolution == .playerFled {
@@ -181,6 +186,7 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
             if res.success {
                 self.gameState.time += res.timeElapsed
             }
+            self.gameState.player.reputation -= 1
         }
         
         self.delegate?.cancelButtonPressed(sender: self)

@@ -82,6 +82,12 @@ class Ship : Codable {
         var currentThreatLevel = ret.threatLevel()
         
         while currentThreatLevel < level {
+            if ret.engine/ret.totalShipWeight() < 0.5 {
+                ret.engine += 50
+                currentThreatLevel = ret.threatLevel()
+                continue
+            }
+            
             let option = Int.random(in: 0...5)
             switch option {
             case 0:
