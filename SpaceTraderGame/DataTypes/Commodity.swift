@@ -183,74 +183,85 @@ enum Commodity : Int, CustomStringConvertible, Codable, CaseIterable  {
     
     func expectedQuantityRange(_ starSystem : StarSystem) -> ClosedRange<Double> {
         
+        var result = 0.5...1.0
+        
         switch self {
         case .agriculture_basic:
             switch starSystem.economy {
-            case .agriculture_basic: return 0.9...1.5
-            case .agriculture_luxury: return 0.8...1.2
-            default: return 0.3...1.1
+            case .agriculture_basic: result = 0.9...1.5
+            case .agriculture_luxury: result = 0.8...1.2
+            default: result = 0.3...1.1
             }
         case .agriculture_luxury:
             switch (starSystem.economy, starSystem.stage) {
-            case (.agriculture_basic, _): return 0.8...1.2
-            case (.agriculture_luxury, _): return 0.9...1.4
-            case (.resort, _): return 0.4...1.0
+            case (.agriculture_basic, _): result = 0.8...1.2
+            case (.agriculture_luxury, _): result = 0.9...1.5
+            case (.resort, _): result = 0.4...1.0
             default:
-                return 0.6...1.1
+                result = 0.6...1.1
             }
         case .live_biologicals:
             switch (starSystem.economy, starSystem.stage) {
-            case (.agriculture_basic, _): return 0.8...1.3
-            case (.agriculture_luxury, _): return 0.9...1.2
+            case (.agriculture_basic, _): result = 0.8...1.4
+            case (.agriculture_luxury, _): result = 0.9...1.3
             default:
-                return 0.5...1.0
+                result = 0.5...1.0
             }
         case .metals_precious:
             switch (starSystem.economy, starSystem.stage) {
-            case (.mining, _): return 0.6...2.0
-            case (.resort, _): return 0.4...1.0
+            case (.mining, _): result = 0.6...1.8
+            case (.resort, _): result = 0.6...1.0
             default:
-                return 0.4...1.4
+                result = 0.4...1.4
             }
         case .metals_industrial:
             switch (starSystem.economy, starSystem.stage) {
-            case (.mining, _): return 0.9...2.0
-            case (.industrial, _): return 0.2...1.3
-            case (.post_industrial, _): return 0.8...1.0
+            case (.mining, _): result = 0.9...1.8
+            case (.industrial, _): result = 0.4...1.3
+            case (.post_industrial, _): result = 0.9...1.0
             default:
-                return 0.9...1.1
+                result = 0.9...1.1
             }
         case .metals_fissile:
             switch (starSystem.economy, starSystem.stage) {
-            case (.mining, _): return 0.3...2.5
-            case (.industrial, _): return 0.2...1.2
-            case (.post_industrial, _): return 0.5...1.1
+            case (.mining, _): result = 0.3...2.3
+            case (.industrial, _): result = 0.4...1.2
+            case (.post_industrial, _): result = 0.6...1.1
             default:
-                return 0.9...1.1
+                result = 0.9...1.1
             }
         case .machinery_industrial:
             switch (starSystem.economy, starSystem.stage) {
-            case (.mining, _): return 0.3...1.1
-            case (.industrial, _): return 0.9...1.8
-            case (.post_industrial, _): return 0.6...1.0
+            case (.mining, _): result = 0.4...1.1
+            case (.industrial, _): result = 0.9...1.7
+            case (.post_industrial, _): result = 0.7...1.0
                 default:
-                return 0.7...1.0
+                result = 0.8...1.0
             }
         case .machinery_computer:
             switch (starSystem.economy, starSystem.stage) {
-            case (.mining, _): return 0.5...1.0
-            case (.industrial, _): return 0.9...1.6
+            case (.mining, _): result = 0.4...1.0
+            case (.industrial, _): result = 0.9...1.5
             default:
-                return 0.7...1.0
+                result = 0.8...1.0
             }
         case .luxuries_manufactured:
             switch (starSystem.economy, starSystem.stage) {
-            case (.industrial, _): return 0.5...2.0
-            case (.resort, _): return 0.5...1.0
+            case (.industrial, _): result = 0.5...1.9
+            case (.resort, _): result = 0.6...1.0
             default:
-                return 0.5...1.1
+                result = 0.6...1.1
             }
         }
         
+        let center = (result.lowerBound + result.upperBound)/2
+        if center > 1.05 {
+            result = result.lowerBound...(result.upperBound + Double(starSystem.danger)*0.03)
+        }
+        else if center < 0.95 {
+            result = (result.lowerBound - Double(starSystem.danger)*0.03)...result.upperBound
+        }
+        
+        return result
     }
 }
