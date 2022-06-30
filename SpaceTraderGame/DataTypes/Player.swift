@@ -123,7 +123,7 @@ class Player : Codable {
             return (success:false, timeElapsed: 0)
         }
         
-        destinationStar.market?.needsRefresh = true
+        destinationStar.refreshStarSystemOnReentry()
         
         if !self.visitedStars.contains(destinationStar.num_id) {
             self.navigationExperience += distance*2.0

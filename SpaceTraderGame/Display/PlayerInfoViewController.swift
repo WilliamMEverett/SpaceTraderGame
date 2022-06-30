@@ -81,17 +81,38 @@ class PlayerInfoViewController: GameViewPanelViewController, NSTableViewDelegate
         return self.gameState.player.ship.equipment.count + self.cargoList.count
     }
     
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        
+        let result = self.cargoListTableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("Column1"), owner: self) as? TwoLabelTableCellView
+        
         if row < self.gameState.player.ship.equipment.count {
             let equip = self.gameState.player.ship.equipment[row]
-            return String(format: "%@(%0.0f)  %0.0f", equip.type.description, equip.strength, equip.weight)
+            result?.textField?.stringValue = String(format: "%@(%0.0f)", equip.type.description, equip.strength)
+            result?.rightSideTextField.stringValue = String(format:"%0.0f", equip.weight)
         }
         else {
             let commIndex = row - self.gameState.player.ship.equipment.count
             let comm = self.cargoList[commIndex]
             let qty = Int(self.gameState.player.ship.commodities[comm]!)
             
-            return "\(comm.shortDescription) \(qty)"
+            result?.textField?.stringValue = "\(comm.shortDescription)"
+            result?.rightSideTextField.stringValue = "\(qty)"
         }
+        
+        return result
     }
+    
+//    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+//        if row < self.gameState.player.ship.equipment.count {
+//            let equip = self.gameState.player.ship.equipment[row]
+//            return String(format: "%@(%0.0f)  %0.0f", equip.type.description, equip.strength, equip.weight)
+//        }
+//        else {
+//            let commIndex = row - self.gameState.player.ship.equipment.count
+//            let comm = self.cargoList[commIndex]
+//            let qty = Int(self.gameState.player.ship.commodities[comm]!)
+//
+//            return "\(comm.shortDescription) \(qty)"
+//        }
+//    }
 }

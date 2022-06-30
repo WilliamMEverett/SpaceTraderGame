@@ -89,6 +89,8 @@ class StarSystem : Codable, CustomStringConvertible {
     var faction = 0
     var connectingSystems : [Int] = []
     var market : Market? = nil
+    var shipEquipmentMarket : [ShipEquipment] = []
+    var shipMarket : [Ship] = []
     
     var populationDescription : String {
         if self.population < 1000000 {
@@ -116,6 +118,10 @@ class StarSystem : Codable, CustomStringConvertible {
     
     func starSystemUpdated() {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: StarSystem.starSystemUpdatedNotification), object: self)
+    }
+    
+    func refreshStarSystemOnReentry() {
+        self.market?.needsRefresh = true
     }
     
     class func generateRandomSystem() -> StarSystem {

@@ -29,6 +29,9 @@
 		D96A77042850118D00944168 /* BasicMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D96A77022850118D00944168 /* BasicMenuViewController.xib */; };
 		D978933828610E7B00C38ABA /* ShipEquipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D978933728610E7A00C38ABA /* ShipEquipment.swift */; };
 		D978933A2861314500C38ABA /* Encounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97893392861314500C38ABA /* Encounter.swift */; };
+		D994A596286E58AD003F23B8 /* EquipmentMarketPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994A594286E58AD003F23B8 /* EquipmentMarketPanelViewController.swift */; };
+		D994A597286E58AD003F23B8 /* EquipmentMarketPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D994A595286E58AD003F23B8 /* EquipmentMarketPanelViewController.xib */; };
+		D994A59A286E61DA003F23B8 /* TwoLabelTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994A599286E61DA003F23B8 /* TwoLabelTableCellView.swift */; };
 		D99544E228562CD100CCAAD9 /* MarketPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99544E028562CD100CCAAD9 /* MarketPanelViewController.swift */; };
 		D99544E328562CD100CCAAD9 /* MarketPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D99544E128562CD100CCAAD9 /* MarketPanelViewController.xib */; };
 		D9A5360628554BC7001B47CC /* Commodity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A5360528554BC7001B47CC /* Commodity.swift */; };
@@ -88,6 +91,9 @@
 		D96A77022850118D00944168 /* BasicMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasicMenuViewController.xib; sourceTree = "<group>"; };
 		D978933728610E7A00C38ABA /* ShipEquipment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipEquipment.swift; sourceTree = "<group>"; };
 		D97893392861314500C38ABA /* Encounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encounter.swift; sourceTree = "<group>"; };
+		D994A594286E58AD003F23B8 /* EquipmentMarketPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentMarketPanelViewController.swift; sourceTree = "<group>"; };
+		D994A595286E58AD003F23B8 /* EquipmentMarketPanelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EquipmentMarketPanelViewController.xib; sourceTree = "<group>"; };
+		D994A599286E61DA003F23B8 /* TwoLabelTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoLabelTableCellView.swift; sourceTree = "<group>"; };
 		D99544E028562CD100CCAAD9 /* MarketPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPanelViewController.swift; sourceTree = "<group>"; };
 		D99544E128562CD100CCAAD9 /* MarketPanelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarketPanelViewController.xib; sourceTree = "<group>"; };
 		D9A5360528554BC7001B47CC /* Commodity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commodity.swift; sourceTree = "<group>"; };
@@ -136,6 +142,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D994A598286E6153003F23B8 /* TableCellViews */ = {
+			isa = PBXGroup;
+			children = (
+				D994A599286E61DA003F23B8 /* TwoLabelTableCellView.swift */,
+			);
+			path = TableCellViews;
+			sourceTree = "<group>";
+		};
 		D9AEC72F284BFF9D00ABA16B = {
 			isa = PBXGroup;
 			children = (
@@ -215,10 +229,13 @@
 		D9AEC76E284C003E00ABA16B /* Display */ = {
 			isa = PBXGroup;
 			children = (
+				D994A598286E6153003F23B8 /* TableCellViews */,
 				D96A77012850118D00944168 /* BasicMenuViewController.swift */,
 				D96A77022850118D00944168 /* BasicMenuViewController.xib */,
 				D903605A2864B4FA00897C80 /* EncounterPanelViewController.swift */,
 				D903605B2864B4FA00897C80 /* EncounterPanelViewController.xib */,
+				D994A594286E58AD003F23B8 /* EquipmentMarketPanelViewController.swift */,
+				D994A595286E58AD003F23B8 /* EquipmentMarketPanelViewController.xib */,
 				D9516CA828691D1000A40634 /* GameOverPanelViewController.swift */,
 				D9516CA928691D1000A40634 /* GameOverPanelViewController.xib */,
 				D91B7387284D494E009F21DD /* GameViewController.swift */,
@@ -357,6 +374,7 @@
 				D9AEC769284C001800ABA16B /* city_list.txt in Resources */,
 				D91B738A284D494E009F21DD /* GameViewController.xib in Resources */,
 				D903605D2864B4FA00897C80 /* EncounterPanelViewController.xib in Resources */,
+				D994A597286E58AD003F23B8 /* EquipmentMarketPanelViewController.xib in Resources */,
 				D9106132285397C4007866DA /* JumpSelectPanelViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,9 +406,11 @@
 				D91B7389284D494E009F21DD /* GameViewController.swift in Sources */,
 				D978933A2861314500C38ABA /* Encounter.swift in Sources */,
 				D91061352853DDBC007866DA /* PlayerInfoViewController.swift in Sources */,
+				D994A596286E58AD003F23B8 /* EquipmentMarketPanelViewController.swift in Sources */,
 				D9AEC76C284C002300ABA16B /* GalaxyMap.swift in Sources */,
 				D9AEC73E284BFF9E00ABA16B /* MainViewController.swift in Sources */,
 				D91B738D284D56DB009F21DD /* StarSystemInfoViewController.swift in Sources */,
+				D994A59A286E61DA003F23B8 /* TwoLabelTableCellView.swift in Sources */,
 				D9AEC771284C043500ABA16B /* StarMapViewController.swift in Sources */,
 				D9516CAA28691D1000A40634 /* GameOverPanelViewController.swift in Sources */,
 				D9AEC774284C05A000ABA16B /* StarMapView.swift in Sources */,
