@@ -152,9 +152,9 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
         return Commodity.allCases.count
     }
     
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         guard let system = self.gameState.galaxyMap.getSystemForId(self.systemNumber) else {
-            return 0
+            return nil
         }
         self.checkForMarket()
         
@@ -165,8 +165,14 @@ class StarSystemInfoViewController: GameViewPanelViewController, NSTableViewDele
         
         let priceString = price == nil ? "-" : String(format: "%0.1f",price!)
         
-        return "\(comm.shortDescription)  \(priceString)"
+        let result = self.marketTableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("Column1"), owner: self) as? TwoLabelTableCellView
+        
+        result?.textField?.stringValue = "\(comm.shortDescription)"
+        result?.rightSideTextField.stringValue = priceString
+        
+        return result
         
     }
+
     
 }
