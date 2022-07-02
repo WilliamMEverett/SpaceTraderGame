@@ -55,7 +55,7 @@ class Ship : Codable {
         ret.equipment.append(weap)
         
         let shield = ShipEquipment()
-        shield.weight = 10
+        shield.weight = 20
         shield.strength = 50
         shield.type = .shield
         ret.equipment.append(shield)
