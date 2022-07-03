@@ -122,6 +122,7 @@ class StarSystem : Codable, CustomStringConvertible {
     
     func refreshStarSystemOnReentry() {
         self.market?.needsRefresh = true
+        self.shipEquipmentMarket = ShipEquipment.generateShipEquipmentMarketFor(self)
     }
     
     class func generateRandomSystem() -> StarSystem {

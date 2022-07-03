@@ -31,6 +31,7 @@ class GameState : Codable {
         self.player.combatExperience = Player.convertScoreToExperience(10)
         let startingStar = self.galaxyMap.getSystemForId(startingPosition)!
         startingStar.connectingSystems.forEach { self.player.knownStars.insert($0) }
+        startingStar.refreshStarSystemOnReentry()
         
     }
     

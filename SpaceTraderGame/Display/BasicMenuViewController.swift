@@ -58,9 +58,7 @@ class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate,
             if self.gameState.player.inStation {
                 self.actionList.append(.undock)
                 self.actionList.append(.market)
-                if currentSystem?.stage != .colonial && currentSystem?.stage != .empty {
-                    self.actionList.append(.equipment)
-                }
+                self.actionList.append(.equipment)
             }
             if !self.gameState.player.inStation && currentSystem?.stage != .empty {
                 self.actionList.append(.dock)
