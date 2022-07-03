@@ -81,10 +81,18 @@ class Player : Codable {
     var distanceTraveled : Double = 0
     var jumpsMade : Int = 0
     
-    required init(name: String) {
+    required init(name: String, navigation: Int, combat: Int, negotiation : Int, diplomacy : Int) {
         self.name = name
         self.ship = Ship.baseShip()
         self.money = 1000
+        self.navigationExperience = Player.convertScoreToExperience(navigation)
+        self.navigation = navigation
+        self.combatExperience = Player.convertScoreToExperience(combat)
+        self.combat = combat
+        self.negotiationExperience = Player.convertScoreToExperience(negotiation)
+        self.negotiation = negotiation
+        self.diplomacyExperience = Player.convertScoreToExperience(diplomacy)
+        self.diplomacy = diplomacy
     }
     
     func playerUpdated() {

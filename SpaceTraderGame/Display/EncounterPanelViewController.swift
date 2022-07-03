@@ -261,6 +261,7 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
             playerCombatAction(flee)
         }
         if self.gameState.player.ship.isDestroyed {
+            self.gameState.gameOver = true
             resolution = .destroyed
         }
         else if self.playerEscapeProgress >= 100 {

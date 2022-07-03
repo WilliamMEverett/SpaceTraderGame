@@ -13,22 +13,23 @@ class GameState : Codable {
     
     var galaxyMap : GalaxyMap!
     var player : Player!
+    var gameOver = false
+    var saved = false
     var time : Double  = 0 { //In days
         didSet {
             self.timeUpdated()
         }
     }
     
-    required init?(playerName : String, starSystems : Int) {
+    required init?(player : Player, starSystems : Int) {
         self.galaxyMap = GalaxyMap(starSystems)
-        self.player = Player(name: playerName)
+        self.player = player
         guard let startingPosition = self.galaxyMap.getStartingPlayerLocation() else {
             print("Failed to find starting position")
             return nil
         }
         self.player.location = startingPosition
         self.player.visitedStars.insert(startingPosition)
-        self.player.combatExperience = Player.convertScoreToExperience(10)
         let startingStar = self.galaxyMap.getSystemForId(startingPosition)!
         startingStar.connectingSystems.forEach { self.player.knownStars.insert($0) }
         startingStar.refreshStarSystemOnReentry()

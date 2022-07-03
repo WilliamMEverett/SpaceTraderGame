@@ -68,10 +68,11 @@ class Encounter : Codable {
         
         let enc = Encounter()
         enc.type = .pirate
-        enc.player = Player(name:"")
+        let combScore = Int.random(in: (min(0,player.combat - 30))...(max(player.combat - 10,currentSystem.danger*10)))
+        let navScore = max(0,min(100,combScore + Int.random(in: -20...20)))
+        enc.player = Player(name: "", navigation: navScore, combat: combScore, negotiation: 0, diplomacy: 0)
         enc.player!.ship = Ship.shipForThreatLevel(enemyDanger)
-        enc.player!.combat = Int.random(in: (min(0,player.combat - 30))...(max(player.combat - 10,currentSystem.danger*10)))
-        enc.player!.navigation = max(0,min(100,enc.player!.combat + Int.random(in: -20...20)))
+        
         
         let shipThreatLevel = enc.player!.ship.threatLevel()
         enc.bounty = shipThreatLevel*shipThreatLevel*100 + shipThreatLevel*enc.player!.combat + enc.player!.navigation
@@ -100,10 +101,11 @@ class Encounter : Codable {
     
         let enc = Encounter()
         enc.type = .other
-        enc.player = Player(name:"")
+        let combScore = Int.random(in: (min(0,player.combat - 20))...(max(player.combat - 10,currentSystem.danger*10)))
+        let navScore = max(0,min(100,combScore + Int.random(in: -30...30)))
+        enc.player = Player(name: "", navigation: navScore, combat: combScore, negotiation: 0, diplomacy: 0)
         enc.player!.ship = Ship.shipForThreatLevel(enemyDanger)
-        enc.player!.combat = Int.random(in: (min(0,player.combat - 20))...(max(player.combat - 10,currentSystem.danger*10)))
-        enc.player!.navigation = max(0,min(100,enc.player!.combat + Int.random(in: -30...30)))
+        
         
         let shipThreatLevel = enc.player!.ship.threatLevel()
         let maxBounty = shipThreatLevel*shipThreatLevel*100 + shipThreatLevel*enc.player!.combat + enc.player!.navigation

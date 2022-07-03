@@ -34,6 +34,8 @@
 		D994A59A286E61DA003F23B8 /* TwoLabelTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994A599286E61DA003F23B8 /* TwoLabelTableCellView.swift */; };
 		D99544E228562CD100CCAAD9 /* MarketPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99544E028562CD100CCAAD9 /* MarketPanelViewController.swift */; };
 		D99544E328562CD100CCAAD9 /* MarketPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D99544E128562CD100CCAAD9 /* MarketPanelViewController.xib */; };
+		D99A5CCC287228E20046356F /* NewGameWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A5CCA287228E20046356F /* NewGameWindowController.swift */; };
+		D99A5CCD287228E20046356F /* NewGameWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D99A5CCB287228E20046356F /* NewGameWindowController.xib */; };
 		D9A5360628554BC7001B47CC /* Commodity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A5360528554BC7001B47CC /* Commodity.swift */; };
 		D9A53608285557DB001B47CC /* Market.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A53607285557DB001B47CC /* Market.swift */; };
 		D9AEC73C284BFF9E00ABA16B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC73B284BFF9E00ABA16B /* AppDelegate.swift */; };
@@ -96,6 +98,8 @@
 		D994A599286E61DA003F23B8 /* TwoLabelTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoLabelTableCellView.swift; sourceTree = "<group>"; };
 		D99544E028562CD100CCAAD9 /* MarketPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPanelViewController.swift; sourceTree = "<group>"; };
 		D99544E128562CD100CCAAD9 /* MarketPanelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarketPanelViewController.xib; sourceTree = "<group>"; };
+		D99A5CCA287228E20046356F /* NewGameWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameWindowController.swift; sourceTree = "<group>"; };
+		D99A5CCB287228E20046356F /* NewGameWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewGameWindowController.xib; sourceTree = "<group>"; };
 		D9A5360528554BC7001B47CC /* Commodity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commodity.swift; sourceTree = "<group>"; };
 		D9A53607285557DB001B47CC /* Market.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Market.swift; sourceTree = "<group>"; };
 		D9AEC738284BFF9E00ABA16B /* SpaceTraderGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceTraderGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +152,36 @@
 				D994A599286E61DA003F23B8 /* TwoLabelTableCellView.swift */,
 			);
 			path = TableCellViews;
+			sourceTree = "<group>";
+		};
+		D99A5CC9287228690046356F /* PanelViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D96A77012850118D00944168 /* BasicMenuViewController.swift */,
+				D96A77022850118D00944168 /* BasicMenuViewController.xib */,
+				D903605A2864B4FA00897C80 /* EncounterPanelViewController.swift */,
+				D903605B2864B4FA00897C80 /* EncounterPanelViewController.xib */,
+				D994A594286E58AD003F23B8 /* EquipmentMarketPanelViewController.swift */,
+				D994A595286E58AD003F23B8 /* EquipmentMarketPanelViewController.xib */,
+				D9516CA828691D1000A40634 /* GameOverPanelViewController.swift */,
+				D9516CA928691D1000A40634 /* GameOverPanelViewController.xib */,
+				D91B7387284D494E009F21DD /* GameViewController.swift */,
+				D91B7388284D494E009F21DD /* GameViewController.xib */,
+				D91B738F284D6402009F21DD /* GameViewPanelViewController.swift */,
+				D910612F285397C3007866DA /* JumpSelectPanelViewController.swift */,
+				D9106130285397C4007866DA /* JumpSelectPanelViewController.xib */,
+				D99544E028562CD100CCAAD9 /* MarketPanelViewController.swift */,
+				D99544E128562CD100CCAAD9 /* MarketPanelViewController.xib */,
+				D91061332853DDBC007866DA /* PlayerInfoViewController.swift */,
+				D91061342853DDBC007866DA /* PlayerInfoViewController.xib */,
+				D910613828543CB0007866DA /* RefuelPanelViewController.swift */,
+				D910613928543CB0007866DA /* RefuelPanelViewController.xib */,
+				D9AEC76F284C043500ABA16B /* StarMapViewController.swift */,
+				D9AEC770284C043500ABA16B /* StarMapViewController.xib */,
+				D91B738B284D56DB009F21DD /* StarSystemInfoViewController.swift */,
+				D91B738C284D56DB009F21DD /* StarSystemInfoViewController.xib */,
+			);
+			name = PanelViewControllers;
 			sourceTree = "<group>";
 		};
 		D9AEC72F284BFF9D00ABA16B = {
@@ -229,31 +263,11 @@
 		D9AEC76E284C003E00ABA16B /* Display */ = {
 			isa = PBXGroup;
 			children = (
+				D99A5CC9287228690046356F /* PanelViewControllers */,
 				D994A598286E6153003F23B8 /* TableCellViews */,
-				D96A77012850118D00944168 /* BasicMenuViewController.swift */,
-				D96A77022850118D00944168 /* BasicMenuViewController.xib */,
-				D903605A2864B4FA00897C80 /* EncounterPanelViewController.swift */,
-				D903605B2864B4FA00897C80 /* EncounterPanelViewController.xib */,
-				D994A594286E58AD003F23B8 /* EquipmentMarketPanelViewController.swift */,
-				D994A595286E58AD003F23B8 /* EquipmentMarketPanelViewController.xib */,
-				D9516CA828691D1000A40634 /* GameOverPanelViewController.swift */,
-				D9516CA928691D1000A40634 /* GameOverPanelViewController.xib */,
-				D91B7387284D494E009F21DD /* GameViewController.swift */,
-				D91B7388284D494E009F21DD /* GameViewController.xib */,
-				D91B738F284D6402009F21DD /* GameViewPanelViewController.swift */,
-				D910612F285397C3007866DA /* JumpSelectPanelViewController.swift */,
-				D9106130285397C4007866DA /* JumpSelectPanelViewController.xib */,
-				D99544E028562CD100CCAAD9 /* MarketPanelViewController.swift */,
-				D99544E128562CD100CCAAD9 /* MarketPanelViewController.xib */,
-				D91061332853DDBC007866DA /* PlayerInfoViewController.swift */,
-				D91061342853DDBC007866DA /* PlayerInfoViewController.xib */,
-				D910613828543CB0007866DA /* RefuelPanelViewController.swift */,
-				D910613928543CB0007866DA /* RefuelPanelViewController.xib */,
 				D9AEC773284C05A000ABA16B /* StarMapView.swift */,
-				D9AEC76F284C043500ABA16B /* StarMapViewController.swift */,
-				D9AEC770284C043500ABA16B /* StarMapViewController.xib */,
-				D91B738B284D56DB009F21DD /* StarSystemInfoViewController.swift */,
-				D91B738C284D56DB009F21DD /* StarSystemInfoViewController.xib */,
+				D99A5CCA287228E20046356F /* NewGameWindowController.swift */,
+				D99A5CCB287228E20046356F /* NewGameWindowController.xib */,
 			);
 			path = Display;
 			sourceTree = "<group>";
@@ -372,6 +386,7 @@
 				D9AEC743284BFF9F00ABA16B /* Main.storyboard in Resources */,
 				D910613B28543CB0007866DA /* RefuelPanelViewController.xib in Resources */,
 				D9AEC769284C001800ABA16B /* city_list.txt in Resources */,
+				D99A5CCD287228E20046356F /* NewGameWindowController.xib in Resources */,
 				D91B738A284D494E009F21DD /* GameViewController.xib in Resources */,
 				D903605D2864B4FA00897C80 /* EncounterPanelViewController.xib in Resources */,
 				D994A597286E58AD003F23B8 /* EquipmentMarketPanelViewController.xib in Resources */,
@@ -410,6 +425,7 @@
 				D9AEC76C284C002300ABA16B /* GalaxyMap.swift in Sources */,
 				D9AEC73E284BFF9E00ABA16B /* MainViewController.swift in Sources */,
 				D91B738D284D56DB009F21DD /* StarSystemInfoViewController.swift in Sources */,
+				D99A5CCC287228E20046356F /* NewGameWindowController.swift in Sources */,
 				D994A59A286E61DA003F23B8 /* TwoLabelTableCellView.swift in Sources */,
 				D9AEC771284C043500ABA16B /* StarMapViewController.swift in Sources */,
 				D9516CAA28691D1000A40634 /* GameOverPanelViewController.swift in Sources */,

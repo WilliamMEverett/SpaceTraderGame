@@ -54,7 +54,7 @@ class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate,
         self.inStationLabel.stringValue = self.gameState.player.inStation ? "Docked" : "Outer System"
         
         self.actionList.removeAll()
-        if !self.gameState.player.ship.isDestroyed {
+        if !self.gameState.gameOver {
             if self.gameState.player.inStation {
                 self.actionList.append(.undock)
                 self.actionList.append(.market)

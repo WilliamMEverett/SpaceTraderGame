@@ -23,8 +23,6 @@ class GameViewController: NSViewController, GameViewPanelDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        gameState = GameState(playerName: "Incognito", starSystems: 1000)
-        
         let basicMenuViewController = BasicMenuViewController()
         _ = self.installGamePanelInMainDisplayPanel(newPanel: basicMenuViewController)
         
@@ -89,7 +87,7 @@ class GameViewController: NSViewController, GameViewPanelDelegate {
     }
     
     func cancelButtonPressed(sender: GameViewPanelViewController) {
-        if gameState.player.ship.isDestroyed {
+        if gameState.gameOver {
             let gameOverViewController = GameOverPanelViewController()
             _ = self.installGamePanelInMainDisplayPanel(newPanel: gameOverViewController)
             return
