@@ -36,7 +36,7 @@ enum ShipEquipmentType : Int, CustomStringConvertible, Codable {
 }
 
 class ShipEquipment : Codable {
-    
+
     var weight : Double = 0
     var strength : Double = 0
     var type : ShipEquipmentType = .none

@@ -163,6 +163,10 @@ class Ship : Codable {
         return commWeight + equipmentWeight
     }
     
+    func availableCargoSpace() -> Double {
+        return self.cargo - self.totalCargoWeight()
+    }
+    
     func speedDamageAdjustment() -> Double {
         return sqrt((self.hull - self.hullDamage)/self.hull)
     }

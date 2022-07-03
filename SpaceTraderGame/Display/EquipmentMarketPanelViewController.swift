@@ -33,6 +33,100 @@ class EquipmentMarketPanelViewController: GameViewPanelViewController, NSTableVi
         return Int(floor(equip.valueOfEquipment()*(0.8 - 0.3*(1 - Double(player.negotiation)/100))))
     }
     
+    private func attemptToBuyEquip(_ equip : ShipEquipment) {
+        guard let currentStar = self.gameState.galaxyMap.getSystemForId(self.gameState.player.location) else {
+            return
+        }
+        let price = getBuyPriceForEquipment(equip: equip, player: self.gameState.player, system: currentStar)
+        if price > self.gameState.player.money {
+            let al = NSAlert()
+            al.alertStyle = .informational
+            al.messageText = "Too Expensive"
+            al.informativeText = "This item costs \(price) credits. You do not have that much."
+            al.beginSheetModal(for: self.view.window!)
+            return
+        }
+        
+        if equip.weight > self.gameState.player.ship.availableCargoSpace() {
+            let al = NSAlert()
+            al.alertStyle = .informational
+            al.messageText = "Too Heavy"
+            al.informativeText = "This item weighs \(Int(round(equip.weight))). You only have available space for \(Int(round(self.gameState.player.ship.availableCargoSpace())))."
+            al.beginSheetModal(for: self.view.window!)
+            return
+        }
+        
+        let al = NSAlert()
+        al.alertStyle = .informational
+        al.messageText = "Purchase \(equip.type) \(Int(round(equip.strength)))"
+        al.informativeText = "This item costs \(price) credits and weighs \(Int(round(equip.weight)))"
+        al.addButton(withTitle: "OK")
+        al.addButton(withTitle: "Cancel")
+        weak var weakSelf = self
+        al.beginSheetModal(for: self.view.window!) { response in
+            if response == .alertFirstButtonReturn {
+                weakSelf?.completePurchase(equip)
+            }
+        }
+    }
+    
+    private func completePurchase(_ equip : ShipEquipment) {
+        guard let currentStar = self.gameState.galaxyMap.getSystemForId(self.gameState.player.location) else {
+            return
+        }
+        guard let index = currentStar.shipEquipmentMarket.firstIndex(where: { $0 === equip }) else {
+            return
+        }
+        
+        let price = getBuyPriceForEquipment(equip: equip, player: self.gameState.player, system: currentStar)
+        self.gameState.player.money -= price
+        self.gameState.player.ship.equipment.append(equip)
+        currentStar.shipEquipmentMarket.remove(at: index)
+        self.buyTableView.reloadData()
+        
+        self.gameState.player.negotiationExperience += (Double(abs(price))/300.0)
+        self.gameState.player.playerUpdated()
+        self.sellTableView.reloadData()
+    }
+    
+    private func attemptToSellEquip(_ equip : ShipEquipment) {
+        guard let currentStar = self.gameState.galaxyMap.getSystemForId(self.gameState.player.location) else {
+            return
+        }
+        let price = getSellPriceForEquipment(equip: equip, player: self.gameState.player, system: currentStar)
+        
+        let al = NSAlert()
+        al.alertStyle = .informational
+        al.messageText = "Sell \(equip.type) \(Int(round(equip.strength)))"
+        al.informativeText = "This item is worth \(price) credits and weighs \(Int(round(equip.weight)))"
+        al.addButton(withTitle: "OK")
+        al.addButton(withTitle: "Cancel")
+        weak var weakSelf = self
+        al.beginSheetModal(for: self.view.window!) { response in
+            if response == .alertFirstButtonReturn {
+                weakSelf?.completeSale(equip)
+            }
+        }
+    }
+    
+    private func completeSale(_ equip : ShipEquipment) {
+        guard let currentStar = self.gameState.galaxyMap.getSystemForId(self.gameState.player.location) else {
+            return
+        }
+        guard let index = self.gameState.player.ship.equipment.firstIndex(where: { $0 === equip }) else {
+            return
+        }
+        let price = getSellPriceForEquipment(equip: equip, player: self.gameState.player, system: currentStar)
+        self.gameState.player.money += price
+        self.gameState.player.ship.equipment.remove(at: index)
+        currentStar.shipEquipmentMarket.append(equip)
+        self.buyTableView.reloadData()
+        
+        self.gameState.player.negotiationExperience += (Double(abs(price))/300.0)
+        self.gameState.player.playerUpdated()
+        self.sellTableView.reloadData()
+    }
+    
     //MARK: - Table View
     
     func numberOfRows(in tableView: NSTableView) -> Int {
@@ -82,6 +176,27 @@ class EquipmentMarketPanelViewController: GameViewPanelViewController, NSTableVi
         }
         
         return nil
+    }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        if notification.object as? NSTableView == self.buyTableView {
+            let selectionRow = self.buyTableView.selectedRow
+            self.buyTableView.deselectAll(nil)
+            
+            guard let currentStar = self.gameState.galaxyMap.getSystemForId(self.gameState.player.location) else {
+                return
+            }
+            if selectionRow >= 0 && selectionRow < currentStar.shipEquipmentMarket.count {
+                self.attemptToBuyEquip(currentStar.shipEquipmentMarket[selectionRow])
+            }
+        }
+        else if notification.object as? NSTableView == self.sellTableView {
+            let selectionRow = self.sellTableView.selectedRow
+            self.sellTableView.deselectAll(nil)
+            if selectionRow >= 0 && selectionRow < self.gameState.player.ship.equipment.count {
+                self.attemptToSellEquip(self.gameState.player.ship.equipment[selectionRow])
+            }
+        }
     }
     
 }
