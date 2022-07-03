@@ -43,10 +43,12 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
     @IBOutlet weak var otherShipWeaponLabel: NSTextField!
     @IBOutlet weak var otherShipHullLabel: NSTextField!
     @IBOutlet weak var otherShipShieldLabel: NSTextField!
+    @IBOutlet weak var otherShipManeuverLabel: NSTextField!
     @IBOutlet weak var otherShipEscapeLabel: NSTextField!
     @IBOutlet weak var playerWeaponLabel: NSTextField!
     @IBOutlet weak var playerHullLabel: NSTextField!
     @IBOutlet weak var playerShieldLabel: NSTextField!
+    @IBOutlet weak var playerManeuverLabel: NSTextField!
     @IBOutlet weak var playerEscapeLabel: NSTextField!
     @IBOutlet weak var encounterDetailView: NSView!
     @IBOutlet weak var summaryLabel: NSTextField!
@@ -83,6 +85,18 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
         
         self.actionList.removeAll()
         
+        let currentStar = self.gameState.galaxyMap.getSystemForId(self.gameState.player.location)
+        let destinationStar = self.gameState.galaxyMap.getSystemForId(self.gameState.player.priorLocation)
+        
+        var canFlee = false
+        var canFleeWithoutCargo = false
+        if currentStar != nil && destinationStar != nil {
+            let distance = currentStar!.position.distance(destinationStar!.position)
+            canFlee = self.gameState.player.fuelToTravelDistance(distance: distance) <= self.gameState.player.ship.fuel
+            
+            canFleeWithoutCargo = self.gameState.player.ship.carryingDisposableCargo() && self.gameState.player.fuelToTravelTime(time: self.gameState.player.timeToJumpWithoutCommodities(distance: distance)) <= self.gameState.player.ship.fuel
+        }
+        
         if resolution != .none {
             self.encounterDetailView.isHidden = true
             self.summaryLabel.isHidden = false
@@ -99,9 +113,13 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
             if self.initialPhase {
                 self.actionList.append(.dumpCargo)
             }
-            self.actionList.append(.dumpCargoFlee)
+            if canFleeWithoutCargo {
+                self.actionList.append(.dumpCargoFlee)
+            }
         }
-        self.actionList.append(.flee)
+        if canFlee {
+            self.actionList.append(.flee)
+        }
         self.actionList.append(.fight)
         
         if self.initialPhase {
@@ -141,11 +159,13 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
             let remainingOtherHull = self.encounter.player!.ship.hull - self.encounter.player!.ship.hullDamage
             self.otherShipHullLabel.stringValue = String(format: "%0.1f/%0.0f", remainingOtherHull,self.encounter.player!.ship.hull)
             self.otherShipShieldLabel.stringValue = String(format: "%0.1f/%0.0f", self.encounter.player!.ship.shieldValue, self.encounter.player!.ship.totalShieldStrength())
+            self.otherShipManeuverLabel.stringValue = String(format: "%0.1f", self.encounter.player!.ship.engine*10/self.encounter.player!.ship.totalShipWeight())
             self.otherShipEscapeLabel.stringValue = String(format: "%0.0f%%", enemyEscapeProgress)
             self.playerWeaponLabel.stringValue = String(format: "%0.0f",self.gameState.player.ship.totalWeaponStrength())
             let remainingPlayerHull = self.gameState.player.ship.hull - self.gameState.player.ship.hullDamage
             self.playerHullLabel.stringValue = String(format: "%0.1f/%0.0f", remainingPlayerHull,self.gameState.player.ship.hull)
             self.playerShieldLabel.stringValue = String(format: "%0.1f/%0.0f", self.gameState.player.ship.shieldValue, self.gameState.player.ship.totalShieldStrength())
+            self.playerManeuverLabel.stringValue = String(format: "%0.1f", self.gameState.player.ship.engine*10/self.gameState.player.ship.totalShipWeight())
             self.playerEscapeLabel.stringValue = String(format: "%0.0f%%", playerEscapeProgress)
         }
         

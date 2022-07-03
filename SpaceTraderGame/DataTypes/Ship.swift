@@ -55,8 +55,8 @@ class Ship : Codable {
         ret.equipment.append(weap)
         
         let shield = ShipEquipment()
-        shield.weight = 25
-        shield.strength = 50
+        shield.weight = 20
+        shield.strength = 20
         shield.type = .shield
         ret.equipment.append(shield)
         
@@ -153,10 +153,16 @@ class Ship : Codable {
         return commValue
     }
     
-    func totalCargoWeight() -> Double {
+    func totalCommoditiesWeight() -> Double {
         let commWeight = self.commodities.reduce(0.0, { partialResult, value in
             return partialResult + value.value
         })
+        return commWeight
+    }
+    
+    func totalCargoWeight() -> Double {
+        
+        let commWeight = self.totalCommoditiesWeight()
         let equipmentWeight = self.equipment.reduce(0.0) { partialResult, value in
             return partialResult + value.weight
         }
@@ -177,6 +183,10 @@ class Ship : Codable {
     
     func baseTimeToJump(distance: Double) -> Double {
         return distance*sqrt((self.totalShipWeight())/self.engine)/self.speedDamageAdjustment()
+    }
+    
+    func baseTimeToJumpWithoutCommodities(distance: Double) -> Double {
+        return distance*sqrt((self.totalShipWeight() - self.totalCommoditiesWeight())/self.engine)/self.speedDamageAdjustment()
     }
     
     func fuelToTravelTime(time: Double) -> Double {
@@ -202,7 +212,7 @@ class Ship : Codable {
         if offensiveTotal == 0 {
             return 0
         }
-        let maneuverTotal = self.engine*10/self.hull
+        let maneuverTotal = self.engine*10/self.totalShipWeight()
         
         return Int(floor(offensiveTotal/10) + floor((defensiveTotal + maneuverTotal)/20))
     }

@@ -99,8 +99,16 @@ class Player : Codable {
         return self.ship.baseTimeToJump(distance: distance)*(300.0 - Double(self.navigation))/300.0
     }
     
+    func timeToJumpWithoutCommodities(distance: Double) -> Double {
+        return self.ship.baseTimeToJumpWithoutCommodities(distance: distance)*(300.0 - Double(self.navigation))/300.0
+    }
+    
     func fuelToTravelTime(time: Double) -> Double {
         return self.ship.fuelToTravelTime(time: time)
+    }
+    
+    func fuelToTravelDistance(distance: Double) -> Double {
+        return self.fuelToTravelTime(time: self.timeToJump(distance: distance))
     }
     
     func performJump(from : Int, to: Int, galaxyMap: GalaxyMap) -> (success: Bool, timeElapsed: Double) {

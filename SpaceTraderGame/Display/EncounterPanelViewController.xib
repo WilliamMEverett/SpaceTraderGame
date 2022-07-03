@@ -12,10 +12,12 @@
                 <outlet property="otherShipEscapeLabel" destination="vVs-W0-jbY" id="Wdm-Zy-OCw"/>
                 <outlet property="otherShipHullLabel" destination="bpz-vj-P0X" id="Ens-90-ITM"/>
                 <outlet property="otherShipLabel" destination="3XJ-0M-cOK" id="bBa-SK-sou"/>
+                <outlet property="otherShipManeuverLabel" destination="kMK-Ut-hdZ" id="KgL-EF-63I"/>
                 <outlet property="otherShipShieldLabel" destination="VWC-u5-Gax" id="CNx-JY-pvJ"/>
                 <outlet property="otherShipWeaponLabel" destination="UBz-ZH-qPM" id="KAj-UD-Hur"/>
                 <outlet property="playerEscapeLabel" destination="Lez-Yf-bcO" id="5bo-4t-hpr"/>
                 <outlet property="playerHullLabel" destination="dwA-N7-Ilz" id="OSP-R2-O5c"/>
+                <outlet property="playerManeuverLabel" destination="2MM-0f-f4Z" id="UxA-UH-O65"/>
                 <outlet property="playerShieldLabel" destination="88O-ys-ZJB" id="siW-Xb-rzz"/>
                 <outlet property="playerWeaponLabel" destination="RIu-fm-GRu" id="Ulf-bv-lXR"/>
                 <outlet property="roundDescriptionLabel" destination="VeF-Y5-oi2" id="WV7-tb-ZUk"/>
@@ -73,6 +75,15 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="irt-4K-K24">
+                    <rect key="frame" x="20" y="339" width="460" height="150"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <textFieldCell key="cell" alignment="center" title="summaryLabel" id="VVu-nL-z9C">
+                        <font key="font" metaFont="system" size="15"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YXi-HW-NSF">
                     <rect key="frame" x="20" y="189" width="460" height="300"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -131,6 +142,15 @@
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7dV-dg-9Xi">
+                            <rect key="frame" x="259" y="225" width="73" height="16"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Maneuver:" id="diD-pY-qSu">
+                                <font key="font" metaFont="systemBold"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UBz-ZH-qPM">
                             <rect key="frame" x="95" y="249" width="60" height="16"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -153,6 +173,24 @@
                             <rect key="frame" x="331" y="249" width="83" height="16"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="300/300" id="KrH-fK-JdC">
+                                <font key="font" usesAppearanceFont="YES"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kMK-Ut-hdZ">
+                            <rect key="frame" x="331" y="225" width="83" height="16"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="1.5" id="2Rl-6z-VJv">
+                                <font key="font" usesAppearanceFont="YES"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2MM-0f-f4Z">
+                            <rect key="frame" x="331" y="132" width="83" height="16"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="1.5" id="fkn-yn-Ifm">
                                 <font key="font" usesAppearanceFont="YES"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -248,17 +286,17 @@
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PVQ-EK-Ghc">
+                            <rect key="frame" x="259" y="132" width="73" height="16"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Maneuver:" id="JgV-av-pmQ">
+                                <font key="font" metaFont="systemBold"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
                     </subviews>
                 </customView>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="irt-4K-K24">
-                    <rect key="frame" x="20" y="339" width="460" height="150"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <textFieldCell key="cell" alignment="center" title="summaryLabel" id="VVu-nL-z9C">
-                        <font key="font" metaFont="system" size="15"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
             </subviews>
             <point key="canvasLocation" x="139" y="114"/>
         </customView>

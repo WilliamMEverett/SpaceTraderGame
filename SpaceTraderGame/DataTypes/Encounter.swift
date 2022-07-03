@@ -54,15 +54,16 @@ class Encounter : Codable {
         if cargoValue == 0 {
             return nil
         }
-        let baseChanceOfEncounter = cargoValue < 1000 ? (cargoValue/1000)*0.05 : 0.05
+        let baseChanceOfEncounter = cargoValue < 1000 ? (cargoValue/1000)*0.06 : 0.06
         let chanceOfEncounter = baseChanceOfEncounter*Double(currentSystem.danger)
-        if Double.random(in: 0...1) > chanceOfEncounter {
+        let rando = Double.random(in: 0...1)
+        if rando > chanceOfEncounter {
             return nil
         }
         
         let playerShipThreat = player.ship.threatLevel()
         let minimumThreat = playerShipThreat < 2 ? 0 : playerShipThreat - 2
-        let maxThreat = max(playerShipThreat + 1, currentSystem.danger)
+        let maxThreat = max(playerShipThreat, max(player.reputation/10, currentSystem.danger/2))
         let enemyDanger = Int.random(in: minimumThreat...maxThreat)
         
         let enc = Encounter()
@@ -86,7 +87,7 @@ class Encounter : Codable {
             return nil
         }
         
-        let baseChanceOfEncounter = 0.02
+        let baseChanceOfEncounter = player.money < 20000 ? (0.02 + 0.04*Double(player.money)/20000) : 0.06
         let chanceOfEncounter = baseChanceOfEncounter*Double(currentSystem.danger)
         if Double.random(in: 0...1) > chanceOfEncounter {
             return nil
@@ -94,7 +95,7 @@ class Encounter : Codable {
     
         let playerShipThreat = player.ship.threatLevel()
         let minimumThreat = playerShipThreat < 2 ? 0 : playerShipThreat - 2
-        let maxThreat = max(player.reputation/10, currentSystem.danger)
+        let maxThreat = max(player.reputation/10, (currentSystem.danger/2))
         let enemyDanger = Int.random(in: minimumThreat...maxThreat)
     
         let enc = Encounter()
