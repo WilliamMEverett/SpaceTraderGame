@@ -22,9 +22,9 @@ enum BasicMenuActionType : Int, CustomStringConvertible {
         case .undock: return "Un-Dock"
         case .starmap: return "Star Map"
         case .jump: return "Jump"
-        case .shipyard: return "Shipyard"
+        case .shipyard: return "Refuel and Repair"
         case .market: return "Market"
-        case .equipment: return "Ship Equipment"
+        case .equipment: return "Equipment Market"
         }
     }
     

@@ -28,9 +28,9 @@ class NewGameWindowController: NSWindowController {
     @IBOutlet weak var startButton: NSButton!
     @IBOutlet weak var cancelButton: NSButton!
     
-    private var navigationScore = 0
-    private var combatScore = 0
-    private var negotiationScore = 0
+    private var navigationScore = 5
+    private var combatScore = 5
+    private var negotiationScore = 5
     private var diplomacyScore = 0
     
     var gameState : GameState? = nil

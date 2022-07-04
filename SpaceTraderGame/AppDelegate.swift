@@ -10,9 +10,6 @@ import Cocoa
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    
-
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
     }
@@ -25,6 +22,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
 
-
+    //MARK: - Actions
+    
+    @IBAction func newMenuItem(_ sender : AnyObject?) {
+        (NSApplication.shared.mainWindow?.windowController?.contentViewController as? MainViewController)?.newMenuItem(sender)
+    }
 }
 
