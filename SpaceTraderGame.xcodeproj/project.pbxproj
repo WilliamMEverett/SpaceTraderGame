@@ -51,6 +51,8 @@
 		D9AEC771284C043500ABA16B /* StarMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC76F284C043500ABA16B /* StarMapViewController.swift */; };
 		D9AEC772284C043500ABA16B /* StarMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9AEC770284C043500ABA16B /* StarMapViewController.xib */; };
 		D9AEC774284C05A000ABA16B /* StarMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AEC773284C05A000ABA16B /* StarMapView.swift */; };
+		D9CA25E428767C8B004DD7BE /* ShipMarketPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CA25E228767C8B004DD7BE /* ShipMarketPanelViewController.swift */; };
+		D9CA25E528767C8B004DD7BE /* ShipMarketPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9CA25E328767C8B004DD7BE /* ShipMarketPanelViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +121,8 @@
 		D9AEC76F284C043500ABA16B /* StarMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarMapViewController.swift; sourceTree = "<group>"; };
 		D9AEC770284C043500ABA16B /* StarMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarMapViewController.xib; sourceTree = "<group>"; };
 		D9AEC773284C05A000ABA16B /* StarMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarMapView.swift; sourceTree = "<group>"; };
+		D9CA25E228767C8B004DD7BE /* ShipMarketPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipMarketPanelViewController.swift; sourceTree = "<group>"; };
+		D9CA25E328767C8B004DD7BE /* ShipMarketPanelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShipMarketPanelViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +180,8 @@
 				D91061342853DDBC007866DA /* PlayerInfoViewController.xib */,
 				D910613828543CB0007866DA /* RefuelPanelViewController.swift */,
 				D910613928543CB0007866DA /* RefuelPanelViewController.xib */,
+				D9CA25E228767C8B004DD7BE /* ShipMarketPanelViewController.swift */,
+				D9CA25E328767C8B004DD7BE /* ShipMarketPanelViewController.xib */,
 				D9AEC76F284C043500ABA16B /* StarMapViewController.swift */,
 				D9AEC770284C043500ABA16B /* StarMapViewController.xib */,
 				D91B738B284D56DB009F21DD /* StarSystemInfoViewController.swift */,
@@ -387,6 +393,7 @@
 				D910613B28543CB0007866DA /* RefuelPanelViewController.xib in Resources */,
 				D9AEC769284C001800ABA16B /* city_list.txt in Resources */,
 				D99A5CCD287228E20046356F /* NewGameWindowController.xib in Resources */,
+				D9CA25E528767C8B004DD7BE /* ShipMarketPanelViewController.xib in Resources */,
 				D91B738A284D494E009F21DD /* GameViewController.xib in Resources */,
 				D903605D2864B4FA00897C80 /* EncounterPanelViewController.xib in Resources */,
 				D994A597286E58AD003F23B8 /* EquipmentMarketPanelViewController.xib in Resources */,
@@ -440,6 +447,7 @@
 				D9AEC73C284BFF9E00ABA16B /* AppDelegate.swift in Sources */,
 				D9486E81284EBB22009B78E5 /* GameState.swift in Sources */,
 				D9A53608285557DB001B47CC /* Market.swift in Sources */,
+				D9CA25E428767C8B004DD7BE /* ShipMarketPanelViewController.swift in Sources */,
 				D903605C2864B4FA00897C80 /* EncounterPanelViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

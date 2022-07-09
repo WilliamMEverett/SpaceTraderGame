@@ -123,6 +123,7 @@ class StarSystem : Codable, CustomStringConvertible {
     func refreshStarSystemOnReentry() {
         self.market?.needsRefresh = true
         self.shipEquipmentMarket = ShipEquipment.generateShipEquipmentMarketFor(self)
+        self.shipMarket = Ship.generateShipMarketFor(self)
     }
     
     class func generateRandomSystem() -> StarSystem {
@@ -156,13 +157,13 @@ class StarSystem : Codable, CustomStringConvertible {
     private class func getRandomStage() -> StarSystemStage {
         let randoStage = Int.random(in: 1...100)
         switch randoStage {
-        case 1...5:
+        case 1...10:
             return .empty
-        case 6...30:
+        case 11...44:
             return .colonial
-        case 31...60:
+        case 45...80:
             return .emerging
-        case 61...80:
+        case 81...90:
             return .apex
         default:
             return .declining

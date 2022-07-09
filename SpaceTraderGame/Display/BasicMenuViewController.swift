@@ -12,9 +12,10 @@ enum BasicMenuActionType : Int, CustomStringConvertible {
     case undock
     case starmap
     case jump
-    case shipyard
+    case refuel
     case market
     case equipment
+    case shipyard
     
     var description : String {
         switch self {
@@ -22,9 +23,10 @@ enum BasicMenuActionType : Int, CustomStringConvertible {
         case .undock: return "Un-Dock"
         case .starmap: return "Star Map"
         case .jump: return "Jump"
-        case .shipyard: return "Refuel and Repair"
+        case .refuel: return "Refuel and Repair"
         case .market: return "Market"
         case .equipment: return "Equipment Market"
+        case .shipyard: return "Shipyard"
         }
     }
     
@@ -59,6 +61,9 @@ class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate,
                 self.actionList.append(.undock)
                 self.actionList.append(.market)
                 self.actionList.append(.equipment)
+                if currentSystem?.stage != .empty && currentSystem?.stage != .colonial {
+                    self.actionList.append(.shipyard)
+                }
             }
             if !self.gameState.player.inStation && currentSystem?.stage != .empty {
                 self.actionList.append(.dock)
@@ -67,7 +72,7 @@ class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate,
                 self.actionList.append(.jump)
             }
             if self.gameState.player.inStation && (self.gameState.player.ship.fuel < self.gameState.player.ship.engine || self.gameState.player.ship.hullDamage > 0) {
-                self.actionList.append(.shipyard)
+                self.actionList.append(.refuel)
             }
         }
      
@@ -123,7 +128,7 @@ class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate,
         self.delegate?.presentGameViewPanel(sender: self, newPanel: newMarketController)
     }
     
-    func performShipyard() {
+    func performRefuel() {
         let newRefuelController = RefuelPanelViewController()
         self.delegate?.presentGameViewPanel(sender: self, newPanel: newRefuelController)
     }
@@ -131,6 +136,11 @@ class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate,
     func performEquipmentMarket() {
         let newEquipMarket = EquipmentMarketPanelViewController()
         self.delegate?.presentGameViewPanel(sender: self, newPanel: newEquipMarket)
+    }
+    
+    func performShipyard() {
+        let newShipyard = ShipMarketPanelViewController()
+        self.delegate?.presentGameViewPanel(sender: self, newPanel: newShipyard)
     }
     
     //MARK: - NSTableView
@@ -168,12 +178,14 @@ class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate,
             self.displayJumpController()
         case .starmap:
             self.displayStarMap()
-        case .shipyard:
-            self.performShipyard()
+        case .refuel:
+            self.performRefuel()
         case .market:
             self.displayMarket()
         case .equipment:
             self.performEquipmentMarket()
+        case .shipyard:
+            self.performShipyard()
         }
     }
     

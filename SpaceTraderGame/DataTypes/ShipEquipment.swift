@@ -37,17 +37,26 @@ enum ShipEquipmentType : Int, CustomStringConvertible, Codable {
 
 class ShipEquipment : Codable {
 
-    var weight : Double = 0
+    var weight : Double = 10
     var strength : Double = 0
     var type : ShipEquipmentType = .none
     
     func valueOfEquipment() -> Double {
         switch self.type {
         case .none: return 0
-        case .weapon: return self.strength*200*(self.strength/self.weight)
-        case .shield: return self.strength*50*(self.strength/self.weight)
-        case .stealth: return self.strength*1000*(self.strength/self.weight) + 3000
+        case .weapon: return self.strength*200*self.strengthToWeightRatio()
+        case .shield: return self.strength*50*self.strengthToWeightRatio()
+        case .stealth: return self.strength*1000*self.strengthToWeightRatio() + 3000
         case .lifeSupport: return 2000 + 30000/self.weight
+        }
+    }
+    
+    func strengthToWeightRatio() -> Double {
+        if self.weight > 0 {
+            return self.strength/self.weight
+        }
+        else {
+            return self.strength
         }
     }
     
