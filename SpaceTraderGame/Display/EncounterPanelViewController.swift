@@ -284,11 +284,12 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
         
         let comDiff = fmax(-30, fmin(Double(attack.combat - defend.combat),30))
         
-        let percentHit = fmax(1,fmin(99,30 + 20*manRatio + comDiff))
+        let percentHit = fmax(1,fmin(99,40 + 10*manRatio + comDiff/2))
         
         var totalDam : Double = 0
         attack.ship.equipment.filter{ $0.type == .weapon }.forEach { weap in
             let hit = Double.random(in: 0...100)
+            print("got \(hit) out of \(percentHit)")
             if hit > percentHit {
                 self.combatRoundDescription += "\nmisses"
                 return
