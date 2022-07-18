@@ -72,6 +72,7 @@ class PlayerInfoViewController: GameViewPanelViewController, NSTableViewDelegate
     //MARK: - Notification
     
     func playerWasUpdated(_ notification: Notification) {
+        self.gameState.saved = false
         self.refreshView()
     }
     

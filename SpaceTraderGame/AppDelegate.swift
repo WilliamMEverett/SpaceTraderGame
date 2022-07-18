@@ -27,5 +27,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func newMenuItem(_ sender : AnyObject?) {
         (NSApplication.shared.mainWindow?.windowController?.contentViewController as? MainViewController)?.newMenuItem(sender)
     }
+    
+    @IBAction func saveMenuItem(_ sender : AnyObject?) {
+        (NSApplication.shared.mainWindow?.windowController?.contentViewController as? MainViewController)?.saveMenuItem(sender)
+    }
+    
+    @IBAction func loadMenuItem(_ sender : AnyObject?) {
+        (NSApplication.shared.mainWindow?.windowController?.contentViewController as? MainViewController)?.loadMenuItem(sender)
+    }
 }
 

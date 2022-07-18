@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import UniformTypeIdentifiers
 
 class MainViewController: NSViewController {
     
@@ -49,6 +50,51 @@ class MainViewController: NSViewController {
         })
     }
     
+    private func showSaveGameDialog() {
+        if self.gameViewController == nil || self.gameViewController?.gameState.gameOver == true || self.gameViewController?.gameState.player.inStation == false {
+            return
+        }
+        weak var weakSelf = self
+        
+        let validatedName = self.gameViewController!.gameState.player.name.filter { c in
+            !c.unicodeScalars.contains { !CharacterSet.alphanumerics.contains($0) }
+        }
+        let fileName = String(format: "%@_%0.1f", validatedName, self.gameViewController!.gameState.time).replacingOccurrences(of: ".", with: "_")
+        
+        let savePanel = NSSavePanel()
+        savePanel.nameFieldStringValue = fileName
+        savePanel.title = "Save Game"
+        savePanel.showsHiddenFiles = false
+        savePanel.allowsOtherFileTypes = false
+        
+        savePanel.allowedContentTypes = [UTType("com.shinybuttonsoftware.spacetrader")!]
+        
+        let currentGameState = self.gameViewController!.gameState!
+        
+        savePanel.beginSheetModal(for: self.view.window!) { response in
+            if response == .OK && savePanel.url != nil {
+                weakSelf?.saveGame(game: currentGameState, location: savePanel.url!)
+            }
+        }
+    }
+    
+    private func saveGame(game : GameState, location : URL) {
+        
+        guard let data = try? JSONEncoder().encode(game) else {
+            print("Failed to encode game state")
+            return
+        }
+        
+        if FileManager.default.createFile(atPath: location.path, contents: data, attributes: [FileAttributeKey.type:"com.shinybuttonsoftware.spacetrader"]) {
+            game.saved = true
+        }
+        else {
+            print("Failed to save game")
+        }
+        
+        
+    }
+    
     //MARK: - Actions
     
     @IBAction func newMenuItem(_ sender : AnyObject?) {
@@ -72,6 +118,19 @@ class MainViewController: NSViewController {
         }
         else {
             self.showNewGameDialog()
+        }
+    }
+    
+    @IBAction func saveMenuItem(_ sender : AnyObject?) {
+        if self.newGameWindowController != nil {
+            return
+        }
+        self.showSaveGameDialog()
+    }
+    
+    @IBAction func loadMenuItem(_ sender : AnyObject?) {
+        if self.newGameWindowController != nil {
+            return
         }
     }
 

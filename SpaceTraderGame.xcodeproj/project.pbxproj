@@ -86,6 +86,7 @@
 		D91B738B284D56DB009F21DD /* StarSystemInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarSystemInfoViewController.swift; sourceTree = "<group>"; };
 		D91B738C284D56DB009F21DD /* StarSystemInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarSystemInfoViewController.xib; sourceTree = "<group>"; };
 		D91B738F284D6402009F21DD /* GameViewPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewPanelViewController.swift; sourceTree = "<group>"; };
+		D93E75AD2884CB93009B192D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D9486E7E284EB824009B78E5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		D9486E80284EBB22009B78E5 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		D9516CA828691D1000A40634 /* GameOverPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverPanelViewController.swift; sourceTree = "<group>"; };
@@ -213,6 +214,7 @@
 		D9AEC73A284BFF9E00ABA16B /* SpaceTraderGame */ = {
 			isa = PBXGroup;
 			children = (
+				D93E75AD2884CB93009B192D /* Info.plist */,
 				D9AEC76E284C003E00ABA16B /* Display */,
 				D9AEC767284BFFD400ABA16B /* Resources */,
 				D9AEC766284BFFB800ABA16B /* DataTypes */,
@@ -621,6 +623,7 @@
 				DEVELOPMENT_TEAM = Y93ZHF2YCD;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpaceTraderGame/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -648,6 +651,7 @@
 				DEVELOPMENT_TEAM = Y93ZHF2YCD;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpaceTraderGame/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;

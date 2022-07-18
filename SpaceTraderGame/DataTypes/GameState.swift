@@ -37,6 +37,7 @@ class GameState : Codable {
     }
     
     func timeUpdated() {
+        self.saved = false
         NotificationCenter.default.post(name: Notification.Name(GameState.timeUpdatedNotification), object: self)
     }
     
