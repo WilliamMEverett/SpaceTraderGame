@@ -95,8 +95,8 @@ class Encounter : Codable {
         }
     
         let playerShipThreat = player.ship.threatLevel()
-        let minimumThreat = playerShipThreat < 2 ? 0 : playerShipThreat - 2
         let maxThreat = max(player.reputation/10, (currentSystem.danger/2))
+        let minimumThreat = min(max(0, playerShipThreat - 2),maxThreat)
         let enemyDanger = Int.random(in: minimumThreat...maxThreat)
     
         let enc = Encounter()

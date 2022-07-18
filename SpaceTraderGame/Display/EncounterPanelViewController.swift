@@ -194,7 +194,7 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
     
     private func resolveEncounterAndExit() {
         if self.resolution == .enemyDestroyed {
-            self.gameState.player.combatExperience += Double(self.encounter.player!.ship.threatLevel()*10 + 1)
+            self.gameState.player.combatExperience += Double(self.encounter.player!.ship.threatLevel()*20 + 1)
             self.gameState.player.money += self.encounter.bounty
             if self.encounter.player!.ship.threatLevel()*10 > self.gameState.player.reputation {
                 let diff = self.encounter.player!.ship.threatLevel() - self.gameState.player.reputation/10
@@ -202,7 +202,7 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
             }
             
         } else if self.resolution == .enemyFled {
-            self.gameState.player.combatExperience += Double(self.encounter.player!.ship.threatLevel()*5 + 1)
+            self.gameState.player.combatExperience += Double(self.encounter.player!.ship.threatLevel()*10 + 1)
         } else if self.resolution == .playerFled {
             self.gameState.player.combatExperience += Double(self.encounter.player!.ship.threatLevel())
             let res = self.gameState.player.performJump(from: self.gameState.player.location, to: self.gameState.player.priorLocation, galaxyMap: self.gameState.galaxyMap)
@@ -289,7 +289,7 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
         var totalDam : Double = 0
         attack.ship.equipment.filter{ $0.type == .weapon }.forEach { weap in
             let hit = Double.random(in: 0...100)
-            print("got \(hit) out of \(percentHit)")
+//            print("got \(hit) out of \(percentHit)")
             if hit > percentHit {
                 self.combatRoundDescription += "\nmisses"
                 return
