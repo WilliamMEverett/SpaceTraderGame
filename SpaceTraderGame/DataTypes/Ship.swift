@@ -136,7 +136,7 @@ class Ship : Codable {
     }
     
     func baseValueOfShip() -> Double {
-        return self.engine*100 + 30*self.hull + 10*self.cargo
+        return self.engine*200 + 15*self.hull + 8*self.cargo
     }
     
     //MARK: - class function
