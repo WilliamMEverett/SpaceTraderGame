@@ -84,7 +84,7 @@ class EquipmentMarketPanelViewController: GameViewPanelViewController, NSTableVi
         currentStar.shipEquipmentMarket.remove(at: index)
         self.buyTableView.reloadData()
         
-        self.gameState.player.negotiationExperience += (Double(abs(price))/300.0)
+        self.gameState.player.negotiationExperience += (Double(abs(price))/400.0)
         self.gameState.player.playerUpdated()
         self.sellTableView.reloadData()
     }
@@ -122,7 +122,7 @@ class EquipmentMarketPanelViewController: GameViewPanelViewController, NSTableVi
         currentStar.shipEquipmentMarket.append(equip)
         self.buyTableView.reloadData()
         
-        self.gameState.player.negotiationExperience += (Double(abs(price))/300.0)
+        self.gameState.player.negotiationExperience += (Double(abs(price))/400.0)
         self.gameState.player.playerUpdated()
         self.sellTableView.reloadData()
     }

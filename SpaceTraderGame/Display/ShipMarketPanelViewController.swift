@@ -100,7 +100,7 @@ class ShipMarketPanelViewController: GameViewPanelViewController, NSTableViewDel
         oldShip!.hullDamage = 0
         currentStar.shipMarket.append(oldShip!)
         
-        self.gameState.player.negotiationExperience += (Double(abs(price))/300.0)
+        self.gameState.player.negotiationExperience += (Double(abs(price))/400.0)
         self.gameState.player.playerUpdated()
         self.refreshView()
     }
