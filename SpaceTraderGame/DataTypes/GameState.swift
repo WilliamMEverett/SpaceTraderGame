@@ -49,4 +49,48 @@ class GameState : Codable {
         return String(format: "Year %d, Day %.1f", yearValue, daysValue)
     }
     
+    func performJump(from : Int, to: Int, galaxyMap: GalaxyMap, player: Player) -> Bool {
+        guard let currentStar = galaxyMap.getSystemForId(from) else {
+            return false
+        }
+        if !currentStar.connectingSystems.contains(to) {
+            return false
+        }
+        guard let destinationStar = galaxyMap.getSystemForId(to) else {
+            return false
+        }
+        
+        let distance = currentStar.position.distance(destinationStar.position)
+        
+        let time = player.timeToJump(distance: distance)
+        let fuel = player.fuelToTravelTime(time: time)
+        
+        if fuel > player.ship.fuel {
+            return false
+        }
+        
+        if !player.visitedStars.contains(destinationStar.num_id) {
+            player.navigationExperience += distance*2.0
+        }
+        else {
+            player.navigationExperience += distance*0.5
+        }
+        
+        player.priorLocation = player.location
+        player.location = destinationStar.num_id
+        player.visitedStars.insert(destinationStar.num_id)
+        destinationStar.connectingSystems.forEach() { player.knownStars.insert($0)}
+        player.ship.fuel -= fuel
+        player.distanceTraveled += distance
+        player.jumpsMade += 1
+
+        player.playerUpdated()
+        
+        destinationStar.refreshStarSystemOnReentry()
+        
+        self.time += time
+        
+        return true
+    }
+    
 }

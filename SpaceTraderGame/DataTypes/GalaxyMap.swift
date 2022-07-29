@@ -53,6 +53,66 @@ class GalaxyMap: Codable {
         return res
     }
     
+    func systemsWithinJumpsFrom(start : Int, jumps : Int, limitedTo : Set<Int>? = nil) -> [Int: (jumps:Int, distance: Double)] {
+        var result : [Int: (jumps:Int, distance: Double)] = [:]
+        guard let _ = self.getSystemForId(start) else {
+            return result
+        }
+        if (limitedTo != nil && !limitedTo!.contains(start)) {
+            return result
+        }
+        
+        result[start] = (jumps:0,distance:0)
+        
+        if jumps <= 0 {
+            return result
+        }
+        
+        var starsToCheck = Set<Int>()
+        starsToCheck.insert(start)
+        
+        while starsToCheck.count > 0 {
+            var nextStarsToCheck = Set<Int>()
+            starsToCheck.forEach { source in
+                guard let sourceSystem = self.getSystemForId(source) else {
+                    return
+                }
+                guard let sourceVal = result[source] else {
+                    return
+                }
+                if sourceVal.jumps >= jumps {
+                    return
+                }
+                
+                sourceSystem.connectingSystems.forEach { dest in
+                    if limitedTo != nil && !limitedTo!.contains(dest) {
+                        return
+                    }
+                    guard let destSystem = self.getSystemForId(dest) else {
+                        return
+                    }
+                    let legDist = sourceSystem.position.distance(destSystem.position)
+                    let newResult = (jumps: sourceVal.jumps + 1, distance: sourceVal.distance + legDist)
+                    
+                    if let destVal = result[dest] {
+                        if newResult.jumps < destVal.jumps || (newResult.jumps == destVal.jumps && newResult.distance < destVal.distance) {
+                            result[dest] = newResult
+                            nextStarsToCheck.insert(dest)
+                        }
+                    }
+                    else {
+                        nextStarsToCheck.insert(dest)
+                        result[dest] = newResult
+                    }
+                }
+            }
+            
+            starsToCheck = nextStarsToCheck
+        }
+        
+        return result
+    }
+    
     func closestSystemToCoordinates(_ twoDCoord : NSPoint) -> StarSystem? {
         let res = self.systemsMap.reduce(nil) { (partialResult : (distance: Double, value: StarSystem)?, nextValue : (key: Int, value: StarSystem)) -> (distance:Double, value: StarSystem)? in
             let nextDistance = nextValue.value.position.distance2D(twoDCoord)

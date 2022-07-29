@@ -81,10 +81,8 @@ class JumpSelectPanelViewController: GameViewPanelViewController, GameViewPanelD
     
     @IBAction func jumpButtonPressed(_ sender: NSButton) {
         
-        let res = self.gameState.player.performJump(from: self.gameState.player.location, to: self.selectedStar, galaxyMap: self.gameState.galaxyMap)
-        if res.success {
-            self.gameState.time += res.timeElapsed
-            
+        let res = self.gameState.performJump(from: self.gameState.player.location, to: self.selectedStar, galaxyMap: self.gameState.galaxyMap, player: self.gameState.player)
+        if res {
             if let enc = Encounter.checkForEncounterInCurrentSystem(player: self.gameState.player, map: self.gameState.galaxyMap) {
                 let encController = EncounterPanelViewController()
                 encController.encounter = enc

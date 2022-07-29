@@ -205,10 +205,8 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
             self.gameState.player.combatExperience += Double(self.encounter.player!.ship.threatLevel()*10 + 1)
         } else if self.resolution == .playerFled {
             self.gameState.player.combatExperience += Double(self.encounter.player!.ship.threatLevel())
-            let res = self.gameState.player.performJump(from: self.gameState.player.location, to: self.gameState.player.priorLocation, galaxyMap: self.gameState.galaxyMap)
-            if res.success {
-                self.gameState.time += res.timeElapsed
-            }
+            let _ = self.gameState.performJump(from: self.gameState.player.location, to: self.gameState.player.priorLocation, galaxyMap: self.gameState.galaxyMap, player: self.gameState.player)
+
             self.gameState.player.reputation -= 1
         }
         

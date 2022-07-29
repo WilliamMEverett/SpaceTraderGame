@@ -119,48 +119,6 @@ class Player : Codable {
         return self.fuelToTravelTime(time: self.timeToJump(distance: distance))
     }
     
-    func performJump(from : Int, to: Int, galaxyMap: GalaxyMap) -> (success: Bool, timeElapsed: Double) {
-        guard let currentStar = galaxyMap.getSystemForId(from) else {
-            return (success:false, timeElapsed: 0)
-        }
-        if !currentStar.connectingSystems.contains(to) {
-            return (success:false, timeElapsed: 0)
-        }
-        guard let destinationStar = galaxyMap.getSystemForId(to) else {
-            return (success:false, timeElapsed: 0)
-        }
-        
-        let distance = currentStar.position.distance(destinationStar.position)
-        
-        let time = self.timeToJump(distance: distance)
-        let fuel = self.fuelToTravelTime(time: time)
-        
-        if fuel > self.ship.fuel {
-            return (success:false, timeElapsed: 0)
-        }
-        
-        destinationStar.refreshStarSystemOnReentry()
-        
-        if !self.visitedStars.contains(destinationStar.num_id) {
-            self.navigationExperience += distance*2.0
-        }
-        else {
-            self.navigationExperience += distance*0.5
-        }
-        
-        self.priorLocation = self.location
-        self.location = destinationStar.num_id
-        self.visitedStars.insert(destinationStar.num_id)
-        destinationStar.connectingSystems.forEach() { self.knownStars.insert($0)}
-        self.ship.fuel -= fuel
-        self.distanceTraveled += distance
-        self.jumpsMade += 1
-
-        self.playerUpdated()
-        
-        return (success:true, timeElapsed: time)
-    }
-    
     class func convertScoreToExperience(_ score : Int) -> Double {
         return ceil(Double(score)*Double(score)/2.0 + 10*Double(score))
     }

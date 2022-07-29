@@ -15,6 +15,7 @@
 		D91061362853DDBC007866DA /* PlayerInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D91061342853DDBC007866DA /* PlayerInfoViewController.xib */; };
 		D910613A28543CB0007866DA /* RefuelPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D910613828543CB0007866DA /* RefuelPanelViewController.swift */; };
 		D910613B28543CB0007866DA /* RefuelPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D910613928543CB0007866DA /* RefuelPanelViewController.xib */; };
+		D91AF0FF2890D5D10033A43F /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91AF0FE2890D5D10033A43F /* Mission.swift */; };
 		D91B7389284D494E009F21DD /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91B7387284D494E009F21DD /* GameViewController.swift */; };
 		D91B738A284D494E009F21DD /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D91B7388284D494E009F21DD /* GameViewController.xib */; };
 		D91B738D284D56DB009F21DD /* StarSystemInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91B738B284D56DB009F21DD /* StarSystemInfoViewController.swift */; };
@@ -81,6 +82,7 @@
 		D91061342853DDBC007866DA /* PlayerInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerInfoViewController.xib; sourceTree = "<group>"; };
 		D910613828543CB0007866DA /* RefuelPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefuelPanelViewController.swift; sourceTree = "<group>"; };
 		D910613928543CB0007866DA /* RefuelPanelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefuelPanelViewController.xib; sourceTree = "<group>"; };
+		D91AF0FE2890D5D10033A43F /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		D91B7387284D494E009F21DD /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		D91B7388284D494E009F21DD /* GameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
 		D91B738B284D56DB009F21DD /* StarSystemInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarSystemInfoViewController.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				D978933728610E7A00C38ABA /* ShipEquipment.swift */,
 				D9AEC76B284C002300ABA16B /* StarSystem.swift */,
 				D97893392861314500C38ABA /* Encounter.swift */,
+				D91AF0FE2890D5D10033A43F /* Mission.swift */,
 			);
 			path = DataTypes;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				D9486E81284EBB22009B78E5 /* GameState.swift in Sources */,
 				D9A53608285557DB001B47CC /* Market.swift in Sources */,
 				D9CA25E428767C8B004DD7BE /* ShipMarketPanelViewController.swift in Sources */,
+				D91AF0FF2890D5D10033A43F /* Mission.swift in Sources */,
 				D903605C2864B4FA00897C80 /* EncounterPanelViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
