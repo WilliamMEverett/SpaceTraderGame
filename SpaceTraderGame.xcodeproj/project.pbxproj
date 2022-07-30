@@ -30,6 +30,8 @@
 		D96A77042850118D00944168 /* BasicMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D96A77022850118D00944168 /* BasicMenuViewController.xib */; };
 		D978933828610E7B00C38ABA /* ShipEquipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D978933728610E7A00C38ABA /* ShipEquipment.swift */; };
 		D978933A2861314500C38ABA /* Encounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97893392861314500C38ABA /* Encounter.swift */; };
+		D9934F032895EFBC00596272 /* MissionBoardPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9934F012895EFBC00596272 /* MissionBoardPanelViewController.swift */; };
+		D9934F042895EFBC00596272 /* MissionBoardPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9934F022895EFBC00596272 /* MissionBoardPanelViewController.xib */; };
 		D994A596286E58AD003F23B8 /* EquipmentMarketPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994A594286E58AD003F23B8 /* EquipmentMarketPanelViewController.swift */; };
 		D994A597286E58AD003F23B8 /* EquipmentMarketPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D994A595286E58AD003F23B8 /* EquipmentMarketPanelViewController.xib */; };
 		D994A59A286E61DA003F23B8 /* TwoLabelTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994A599286E61DA003F23B8 /* TwoLabelTableCellView.swift */; };
@@ -98,6 +100,8 @@
 		D96A77022850118D00944168 /* BasicMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasicMenuViewController.xib; sourceTree = "<group>"; };
 		D978933728610E7A00C38ABA /* ShipEquipment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipEquipment.swift; sourceTree = "<group>"; };
 		D97893392861314500C38ABA /* Encounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encounter.swift; sourceTree = "<group>"; };
+		D9934F012895EFBC00596272 /* MissionBoardPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionBoardPanelViewController.swift; sourceTree = "<group>"; };
+		D9934F022895EFBC00596272 /* MissionBoardPanelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MissionBoardPanelViewController.xib; sourceTree = "<group>"; };
 		D994A594286E58AD003F23B8 /* EquipmentMarketPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentMarketPanelViewController.swift; sourceTree = "<group>"; };
 		D994A595286E58AD003F23B8 /* EquipmentMarketPanelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EquipmentMarketPanelViewController.xib; sourceTree = "<group>"; };
 		D994A599286E61DA003F23B8 /* TwoLabelTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoLabelTableCellView.swift; sourceTree = "<group>"; };
@@ -179,6 +183,8 @@
 				D9106130285397C4007866DA /* JumpSelectPanelViewController.xib */,
 				D99544E028562CD100CCAAD9 /* MarketPanelViewController.swift */,
 				D99544E128562CD100CCAAD9 /* MarketPanelViewController.xib */,
+				D9934F012895EFBC00596272 /* MissionBoardPanelViewController.swift */,
+				D9934F022895EFBC00596272 /* MissionBoardPanelViewController.xib */,
 				D91061332853DDBC007866DA /* PlayerInfoViewController.swift */,
 				D91061342853DDBC007866DA /* PlayerInfoViewController.xib */,
 				D910613828543CB0007866DA /* RefuelPanelViewController.swift */,
@@ -250,15 +256,15 @@
 			isa = PBXGroup;
 			children = (
 				D9A5360528554BC7001B47CC /* Commodity.swift */,
-				D9A53607285557DB001B47CC /* Market.swift */,
+				D97893392861314500C38ABA /* Encounter.swift */,
 				D9AEC76A284C002300ABA16B /* GalaxyMap.swift */,
 				D9486E80284EBB22009B78E5 /* GameState.swift */,
+				D9A53607285557DB001B47CC /* Market.swift */,
+				D91AF0FE2890D5D10033A43F /* Mission.swift */,
 				D9486E7E284EB824009B78E5 /* Player.swift */,
 				D96A76FF28500B6C00944168 /* Ship.swift */,
 				D978933728610E7A00C38ABA /* ShipEquipment.swift */,
 				D9AEC76B284C002300ABA16B /* StarSystem.swift */,
-				D97893392861314500C38ABA /* Encounter.swift */,
-				D91AF0FE2890D5D10033A43F /* Mission.swift */,
 			);
 			path = DataTypes;
 			sourceTree = "<group>";
@@ -393,6 +399,7 @@
 				D9516CAB28691D1000A40634 /* GameOverPanelViewController.xib in Resources */,
 				D91B738E284D56DB009F21DD /* StarSystemInfoViewController.xib in Resources */,
 				D96A77042850118D00944168 /* BasicMenuViewController.xib in Resources */,
+				D9934F042895EFBC00596272 /* MissionBoardPanelViewController.xib in Resources */,
 				D91061362853DDBC007866DA /* PlayerInfoViewController.xib in Resources */,
 				D9AEC743284BFF9F00ABA16B /* Main.storyboard in Resources */,
 				D910613B28543CB0007866DA /* RefuelPanelViewController.xib in Resources */,
@@ -427,6 +434,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9934F032895EFBC00596272 /* MissionBoardPanelViewController.swift in Sources */,
 				D91B7390284D6402009F21DD /* GameViewPanelViewController.swift in Sources */,
 				D96A77032850118D00944168 /* BasicMenuViewController.swift in Sources */,
 				D96A770028500B6C00944168 /* Ship.swift in Sources */,

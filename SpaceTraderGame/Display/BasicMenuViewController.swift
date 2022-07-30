@@ -16,6 +16,7 @@ enum BasicMenuActionType : Int, CustomStringConvertible {
     case market
     case equipment
     case shipyard
+    case jobs
     
     var description : String {
         switch self {
@@ -27,6 +28,7 @@ enum BasicMenuActionType : Int, CustomStringConvertible {
         case .market: return "Market"
         case .equipment: return "Equipment Market"
         case .shipyard: return "Shipyard"
+        case .jobs: return "Jobs"
         }
     }
     
@@ -64,6 +66,7 @@ class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate,
                 if currentSystem?.stage != .empty && currentSystem?.stage != .colonial {
                     self.actionList.append(.shipyard)
                 }
+                self.actionList.append(.jobs)
             }
             if !self.gameState.player.inStation && currentSystem?.stage != .empty {
                 self.actionList.append(.dock)
@@ -143,6 +146,11 @@ class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate,
         self.delegate?.presentGameViewPanel(sender: self, newPanel: newShipyard)
     }
     
+    func performJobs() {
+        let newJobs = MissionBoardPanelViewController()
+        self.delegate?.presentGameViewPanel(sender: self, newPanel: newJobs)
+    }
+    
     //MARK: - NSTableView
     
     func numberOfRows(in tableView: NSTableView) -> Int {
@@ -186,6 +194,8 @@ class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate,
             self.performEquipmentMarket()
         case .shipyard:
             self.performShipyard()
+        case .jobs:
+            self.performJobs()
         }
     }
     
