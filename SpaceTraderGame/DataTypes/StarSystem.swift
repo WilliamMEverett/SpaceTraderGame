@@ -91,6 +91,7 @@ class StarSystem : Codable, CustomStringConvertible {
     var market : Market? = nil
     var shipEquipmentMarket : [ShipEquipment] = []
     var shipMarket : [Ship] = []
+    var missionBoard : [Mission] = []
     
     var populationDescription : String {
         if self.population < 1000000 {

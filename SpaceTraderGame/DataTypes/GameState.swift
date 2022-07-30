@@ -86,9 +86,11 @@ class GameState : Codable {
 
         player.playerUpdated()
         
-        destinationStar.refreshStarSystemOnReentry()
-        
         self.time += time
+        
+        destinationStar.refreshStarSystemOnReentry()
+        destinationStar.missionBoard = Mission.generateMissionBoardFor(starSystem: destinationStar, galaxyMap: self.galaxyMap, player: self.player, time: self.time)
+        
         
         return true
     }

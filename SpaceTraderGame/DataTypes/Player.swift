@@ -77,6 +77,7 @@ class Player : Codable {
             self.playerUpdated()
         }
     }
+    var missions : [Mission] = []
     
     var distanceTraveled : Double = 0
     var jumpsMade : Int = 0
