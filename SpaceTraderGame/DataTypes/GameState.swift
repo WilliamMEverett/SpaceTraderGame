@@ -38,6 +38,7 @@ class GameState : Codable {
     
     func timeUpdated() {
         self.saved = false
+        self.player.checkMissions(time: self.time)
         NotificationCenter.default.post(name: Notification.Name(GameState.timeUpdatedNotification), object: self)
     }
     

@@ -34,11 +34,19 @@ class Mission : Codable {
     var danger : Int = 0
     var expiration : Double = 0
     var expired : Bool = false
+    var completed : Bool = false
     var missionText = ""
     var missionQty : Int = 0
     var missionCommodity : Commodity = .agriculture_basic
     var returnDestination : Int = 0
     var requiresLifeSupport : Bool = false
+    
+    func playerCanTakeMission(_ player : Player) -> (res: Bool, reason: String) {
+        if player.reputation < self.minimumReputation {
+            return (res:false,reason:"You do not have a high enough reputation")
+        }
+        return (res:true,reason:"")
+    }
     
     class func generateMissionBoardFor(starSystem : StarSystem, galaxyMap : GalaxyMap, player : Player, time : Double) -> [Mission] {
         if starSystem.stage == .empty {
@@ -113,7 +121,7 @@ class Mission : Codable {
         newMission.maximumReputation = min(30,randomStar.value.jumps/2 + newMission.danger*3)
         newMission.reputationReward = max(1,((randomStar.value.jumps/2 + newMission.danger)/5))
         newMission.moneyReward = Int(round(randomStar.value.distance*20)) + 30*newMission.danger
-        let timeRequired = 1.5*randomStar.value.distance
+        let timeRequired = 1.5*randomStar.value.distance + 4
         newMission.expiration = time + timeRequired
         
         return newMission

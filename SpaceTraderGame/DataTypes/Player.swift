@@ -78,6 +78,8 @@ class Player : Codable {
         }
     }
     var missions : [Mission] = []
+    var cancelledMissions : [Mission] = []
+    var completedMissions : [Mission] = []
     
     var distanceTraveled : Double = 0
     var jumpsMade : Int = 0
@@ -118,6 +120,47 @@ class Player : Codable {
     
     func fuelToTravelDistance(distance: Double) -> Double {
         return self.fuelToTravelTime(time: self.timeToJump(distance: distance))
+    }
+    
+    func checkMissions(time : Double) {
+        
+        for m in self.missions {
+            if m.expired || m.completed {
+                continue
+            }
+            if time >= m.expiration {
+                m.expired = true
+                self.reputation -= m.reputationReward
+                continue
+            }
+            if m.type == .courier {
+                if self.location == m.target && self.inStation == true {
+                    m.completed = true
+                    self.addMissionRewardToPlayer(m)
+                }
+            }
+            else if m.type == .survey {
+                if self.location == m.returnDestination && self.inStation == true && self.visitedStars.contains(m.target) {
+                    m.completed = true
+                    self.addMissionRewardToPlayer(m)
+                }
+            }
+        }
+        
+        self.completedMissions.append(contentsOf: self.missions.filter({$0.completed}))
+        self.missions = self.missions.filter({!$0.completed})
+    }
+    
+    private func addMissionRewardToPlayer(_ m : Mission) {
+        self.money += m.moneyReward
+        if self.reputation < m.maximumReputation {
+            if self.reputation + m.reputationReward > m.maximumReputation {
+                self.reputation = m.maximumReputation
+            }
+            else {
+                self.reputation += m.reputationReward
+            }
+        }
     }
     
     class func convertScoreToExperience(_ score : Int) -> Double {

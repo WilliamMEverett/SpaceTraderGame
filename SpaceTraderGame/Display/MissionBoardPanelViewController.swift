@@ -38,6 +38,45 @@ class MissionBoardPanelViewController: GameViewPanelViewController, NSTableViewD
         self.missionTableView.reloadData()
     }
     
+    private func attemptToTakeMission(_ mission : Mission)
+    {
+        let canTake = mission.playerCanTakeMission(self.gameState.player)
+        if !canTake.res {
+            let al = NSAlert()
+            al.alertStyle = .informational
+            al.messageText = "Unavailable"
+            al.informativeText = canTake.reason
+            al.beginSheetModal(for: self.view.window!)
+            return
+        }
+        
+        let al = NSAlert()
+        al.alertStyle = .informational
+        al.messageText = "Take Job?"
+        al.informativeText = mission.missionText
+        al.addButton(withTitle: "OK")
+        al.addButton(withTitle: "Cancel")
+        weak var weakSelf = self
+        al.beginSheetModal(for: self.view.window!) { response in
+            if response == .alertFirstButtonReturn {
+                weakSelf?.completeTakeMission(mission)
+            }
+        }
+    }
+    
+    private func completeTakeMission(_ mission : Mission) {
+        guard let currentStar = self.gameState.galaxyMap.getSystemForId(self.gameState.player.location) else {
+            return
+        }
+        guard let index = currentStar.missionBoard.firstIndex(where: {$0 === mission}) else {
+            self.refreshView()
+            return
+        }
+        self.gameState.player.missions.append(mission)
+        currentStar.missionBoard.remove(at: index)
+        self.refreshView()
+    }
+    
     //MARK: - Table View
     
     func numberOfRows(in tableView: NSTableView) -> Int {
@@ -67,6 +106,9 @@ class MissionBoardPanelViewController: GameViewPanelViewController, NSTableViewD
         else if (tableView.tableColumns[3] == tableColumn) {
             return "\(Int(floor(mission.expiration - self.gameState.time))) days"
         }
+        else if (tableView.tableColumns[4] == tableColumn) {
+            return "\(mission.minimumReputation)"
+        }
         
         return nil
     }
@@ -79,7 +121,8 @@ class MissionBoardPanelViewController: GameViewPanelViewController, NSTableViewD
             return
         }
         if selectionRow >= 0 && selectionRow < currentStar.missionBoard.count {
-            
+            let mis = currentStar.missionBoard[selectionRow]
+            self.attemptToTakeMission(mis)
         }
         
     }

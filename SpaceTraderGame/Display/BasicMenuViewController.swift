@@ -93,8 +93,8 @@ class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate,
         let fuelRequired = self.gameState.player.ship.fuelToTravelTime(time: Ship.timeToLeaveDock())
         if self.gameState.player.ship.fuel >= fuelRequired {
             self.gameState.player.ship.fuel -= fuelRequired
-            self.gameState.time += Ship.timeToLeaveDock()
             self.gameState.player.inStation = true
+            self.gameState.time += Ship.timeToLeaveDock()
         }
         self.refreshView()
     }
@@ -107,8 +107,8 @@ class BasicMenuViewController: GameViewPanelViewController, NSTableViewDelegate,
         let fuelRequired = self.gameState.player.ship.fuelToTravelTime(time: Ship.timeToLeaveDock())
         if self.gameState.player.ship.fuel >= fuelRequired {
             self.gameState.player.ship.fuel -= fuelRequired
-            self.gameState.time += Ship.timeToLeaveDock()
             self.gameState.player.inStation = false
+            self.gameState.time += Ship.timeToLeaveDock()
         }
         self.refreshView()
     }
