@@ -73,6 +73,19 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Info" id="J7w-ES-sfj" userLabel="View">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Info" id="3aU-rs-n4u">
+                                    <items>
+                                        <menuItem title="Jobs" id="l6s-hT-QrC">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="jobsMenuItem:" target="Voe-Tx-rLC" id="8rN-Ck-UMt"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Window" id="aUF-d1-5bR">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">

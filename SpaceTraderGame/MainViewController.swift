@@ -14,6 +14,7 @@ class MainViewController: NSViewController {
     var newGameWindowController : NewGameWindowController?
     var savePanel : NSSavePanel?
     var loadPanel : NSOpenPanel?
+    var jobsWindow : NSWindow?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,8 @@ class MainViewController: NSViewController {
         
         self.gameViewController = GameViewController()
         self.gameViewController!.gameState = gameState
+        self.jobsWindow?.close()
+        self.jobsWindow = nil
         
         self.addChild(self.gameViewController!)
         self.gameViewController!.view.frame = self.view.bounds
@@ -127,15 +130,7 @@ class MainViewController: NSViewController {
         
         newGameState.saved = true
         
-        self.gameViewController?.view.removeFromSuperview()
-        self.gameViewController?.removeFromParent()
-        
-        self.gameViewController = GameViewController()
-        self.gameViewController!.gameState = newGameState
-        
-        self.addChild(self.gameViewController!)
-        self.gameViewController!.view.frame = self.view.bounds
-        self.view.addSubview(gameViewController!.view)
+        self.startGameWithGameState(newGameState)
         
     }
     
@@ -191,6 +186,29 @@ class MainViewController: NSViewController {
         }
         else {
             self.showLoadGameDialog()
+        }
+    }
+    
+    @IBAction func jobsMenuItem(_ sender : AnyObject?) {
+        if self.newGameWindowController != nil || self.savePanel != nil || self.loadPanel != nil {
+            return
+        }
+        
+        if self.gameViewController?.gameState == nil {
+            return
+        }
+        
+        if self.jobsWindow != nil {
+            (self.jobsWindow!.contentViewController as? PlayerMissionViewController)?.gameState = self.gameViewController?.gameState
+            
+            self.jobsWindow?.makeKeyAndOrderFront(sender)
+            (self.jobsWindow!.contentViewController as? PlayerMissionViewController)?.refreshView()
+        }
+        else {
+            let newJobsController = PlayerMissionViewController()
+            newJobsController.gameState = self.gameViewController?.gameState
+            self.jobsWindow = NSWindow(contentViewController: newJobsController)
+            self.jobsWindow?.makeKeyAndOrderFront(sender)
         }
     }
 

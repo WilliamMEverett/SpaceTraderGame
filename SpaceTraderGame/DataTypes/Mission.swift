@@ -33,6 +33,7 @@ class Mission : Codable {
     var moneyReward : Int = 0
     var danger : Int = 0
     var expiration : Double = 0
+    var completedTime : Double = 0
     var expired : Bool = false
     var completed : Bool = false
     var missionText = ""

@@ -73,6 +73,7 @@ class MissionBoardPanelViewController: GameViewPanelViewController, NSTableViewD
             return
         }
         self.gameState.player.missions.append(mission)
+        self.gameState.player.playerUpdated()
         currentStar.missionBoard.remove(at: index)
         self.refreshView()
     }

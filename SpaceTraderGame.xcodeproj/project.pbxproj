@@ -23,6 +23,8 @@
 		D91B7390284D6402009F21DD /* GameViewPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91B738F284D6402009F21DD /* GameViewPanelViewController.swift */; };
 		D9486E7F284EB824009B78E5 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9486E7E284EB824009B78E5 /* Player.swift */; };
 		D9486E81284EBB22009B78E5 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9486E80284EBB22009B78E5 /* GameState.swift */; };
+		D949826C28986EF600432683 /* PlayerMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D949826A28986EF600432683 /* PlayerMissionViewController.swift */; };
+		D949826D28986EF600432683 /* PlayerMissionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D949826B28986EF600432683 /* PlayerMissionViewController.xib */; };
 		D9516CAA28691D1000A40634 /* GameOverPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9516CA828691D1000A40634 /* GameOverPanelViewController.swift */; };
 		D9516CAB28691D1000A40634 /* GameOverPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9516CA928691D1000A40634 /* GameOverPanelViewController.xib */; };
 		D96A770028500B6C00944168 /* Ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96A76FF28500B6C00944168 /* Ship.swift */; };
@@ -93,6 +95,8 @@
 		D93E75AD2884CB93009B192D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D9486E7E284EB824009B78E5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		D9486E80284EBB22009B78E5 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		D949826A28986EF600432683 /* PlayerMissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMissionViewController.swift; sourceTree = "<group>"; };
+		D949826B28986EF600432683 /* PlayerMissionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerMissionViewController.xib; sourceTree = "<group>"; };
 		D9516CA828691D1000A40634 /* GameOverPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverPanelViewController.swift; sourceTree = "<group>"; };
 		D9516CA928691D1000A40634 /* GameOverPanelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameOverPanelViewController.xib; sourceTree = "<group>"; };
 		D96A76FF28500B6C00944168 /* Ship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ship.swift; sourceTree = "<group>"; };
@@ -157,6 +161,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D949826928986E6800432683 /* PopupDisplays */ = {
+			isa = PBXGroup;
+			children = (
+				D949826A28986EF600432683 /* PlayerMissionViewController.swift */,
+				D949826B28986EF600432683 /* PlayerMissionViewController.xib */,
+			);
+			path = PopupDisplays;
+			sourceTree = "<group>";
+		};
 		D994A598286E6153003F23B8 /* TableCellViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +293,7 @@
 		D9AEC76E284C003E00ABA16B /* Display */ = {
 			isa = PBXGroup;
 			children = (
+				D949826928986E6800432683 /* PopupDisplays */,
 				D99A5CC9287228690046356F /* PanelViewControllers */,
 				D994A598286E6153003F23B8 /* TableCellViews */,
 				D9AEC773284C05A000ABA16B /* StarMapView.swift */,
@@ -393,6 +407,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D949826D28986EF600432683 /* PlayerMissionViewController.xib in Resources */,
 				D9AEC740284BFF9F00ABA16B /* Assets.xcassets in Resources */,
 				D99544E328562CD100CCAAD9 /* MarketPanelViewController.xib in Resources */,
 				D9AEC772284C043500ABA16B /* StarMapViewController.xib in Resources */,
@@ -454,6 +469,7 @@
 				D9106131285397C4007866DA /* JumpSelectPanelViewController.swift in Sources */,
 				D9AEC76D284C002300ABA16B /* StarSystem.swift in Sources */,
 				D910613A28543CB0007866DA /* RefuelPanelViewController.swift in Sources */,
+				D949826C28986EF600432683 /* PlayerMissionViewController.swift in Sources */,
 				D978933828610E7B00C38ABA /* ShipEquipment.swift in Sources */,
 				D9486E7F284EB824009B78E5 /* Player.swift in Sources */,
 				D9A5360628554BC7001B47CC /* Commodity.swift in Sources */,

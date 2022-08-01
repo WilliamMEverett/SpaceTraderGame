@@ -136,18 +136,21 @@ class Player : Codable {
             if m.type == .courier {
                 if self.location == m.target && self.inStation == true {
                     m.completed = true
+                    m.completedTime = time
                     self.addMissionRewardToPlayer(m)
                 }
             }
             else if m.type == .survey {
                 if self.location == m.returnDestination && self.inStation == true && self.visitedStars.contains(m.target) {
                     m.completed = true
+                    m.completedTime = time
                     self.addMissionRewardToPlayer(m)
                 }
             }
         }
         
         self.completedMissions.append(contentsOf: self.missions.filter({$0.completed}))
+        self.completedMissions.sort(by: {$0.completedTime > $1.completedTime})
         self.missions = self.missions.filter({!$0.completed})
     }
     

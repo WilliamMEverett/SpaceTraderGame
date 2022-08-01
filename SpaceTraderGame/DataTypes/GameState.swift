@@ -42,12 +42,16 @@ class GameState : Codable {
         NotificationCenter.default.post(name: Notification.Name(GameState.timeUpdatedNotification), object: self)
     }
     
-    func timeStringDescription() -> String {
-        
-        let yearValue = Int(floor(time/365))
-        let daysValue = time - Double(365*yearValue)
+    class func timeStringDescription(_ timeIn : Double) -> String {
+        let yearValue = Int(floor(timeIn/365))
+        let daysValue = timeIn - Double(365*yearValue)
         
         return String(format: "Year %d, Day %.1f", yearValue, daysValue)
+    }
+    
+    func timeStringDescription() -> String {
+        
+        return GameState.timeStringDescription(self.time)
     }
     
     func performJump(from : Int, to: Int, galaxyMap: GalaxyMap, player: Player) -> Bool {

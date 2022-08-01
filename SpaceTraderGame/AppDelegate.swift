@@ -35,5 +35,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func loadMenuItem(_ sender : AnyObject?) {
         (NSApplication.shared.mainWindow?.windowController?.contentViewController as? MainViewController)?.loadMenuItem(sender)
     }
+    
+    @IBAction func jobsMenuItem(_ sender : AnyObject?) {
+        (NSApplication.shared.mainWindow?.windowController?.contentViewController as? MainViewController)?.jobsMenuItem(sender)
+    }
 }
 
