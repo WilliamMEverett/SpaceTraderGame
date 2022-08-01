@@ -88,7 +88,7 @@ class Encounter : Codable {
             return nil
         }
         
-        let baseChanceOfEncounter = player.money < 20000 ? (0.02 + 0.04*Double(player.money)/20000) : 0.06
+        let baseChanceOfEncounter = min((0.005 + 0.035*Double(player.money)/20000),0.04)
         let chanceOfEncounter = baseChanceOfEncounter*Double(currentSystem.danger)
         if Double.random(in: 0...1) > chanceOfEncounter {
             return nil
