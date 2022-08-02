@@ -45,6 +45,21 @@ class PlayerMissionViewController: NSViewController, NSTableViewDelegate, NSTabl
         self.refreshView()
     }
     
+    private func completeCancelMission(_ mission : Mission) {
+        if !mission.expired {
+            self.gameState?.player.reputation -= max(1,mission.reputationReward/2)
+            mission.expired = true
+            mission.expiration = self.gameState?.time ?? 0
+        }
+        guard let index = self.gameState?.player.missions.firstIndex(where: {$0 === mission}) else {
+            self.refreshView()
+            return
+        }
+        self.gameState?.player.missions.remove(at: index)
+        self.gameState?.player.cancelledMissions.insert(mission, at: 0)
+        self.refreshView()
+    }
+    
     //MARK: - Table View
     
     func numberOfRows(in tableView: NSTableView) -> Int {
@@ -103,6 +118,9 @@ class PlayerMissionViewController: NSViewController, NSTableViewDelegate, NSTabl
             let timeStamp = mission!.expiration
             return GameState.timeStringDescription(timeStamp)
         }
+        else if (tableView.tableColumns[4] == tableColumn) {
+            return "Cancel"
+        }
         
         return nil
     }
@@ -112,6 +130,32 @@ class PlayerMissionViewController: NSViewController, NSTableViewDelegate, NSTabl
         if notification.object as? NSTableView === self.currentJobsTableView {
             let selectionRow = self.currentJobsTableView.selectedRow
             self.currentJobsTableView.deselectAll(nil)
+
+            if selectionRow < 0 || selectionRow >= (self.gameState?.player.missions.count ?? 0) {
+                self.refreshView()
+                return
+            }
+            guard let mis = self.gameState?.player.missions[selectionRow] else {
+                return
+            }
+            if mis.expired {
+                self.completeCancelMission(mis)
+                return
+            }
+            else {
+                let al = NSAlert()
+                al.alertStyle = .informational
+                al.messageText = "Cancel Job?"
+                al.informativeText = "Do you want to cancel \'\(mis.missionText)\'? This will cost you reputation."
+                al.addButton(withTitle: "OK")
+                al.addButton(withTitle: "Retain")
+                weak var weakSelf = self
+                al.beginSheetModal(for: self.view.window!) { response in
+                    if response == .alertFirstButtonReturn {
+                        weakSelf?.completeCancelMission(mis)
+                    }
+                }
+            }
             
         }
         

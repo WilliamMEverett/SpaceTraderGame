@@ -137,13 +137,13 @@ class Mission : Codable {
         newMission.type = .survey
         newMission.target = destinationStar.num_id
         newMission.returnDestination = starSystem.num_id
-        newMission.missionText = "Find and survey \(destinationStar.name) and then return to \(starSystem.name)"
+        newMission.missionText = "Find and survey \(destinationStar.name) (head \(starSystem.position.directionToOtherString(destinationStar.position))) and then return to \(starSystem.name)"
         newMission.danger = 0
-        newMission.minimumReputation = 0
-        newMission.maximumReputation = min(30,randomStar.value.jumps)
-        newMission.reputationReward = max(1,randomStar.value.jumps/4)
-        newMission.moneyReward = Int(round(randomStar.value.distance*20))
-        let timeRequired = 4*randomStar.value.distance
+        newMission.minimumReputation = max(0, (randomStar.value.jumps - 6)*2)
+        newMission.maximumReputation = randomStar.value.jumps*4
+        newMission.reputationReward = max(1,randomStar.value.jumps/2)
+        newMission.moneyReward = Int(round(randomStar.value.distance*40))
+        let timeRequired = 6*randomStar.value.distance
         newMission.expiration = time + timeRequired
         
         return newMission

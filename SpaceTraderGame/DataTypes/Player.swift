@@ -130,7 +130,7 @@ class Player : Codable {
             }
             if time >= m.expiration {
                 m.expired = true
-                self.reputation -= m.reputationReward
+                self.reputation -= max(1,m.reputationReward/2)
                 continue
             }
             if m.type == .courier {

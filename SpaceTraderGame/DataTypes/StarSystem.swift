@@ -73,6 +73,26 @@ struct Coord : Codable, CustomStringConvertible {
         let zString = String(format: "%.1f", self.z)
         return "(\(xString),\(yString),\(zString))"
     }
+    
+    func directionToOtherString(_ otherCoord : Coord) -> String {
+        let xDist = otherCoord.x - self.x
+        let yDist = otherCoord.y - self.y
+        let angle = atan2(yDist, xDist)
+        var directions : [String] = []
+        if angle >= Double.pi/8 && angle < Double.pi*7/8 {
+            directions.append("north")
+        }
+        else if angle < -1*Double.pi/8 && angle >= -1*Double.pi*7/8 {
+            directions.append("south")
+        }
+        if angle >= -1*Double.pi*3/8 && angle < Double.pi*3/8 {
+            directions.append("east")
+        }
+        else if angle < -1*Double.pi*5/8 || angle >= Double.pi*5/8 {
+            directions.append("west")
+        }
+        return directions.joined(separator: "-")
+    }
 }
 
 class StarSystem : Codable, CustomStringConvertible {
