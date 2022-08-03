@@ -84,12 +84,12 @@ enum Commodity : Int, CustomStringConvertible, Codable, CaseIterable  {
             }
         case .live_biologicals:
             switch (starSystem.economy, starSystem.stage) {
-            case (.agriculture_basic, _): return 80
-            case (.agriculture_luxury, _): return 80
-            case (_, .colonial): return 20
-            case (_, .emerging): return 80
-            case (_, .apex): return 150
-            case (_, .declining): return 100
+            case (.agriculture_basic, _): return 60
+            case (.agriculture_luxury, _): return 60
+            case (_, .colonial): return 15
+            case (_, .emerging): return 60
+            case (_, .apex): return 100
+            case (_, .declining): return 80
             default:
                 return 0
             }
@@ -119,12 +119,12 @@ enum Commodity : Int, CustomStringConvertible, Codable, CaseIterable  {
             }
         case .metals_fissile:
             switch (starSystem.economy, starSystem.stage) {
-            case (.mining, _): return 40
-            case (.industrial, _): return 40
+            case (.mining, _): return 30
+            case (.industrial, _): return 30
             case (.post_industrial, _): return 10
             case (.resort, _): return 0
             case (_, .colonial): return 0
-            case (_, .emerging): return 10
+            case (_, .emerging): return 8
             case (_, .apex): return 4
             case (_, .declining): return 4
             default:
@@ -132,38 +132,38 @@ enum Commodity : Int, CustomStringConvertible, Codable, CaseIterable  {
             }
         case .machinery_industrial:
             switch (starSystem.economy, starSystem.stage) {
-                case (.mining, _): return 60
-                case (.industrial, _): return 60
-                case (.post_industrial, _): return 20
-                case (.resort, _): return 10
-                case (_, .colonial): return 40
-                case (_, .emerging): return 30
-                case (_, .apex): return 20
-                case (_, .declining): return 10
+                case (.mining, _): return 40
+                case (.industrial, _): return 40
+                case (.post_industrial, _): return 15
+                case (.resort, _): return 8
+                case (_, .colonial): return 30
+                case (_, .emerging): return 20
+                case (_, .apex): return 15
+                case (_, .declining): return 8
                 default:
                     return 0
             }
         case .machinery_computer:
             switch (starSystem.economy, starSystem.stage) {
-            case (.mining, _): return 30
-            case (.industrial, _): return 60
-            case (.post_industrial, _): return 30
-            case (.resort, _): return 20
-            case (_, .colonial): return 20
-            case (_, .emerging): return 30
-            case (_, .apex): return 20
-            case (_, .declining): return 20
+            case (.mining, _): return 20
+            case (.industrial, _): return 40
+            case (.post_industrial, _): return 20
+            case (.resort, _): return 15
+            case (_, .colonial): return 15
+            case (_, .emerging): return 20
+            case (_, .apex): return 15
+            case (_, .declining): return 15
             default:
                 return 0
             }
         case .luxuries_manufactured:
             switch (starSystem.economy, starSystem.stage) {
-            case (.industrial, _): return 30
-            case (.resort, _): return 30
+            case (.industrial, _): return 20
+            case (.resort, _): return 20
             case (_, .colonial): return 3
-            case (_, .emerging): return 15
-            case (_, .apex): return 30
-            case (_, .declining): return 20
+            case (_, .emerging): return 10
+            case (_, .apex): return 20
+            case (_, .declining): return 15
             default:
                 return 0
             }

@@ -118,10 +118,10 @@ class Mission : Codable {
         newMission.target = destinationStar.num_id
         newMission.missionText = "Carry a package to \(destinationStar.name)"
         newMission.danger = destinationStar.danger
-        newMission.minimumReputation = max(randomStar.value.jumps/2 + newMission.danger - 10,0)
-        newMission.maximumReputation = min(30,randomStar.value.jumps/2 + newMission.danger*3)
+        newMission.minimumReputation = max(randomStar.value.jumps/2 + newMission.danger - 8,0)
+        newMission.maximumReputation = min(50,randomStar.value.jumps/2 + newMission.danger*3)
         newMission.reputationReward = max(1,((randomStar.value.jumps/2 + newMission.danger)/5))
-        newMission.moneyReward = Int(round(randomStar.value.distance*20)) + 30*newMission.danger
+        newMission.moneyReward = Int(round(randomStar.value.distance*30)) + 50*newMission.danger
         let timeRequired = 1.5*randomStar.value.distance + 4
         newMission.expiration = time + timeRequired
         
