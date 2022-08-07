@@ -16,6 +16,7 @@ class GameState : Codable {
     }
     
     static let timeUpdatedNotification = "timeUpdatedNotification"
+    static let logEntryPostedNotification = "logEntryPostedNotification"
     
     var galaxyMap : GalaxyMap!
     var player : Player!
@@ -41,6 +42,11 @@ class GameState : Codable {
         startingStar.connectingSystems.forEach { self.player.knownStars.insert($0) }
         startingStar.refreshStarSystemOnReentry()
         self.addLogEntry("Game started at \(startingStar.name)")
+        
+        weak var weakSelf = self
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(GameState.logEntryPostedNotification), object: nil, queue: nil) { notification in
+            weakSelf?.logEntryPosted(notification)
+        }
         
     }
     
@@ -120,6 +126,16 @@ class GameState : Codable {
     func addLogEntry(_ message : String) {
         self.log.append(LogEntry(realTime: Date.timeIntervalSinceReferenceDate, gameTime: self.time, message: message))
         NotificationCenter.default.post(name: Notification.Name(GameState.timeUpdatedNotification), object: self)
+    }
+    
+    //MARK: - Notification
+    
+    private func logEntryPosted(_ notification : Notification) {
+        guard let message = notification.userInfo?["message"] as? String else {
+            print("Log notification lacking message")
+            return
+        }
+        self.addLogEntry(message)
     }
     
 }

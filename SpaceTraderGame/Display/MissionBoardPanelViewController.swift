@@ -76,6 +76,8 @@ class MissionBoardPanelViewController: GameViewPanelViewController, NSTableViewD
         self.gameState.player.playerUpdated()
         currentStar.missionBoard.remove(at: index)
         self.refreshView()
+        
+        self.gameState.addLogEntry("Accepted job: \(mission.missionText)")
     }
     
     //MARK: - Table View

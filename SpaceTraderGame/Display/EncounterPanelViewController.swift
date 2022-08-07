@@ -174,6 +174,7 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
     
     private func dumpAllCargo(_ flee : Bool) {
         self.gameState.player.ship.dumpCargo()
+        self.gameState.addLogEntry("Cargo dumped")
         if self.encounter.type == .pirate && self.initialPhase {
             if flee {
                 self.resolution = .playerFled
@@ -200,14 +201,20 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
                 let diff = self.encounter.player!.ship.threatLevel() - self.gameState.player.reputation/10
                 self.gameState.player.reputation += diff
             }
+            self.gameState.addLogEntry("Enemy destroyed")
             
         } else if self.resolution == .enemyFled {
             self.gameState.player.combatExperience += Double(self.encounter.player!.ship.threatLevel()*10 + 1)
+            self.gameState.addLogEntry("Enemy fled from combat")
         } else if self.resolution == .playerFled {
             self.gameState.player.combatExperience += Double(self.encounter.player!.ship.threatLevel())
             let _ = self.gameState.performJump(from: self.gameState.player.location, to: self.gameState.player.priorLocation, galaxyMap: self.gameState.galaxyMap, player: self.gameState.player)
 
             self.gameState.player.reputation -= 1
+            self.gameState.addLogEntry("Player fled from combat")
+        }
+        else if self.resolution == .destroyed {
+            gameState.addLogEntry("Ship destroyed")
         }
         
         self.delegate?.cancelButtonPressed(sender: self)
@@ -289,12 +296,14 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
             let hit = Double.random(in: 0...100)
 //            print("got \(hit) out of \(percentHit)")
             if hit > percentHit {
+                self.gameState.addLogEntry("miss")
                 self.combatRoundDescription += "\nmisses"
                 return
             }
             let dam = weap.strength * Double.random(in: 0...1)
             totalDam += dam
             self.combatRoundDescription += String(format: "\nhits for %0.1f damage", dam)
+            self.gameState.addLogEntry(String(format: "hits for %0.1f damage", dam))
         }
         
         if totalDam < defend.ship.shieldValue {
@@ -317,9 +326,11 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
             let escapeProgress = calculateFlee(player: self.gameState.player)
             self.combatRoundDescription += String(format:"\nFlee progress increases by %0.0f",escapeProgress)
             playerEscapeProgress += escapeProgress
+            self.gameState.addLogEntry(String(format:"Player flees: %0.0f",escapeProgress))
         }
         else {
             self.playerEscapeProgress = 0
+            self.gameState.addLogEntry("Player attacks")
             performAttack(attack: self.gameState.player, defend: self.encounter.player!)
         }
     }
@@ -333,9 +344,11 @@ class EncounterPanelViewController: GameViewPanelViewController, NSTableViewDele
             let escapeProgress = calculateFlee(player: self.encounter.player!)
             self.combatRoundDescription += String(format:"\nFlee progress increases by %0.0f",escapeProgress)
             enemyEscapeProgress += escapeProgress
+            self.gameState.addLogEntry(String(format:"Enemy flees: %0.0f",escapeProgress))
         }
         else {
             self.enemyEscapeProgress = 0
+            self.gameState.addLogEntry("Enemy attacks")
             performAttack(attack: self.encounter.player!, defend: self.gameState.player)
         }
     }

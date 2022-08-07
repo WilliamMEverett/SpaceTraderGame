@@ -131,6 +131,7 @@ class Player : Codable {
             if time >= m.expiration {
                 m.expired = true
                 self.reputation -= max(1,m.reputationReward/2)
+                NotificationCenter.default.post(name: Notification.Name(GameState.logEntryPostedNotification), object: self, userInfo:["message":"Job Failed: \(m.missionText)"])
                 continue
             }
             if m.type == .courier {
@@ -138,6 +139,7 @@ class Player : Codable {
                     m.completed = true
                     m.completedTime = time
                     self.addMissionRewardToPlayer(m)
+                    NotificationCenter.default.post(name: Notification.Name(GameState.logEntryPostedNotification), object: self, userInfo:["message":"Job Completed: \(m.missionText)"])
                 }
             }
             else if m.type == .survey {
@@ -145,6 +147,7 @@ class Player : Codable {
                     m.completed = true
                     m.completedTime = time
                     self.addMissionRewardToPlayer(m)
+                    NotificationCenter.default.post(name: Notification.Name(GameState.logEntryPostedNotification), object: self, userInfo:["message":"Job Completed: \(m.missionText)"])
                 }
             }
         }
