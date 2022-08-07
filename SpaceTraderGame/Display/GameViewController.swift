@@ -7,11 +7,12 @@
 
 import Cocoa
 
-class GameViewController: NSViewController, GameViewPanelDelegate {
+class GameViewController: NSViewController, GameViewPanelDelegate, NSTableViewDelegate, NSTableViewDataSource {
     @IBOutlet var centralDisplayPanel : NSView!
     @IBOutlet var upperRightDisplayPanel : NSView!
     @IBOutlet weak var upperLeftDisplayPanel: NSView!
     @IBOutlet weak var timeDateLabel: NSTextField!
+    @IBOutlet weak var logTableView : NSTableView!
     
     var currentGameViewMainPanel : GameViewPanelViewController? = nil
     var starSystemInfoViewController : StarSystemInfoViewController!
@@ -74,6 +75,8 @@ class GameViewController: NSViewController, GameViewPanelDelegate {
     
     func refreshTimeDisplay() {
         self.timeDateLabel.stringValue = self.gameState.timeStringDescription()
+        self.logTableView.reloadData()
+        self.logTableView.scrollRowToVisible(self.gameState.log.count - 1)
     }
     
     
@@ -111,6 +114,25 @@ class GameViewController: NSViewController, GameViewPanelDelegate {
     
     func timeWasUpdated(_ notification : Notification) {
         self.refreshTimeDisplay()
+    }
+    
+    //MARK: - NSTableView delegate
+    
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return self.gameState.log.count
+    }
+    
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        
+        let result = self.logTableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("Column1"), owner: self) as? TwoLabelTableCellView
+        
+        if row < self.gameState.log.count {
+            let entry = self.gameState.log[row]
+            result?.textField?.stringValue = GameState.shortTimeStringDescription(entry.gameTime)
+            result?.rightSideTextField.stringValue = entry.message
+        }
+        
+        return result
     }
     
 }

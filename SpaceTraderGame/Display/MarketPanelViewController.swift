@@ -275,6 +275,9 @@ class MarketPanelViewController: GameViewPanelViewController {
             return
         }
         
+        let verb = self.quantityToBuy > 0 ? "Bought" : "Sold"
+        self.gameState.addLogEntry("\(verb) \(abs(self.quantityToBuy)) \(selComm) for \(abs(price))cr")
+        
         currentStar.market!.stock[selComm] = currentMarket - self.quantityToBuy
         self.gameState.player.ship.commodities[selComm] = Double(currentQty + self.quantityToBuy)
         self.gameState.player.money -= price
